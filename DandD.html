@@ -8,7 +8,258 @@
     
 <body>
     <h1>Dungeons and Dragons</h1>
-    <p>
-        Recap
-    </p>
+    <h2>Items</h2>
+    <p>Items sell at about 1/5 the cost, decreased by wear and tear.</p>
+    <h3>Common</h3>
+    <table>
+        <tr>
+            <th>Tier</th>
+            <th>Weapons</th>
+            <th>Armor</th>
+            <th>Health Potions</th>
+            <th>Mana Potions</th>
+        </tr>
+        <tr>
+            <td>C</td>
+            <td>800 gold, +1 Dmg</td>
+            <td>1,000 gold, +1 AC</td>
+            <td>45 gold, heal 10 health</td>
+            <td>40 gold, restore 2 mana</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>1,600 gold, +2 Dmg</td>
+            <td>2,000 gold, +2 AC</td>
+            <td>120 gold, heal 20 health</td>
+            <td>100 gold, restore 4 mana</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>3,500 gold, +3 Dmg</td>
+            <td>4,000 gold, +3 AC</td>
+            <td>300 gold, heal 1/2 health</td>
+            <td>250 gold, restore 7 mana</td>
+        </tr>
+    </table>
+    <h3>Uncommon</h3>
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Cost</th>
+            <th>Effect</th>
+        </tr>
+        <tr>
+            <td>Scroll</td>
+            <td>Magic Missile</td>
+            <td>150</td>
+            <td>d4 damage to target in line of sight</td>
+        </tr>
+        <tr>
+            <td>Potion</td>
+            <td>Anticoagulent</td>
+            <td>150</td>
+            <td>Next successful hit causes target to bleed for d4 after each action</td>
+        </tr>
+    </table>
+    <h3>Enchantments</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Effect</th>
+        </tr>
+        <tr>
+            <td>Armor of Thorns</td>
+            <td>Damages units that miss attacks on wearer.</td>
+        </tr>
+        <tr>
+            <td>Leeching Dagger</td>
+            <td>Heals user on damage dealt.</td>
+        </tr>
+        <tr>
+            <td>Healing Staff</td>
+            <td>Gives +2 to heals done by user.</td>
+        </tr>
+        <tr>
+            <td>Staff of Insight</td>
+            <td>+1 Mana for user.</td>
+        </tr>
+        <tr>
+            <td>Warden's Armor</td>
+            <td>+3 to wearer's Will.</td>
+        </tr>
+        <tr>
+            <td>Cloaked Armor</td>
+            <td>+3 to wearer's sneak.</td>
+        </tr>
+        <tr>
+            <td>Twin Bite</td>
+            <td>+3 damage for user, but user also takes 1 damage.</td>
+        </tr>
+    </table>
+    <hr>
+    <h2>Spells</h2>
+    <table>
+        <tr>
+            <th>Class</th>
+            <th>Name</th>
+            <th>Requirements</th>
+            <th>Mana Cost</th>
+            <th>Effect</th>
+        </tr>
+        <tr>
+            <td>Cleric</td>
+            <td>Heal</td>
+            <td>5 Int</td>
+            <td>1</td>
+            <td>Restore (d4 * Int/5) health to target.</td>
+        </tr>
+        <tr>
+            <td>Cleric</td>
+            <td>Bless</td>
+            <td>10 Int</td>
+            <td>1</td>
+            <td>Give target +(Int/10) to hit for encounter duration.</td>
+        </tr>
+        <tr>
+            <td>Cleric</td>
+            <td>Holy Armor</td>
+            <td>5 Int</td>
+            <td>1</td>
+            <td>Give target +(Int/5) AC and Will for a turn.</td>            
+        </tr>
+        <tr>
+            <td>Cleric</td>
+            <td>Daze</td>
+            <td>10 Int</td>
+            <td>1</td>
+            <td>Target enemy must roll higher than 10+(Int/5) with Will check. If fail,
+                target cannot cast and has hit weakened by however much they failed the
+                check by.
+            </td>
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Magic Missile</td>
+            <td>5 Int</td>
+            <td>1</td>
+            <td>Deal (d4 * Int/5) damage to target in caster's line of sight.</td>            
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Dragon's Breath</td>
+            <td>10 Int</td>
+            <td>1</td>
+            <td>Deal (d6 * Int/10) damage to targets in 4 space line from caster.</td>           
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Shocking Burst</td>
+            <td>10 Int</td>
+            <td>1</td>
+            <td>Deal (d6 * Int/10) to targets in 4 space square within caster's line of
+                sight.</td>           
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Chain Lightning</td>
+            <td>15 Int</td>
+            <td>1</td>
+            <td>Deal (d8 * Int/10) to target in line of sight. Chain Lightning may hit up
+                to 3 other targets within 3 spaces of initial target if there is an
+                unblocked path between them.          
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Blight</td>
+            <td>15 Int</td>
+            <td>1</td>
+            <td>Drain the vitality of a target, which must make a Resistance save</td>
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Cone of Cold</td>
+            <td>Int</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Telekinesis</td>
+            <td>Int</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Earthquake</td>
+            <td>Int</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Gust</td>
+            <td>Int</td>
+            <td></td>
+            <td>Wind in a line</td>
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Immolation</td>
+            <td>Int</td>
+            <td></td>
+            <td>Set target ablaze.</td>
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Meteor Strike</td>
+            <td>Int</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Noxious Cloud</td>
+            <td>Int</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Mind Shatter</td>
+            <td>Int</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Wall of Flames</td>
+            <td>Int</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <hr>
+    <h2>Abilities</h2>
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Mana Cost</th>
+            <th>Effect</th>
+        </tr>
+        <tr>
+            <td>Agressive</td>
+            <td>Focus</td>
+            <td>1</td>
+            <td>(Self) Gain +level for next hit and damage rolls.</td>
+        </tr>
+        <tr>
+            <td>Miscellaneous</td>
+            <td>Charge</td>
+            <td>1</td>
+            <td>(Self) Movement is doubled the following turn.</td>
+        </tr>
+    </table>
 </body>
