@@ -53,7 +53,7 @@
             <td>Scroll</td>
             <td>Magic Missile</td>
             <td>150</td>
-            <td>d4 damage to target in line of sight</td>
+            <td>d6 damage to target in line of sight</td>
         </tr>
         <tr>
             <td>Potion</td>
@@ -104,68 +104,67 @@
             <th>Class</th>
             <th>Name</th>
             <th>Requirements</th>
-            <th>Mana Cost</th>
             <th>Effect</th>
         </tr>
         <tr>
             <td>Cleric</td>
             <td>Heal</td>
-            <td>5 Int</td>
-            <td>1</td>
-            <td>Restore (d4 * Int/5) health to target.</td>
+            <td>5 Int</td>         
+            <td>Restore health to a single target.</td>
+        </tr><tr>
+            <td>All Casters</td>
+            <td>Detect Magic</td>
+            <td>5 Int</td>         
+            <td>Detect and identify the magical energy of a room or object.</td>
         </tr>
         <tr>
             <td>Cleric</td>
             <td>Bless</td>
             <td>10 Int</td>
-            <td>1</td>
-            <td>Give target +(Int/10) to hit for encounter duration.</td>
+            <td>Give target a bonus to hit for encounter duration.</td>
         </tr>
         <tr>
             <td>Cleric</td>
             <td>Holy Armor</td>
             <td>5 Int</td>
-            <td>1</td>
-            <td>Give target +(Int/5) AC and Will for a turn.</td>            
+            <td>Give target a bonus to AC and Will for a turn.</td>            
         </tr>
         <tr>
             <td>Cleric</td>
             <td>Daze</td>
             <td>10 Int</td>
-            <td>1</td>
-            <td>Target enemy must roll higher than 10+(Int/5) with Will check. If fail,
-                target cannot cast and has hit weakened by however much they failed the
-                check by.
+            <td>Target enemy must roll a Will check. If they fail,
+                target cannot use spells or abilities and has a penalty to hit for their
+                next action.
             </td>
         </tr>
         <tr>
             <td>Sorceror</td>
             <td>Magic Missile</td>
             <td>5 Int</td>
-            <td>1</td>
-            <td>Deal (d4 * Int/5) damage to target in caster's line of sight.</td>            
+            <td>Shoot magical projectiles to deal damage to target in caster's line of
+                sight.</td>            
         </tr>
         <tr>
             <td>Sorceror</td>
             <td>Dragon's Breath</td>
-            <td>10 Int</td>
-            <td>1</td>
-            <td>Deal (d6 * Int/10) damage to targets in 4 space line from caster.</td>           
+            <td>15 Int</td>
+            <td>Shoot a pillar of flames, dealing fire damage to targets in 5 space line
+                from caster.</td>           
         </tr>
         <tr>
             <td>Sorceror</td>
-            <td>Shocking Burst</td>
+            <td>Fireball</td>
             <td>10 Int</td>
-            <td>1</td>
-            <td>Deal (d6 * Int/10) to targets in 4 space square within caster's line of
-                sight.</td>           
+            <td>Shoot a fireball that explodes at a target location in the caster's line
+                of sight, dealing fire damage to units in a 4 space square.
+            </td>           
         </tr>
         <tr>
             <td>Sorceror</td>
             <td>Chain Lightning</td>
-            <td>15 Int</td>
-            <td>1</td>
-            <td>Deal (d8 * Int/10) to target in line of sight. Chain Lightning may hit up
+            <td>20 Int</td>
+            <td>Deal electrical damage to target in line of sight. Chain Lightning may hit up
                 to 3 other targets within 3 spaces of initial target if there is an
                 unblocked path between them.          
         </tr>
@@ -173,71 +172,78 @@
             <td>Sorceror</td>
             <td>Blight</td>
             <td>15 Int</td>
-            <td>1</td>
-            <td>Drain the vitality of a target, which must make a Resistance save</td>
+            <td>Drain the vitality of a target, which must make a Fortitude save to avoid
+                damage.
+            </td>
         </tr>
         <tr>
             <td>Sorceror</td>
             <td>Cone of Cold</td>
-            <td>Int</td>
-            <td></td>
-            <td></td>
+            <td>15 Int</td>
+            <td>Create a blast of icy winds, dealing ice damage to enemies in a cone of
+                length 4 spaces starting at the caster. Enemies hit make a fortitude save
+                to see if they are inhibited by the frost next turn.
+            </td>
         </tr>
         <tr>
             <td>Sorceror</td>
             <td>Telekinesis</td>
-            <td>Int</td>
-            <td></td>
-            <td></td>
+            <td>20 Int</td>
+            <td>Manipulate a small object from a distance.</td>
         </tr>
         <tr>
             <td>Sorceror</td>
             <td>Earthquake</td>
-            <td>Int</td>
-            <td></td>
-            <td></td>
+            <td>35 Int</td>
+            <td>Cause a tremor at target location, unsteadying targets and affecting
+                terrain.      
+            </td>
         </tr>
         <tr>
             <td>Sorceror</td>
             <td>Gust</td>
-            <td>Int</td>
-            <td></td>
-            <td>Wind in a line</td>
+            <td>10 Int</td>
+            <td>Create a gust of wind in a 5 space line from the caster, unsteadying
+                or launching those caught in the blast.
+            </td>
         </tr>
         <tr>
             <td>Sorceror</td>
             <td>Immolation</td>
-            <td>Int</td>
-            <td></td>
+            <td>15 Int</td>
             <td>Set target ablaze.</td>
         </tr>
         <tr>
             <td>Sorceror</td>
             <td>Meteor Strike</td>
-            <td>Int</td>
-            <td></td>
-            <td></td>
+            <td>40 Int</td>
+            <td>Call down a hail of meteors at target location.</td>
         </tr>
         <tr>
             <td>Sorceror</td>
             <td>Noxious Cloud</td>
-            <td>Int</td>
-            <td></td>
-            <td></td>
+            <td>20 Int</td>
+            <td>Create a cloud of poisonous fumes in a nine space square within caster's
+                line of sight. Units within square make a fortitude save each turn in cloud
+                to avoid poison damage.
+            </td>
         </tr>
         <tr>
             <td>Sorceror</td>
             <td>Mind Shatter</td>
-            <td>Int</td>
-            <td></td>
-            <td></td>
+            <td>25 Int</td>
+            <td>Caster assaults the target's mind, forcing a Will save for the target to
+                avoid damage and being stunned.
+            </td>
         </tr>
         <tr>
             <td>Sorceror</td>
             <td>Wall of Flames</td>
-            <td>Int</td>
-            <td></td>
-            <td></td>
+            <td>10 Int</td>
+            <td>Create a wall of flames of max length 8 at target location within caster's
+                line of sight. Units who pass through or end their turn in the area take
+                fire damage.
+            </td>
         </tr>
     </table>
     <hr>
@@ -246,20 +252,78 @@
         <tr>
             <th>Type</th>
             <th>Name</th>
-            <th>Mana Cost</th>
+            <th>Requirements</th>
             <th>Effect</th>
         </tr>
         <tr>
             <td>Agressive</td>
             <td>Focus</td>
-            <td>1</td>
-            <td>(Self) Gain +level for next hit and damage rolls.</td>
+            <td>-</td>
+            <td>User gains a bonus for hit and damage rolls the following turn.</td>
         </tr>
         <tr>
             <td>Miscellaneous</td>
             <td>Charge</td>
-            <td>1</td>
-            <td>(Self) Movement is doubled the following turn.</td>
+            <td>5 Dexterity</td>
+            <td>User's movement is doubled the following turn.</td>
+        </tr>
+        <tr>
+            <td>Aggressive</td>
+            <td>Rage</td>
+            <td>10 Strength</td>
+            <td>User enters a Rage, giving a bonus to Athletics and Fortitude checks
+                and damage rolls. While in Rage, the user has penalties to Will checks 
+                and cannot use other abilities. The user's Rage only ends with the end
+                of an encounter.
+            </td>
+        </tr>
+        <tr>
+            <td>Miscellaneous</td>
+            <td>Deft Movements</td>
+            <td>15 Dexterity</td>
+            <td>User may perform an additional secondary action this turn as though it were
+                instant (not including this one).
+            </td>
+        </tr>
+        <tr>
+            <td>Defensive</td>
+            <td>Stalwart Defense</td>
+            <td>15 Constitution</td>
+            <td>User takes the damage for the next targeted attack that hits a chosen
+                adjacent ally.
+            </td>
+        </tr>
+        <tr>
+            <td>Aggressive</td>
+            <td>Counterattack</td>
+            <td>15 Dexterity</td>
+            <td>For the next turn, if an enemy misses their targeted physical attack and is 
+                in range you may make a free attack back with a penalty to hit.
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
     </table>
 </body>
