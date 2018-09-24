@@ -7,6 +7,10 @@ table, th, td {
     text-align: center;
 }
 
+th {
+    cursor: pointer;
+}
+
 th, td {
     padding: 10px;
 }

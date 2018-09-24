@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
 <head>
     <title>Dungeons and Dragons</title>
     <link rel="stylesheet" href="DandD.css">
@@ -99,10 +102,10 @@
     </table>
     <hr>
     <h2>Spells</h2>
-    <table>
+    <table  id="sortable">
         <tr>
-            <th>Class</th>
-            <th>Name</th>
+            <th onclick="sortTable(0)">Class</th>
+            <th onclick="sortTable(1)">Name</th>
             <th>Requirements</th>
             <th>Effect</th>
         </tr>
@@ -111,7 +114,14 @@
             <td>Heal</td>
             <td>5 Int</td>         
             <td>Restore health to a single target.</td>
-        </tr><tr>
+        </tr>
+        <tr>
+            <td>Cleric</td>
+            <td>Group Heal</td>
+            <td>25 Int</td>
+            <td>Restore health to up to 4 targets.</td>
+        </tr>
+        <tr>
             <td>All Casters</td>
             <td>Detect Magic</td>
             <td>5 Int</td>         
@@ -270,7 +280,7 @@
         <tr>
             <td>Aggressive</td>
             <td>Rage</td>
-            <td>10 Strength</td>
+            <td>10 Strength (No mana cost)</td>
             <td>User enters a Rage, giving a bonus to Athletics and Fortitude checks
                 and damage rolls. While in Rage, the user has penalties to Will checks 
                 and cannot use other abilities. The user's Rage only ends with the end
@@ -278,12 +288,10 @@
             </td>
         </tr>
         <tr>
-            <td>Miscellaneous</td>
+            <td>Passive</td>
             <td>Deft Movements</td>
-            <td>15 Dexterity</td>
-            <td>User may perform an additional secondary action this turn as though it were
-                instant (not including this one).
-            </td>
+            <td>40 Dexterity</td>
+            <td>The character may perform an additional secondary action each turn.</td>
         </tr>
         <tr>
             <td>Defensive</td>
@@ -296,9 +304,99 @@
         <tr>
             <td>Aggressive</td>
             <td>Counterattack</td>
-            <td>15 Dexterity</td>
+            <td>15 Dexterity (melee)</td>
             <td>For the next turn, if an enemy misses their targeted physical attack and is 
                 in range you may make a free attack back with a penalty to hit.
+            </td>
+        </tr>
+        <tr>
+            <td>Aggressive</td>
+            <td>Cleave (melee)</td>
+            <td>20 Strength</td>
+            <td>User makes a wild swing around them, rolling with a penalty to hit all
+                adjacent units.
+            </td>
+        </tr>
+        <tr>
+            <td>Aggressive</td>
+            <td>Grapple</td>
+            <td>20 Constitution</td>
+            <td>User grapples an enemy, dealing damage and preventing the enemy's next
+                action if they fail an athleticism check. 
+            </td>
+        </tr>
+        <tr>
+            <td>Defensive</td>
+            <td>Turtle Stance</td>
+            <td>15 Constitution</td>
+            <td>User has increased Armor Class and a bonus to Fortitude checks until
+                their next movement.
+            </td>
+        </tr>
+        <tr>
+            <td>Aggressive</td>
+            <td>Careful Aim</td>
+            <td>10 Dexerity (Ranged)</td>
+            <td>User increases critical hit chance for the rest of the encounter (19
+                <u>and</u> 20).
+            </td>
+        </tr>
+        <tr>
+            <td>Aggressive</td>
+            <td>Piercing Shot</td>
+            <td>10 Dexterity, 10 Strength (Ranged)</td>
+            <td>The user's next attack is strengthened, increasing the damage of the attack
+                and allowing it to hit a unit behind the initial target.
+            </td>
+        </tr>
+        <tr>
+            <td>Aggressive</td>
+            <td>Reckless Attack</td>
+            <td>-</td>
+            <td>The user's next attack has a bonus to hit, but for the following turn
+                enemy attacks against them also have a small bonus to hit.
+            </td>
+        </tr>
+        <tr>
+            <td>Passive</td>
+            <td>Brutal Strike</td>
+            <td>40 Strength</td>
+            <td>The damage bonus from critical hits is tripled.</td>
+        </tr>
+        <tr>
+            <td>Passive</td>
+            <td>Grit</td>
+            <td>40 Constitution</td>
+            <td>The first hit in an encounter that would otherwise kill the character
+                instead reduces them to 1 health.
+            </td>
+        </tr>
+        <tr>
+            <td>Aggressive</td>
+            <td>Stunning Blow</td>
+            <td>10 Strength</td>
+            <td>The user's next hit will stun the target if it hits unless the target
+                passes a Fortitude check.
+            </td>
+        </tr>
+        <tr>
+            <td>Passive</td>
+            <td>Lockpicking</td>
+            <td>20 Dexterity</td>
+            <td>The character can pick locks provided that they pass a check.</td>
+        </tr>
+        <tr>
+            <td>Passive</td>
+            <td>Hefty</td>
+            <td>25 Constitution</td>
+            <td>The character is considered a medium sized unit.</td>
+        </tr>
+        <tr>
+            <td>Miscellaneous</td>
+            <td>Battle Cry</td>
+            <td>20 Strength</td>
+            <td>Enemy units must roll a Will check or be Terrified during their next
+                action.
             </td>
         </tr>
         <tr>
@@ -326,4 +424,7 @@
             <td></td>
         </tr>
     </table>
+
+    <script src="DandD.js"></script>
 </body>
+</html>
