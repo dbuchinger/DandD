@@ -102,30 +102,38 @@
     </table>
     <hr>
     <h2>Spells</h2>
-    <table  id="sortable">
+    <table>
         <tr>
-            <th onclick="sortTable(0)">Class</th>
-            <th onclick="sortTable(1)">Name</th>
+            <th>Class</th>
+            <th>Name</th>
             <th>Requirements</th>
             <th>Effect</th>
         </tr>
         <tr>
+            <td>All Casters</td>
+            <td>Detect Magic</td>
+            <td>5 Int (No Spell Slot)</td>         
+            <td>Detect and identify the magical energy of a room or object.</td>
+        </tr>
+        <tr>
+            <td>Cleric</td>
+            <td>Resist Evil</td>
+            <td>Passive</td>         
+            <td>Gain a bonus to rolls against undead or demonic units.</td>
+        </tr>
+        <tr>
             <td>Cleric</td>
             <td>Heal</td>
-            <td>5 Int</td>         
+            <td>5 Int (No Spell Slot)</td>         
             <td>Restore health to a single target.</td>
         </tr>
         <tr>
             <td>Cleric</td>
-            <td>Group Heal</td>
-            <td>25 Int</td>
-            <td>Restore health to up to 4 targets.</td>
-        </tr>
-        <tr>
-            <td>All Casters</td>
-            <td>Detect Magic</td>
-            <td>5 Int</td>         
-            <td>Detect and identify the magical energy of a room or object.</td>
+            <td>Bestow Luck</td>
+            <td>10 Int</td>
+            <td>Target gains a bonus to all non-combat rolls. Size and duration of
+                bonus are increased by Intelligence.
+            </td>
         </tr>
         <tr>
             <td>Cleric</td>
@@ -136,31 +144,162 @@
         <tr>
             <td>Cleric</td>
             <td>Holy Armor</td>
-            <td>5 Int</td>
+            <td>10 Int</td>
             <td>Give target a bonus to AC and Will for a turn.</td>            
         </tr>
         <tr>
             <td>Cleric</td>
+            <td>Cleanse</td>
+            <td>15 Int</td>
+            <td>Roll a check to remove status effects from a target.</td>
+        </tr>
+        <tr>
+            <td>Cleric</td>
+            <td>Dispel Magic</td>
+            <td>15 Int</td>
+            <td>Roll a check to remove a magical entity or effect.</td>
+        </tr>
+        <tr>
+            <td>Cleric</td>
+            <td>Smite</td>
+            <td>15 Int</td>
+            <td>Shoot a bolt of light at a target, dealing damage.</td>
+        </tr>
+        <tr>
+            <td>Cleric</td>
             <td>Daze</td>
-            <td>10 Int</td>
+            <td>20 Int</td>
             <td>Target enemy must roll a Will check. If they fail,
                 target cannot use spells or abilities and has a penalty to hit for their
                 next action.
             </td>
         </tr>
         <tr>
-            <td>Sorceror</td>
-            <td>Magic Missile</td>
-            <td>5 Int</td>
-            <td>Shoot magical projectiles to deal damage to target in caster's line of
-                sight.</td>            
+            <td>Cleric</td>
+            <td>Necrotize</td>
+            <td>20 Int</td>
+            <td>Target must roll a Constitution check. If they fail, the will take
+                bleeding damage if injured and healing effects on them are halved.
+            </td>
+        </tr>
+        <tr>
+            <td>Cleric</td>
+            <td>Restore</td>
+            <td>20 Int (Passive)</td>
+            <td>Casting a single target spell on an ally restores 1 mana to them.</td>
+        </tr>
+        <tr>
+            <td>Cleric</td>
+            <td>Group Heal</td>
+            <td>25 Int</td>
+            <td>Restore health to up to 4 targets.</td>
+        </tr>
+        <tr>
+            <td>Cleric</td>
+            <td>Resurrect</td>
+            <td>40 Int</td>
+            <td>You touch a dead creature that has been dead for no more than a century,
+                that didn't die of old age, and that isn't undead. If its soul is free
+                and willing, the target returns to life with all its hit points. This spell
+                also requires an artifact of great value, which is consumed by the spell.
+            </td>
+        </tr>
+        <tr>
+            <td>Conjuror</td>
+            <td>Flaming Weapon</td>
+            <td>5 Int (No Spell Slot)</td>
+            <td>Set target unit's weapon ablaze with magical fire, adding fire damage
+                to their strikes for the encounter.
+            </td>
+        </tr>
+        <tr>
+            <td>Conjuror</td>
+            <td>Orb of Light</td>
+            <td>5 Int (No Spell Slot)</td>
+            <td>User creates an orb of light in their hand. Light given off can be feeble,
+                or be a bright enough flash that units who see it must roll a Fortitude
+                check to resist temporary blindness.
+            </td>
+        </tr>
+        <tr>
+            <td>Conjuror</td>
+            <td>Dull Senses</td>
+            <td>10 Int</td>
+            <td>Dull the senses of a target, lowering their Perception checks and giving
+                them a penalty to hit.
+            </td>
+        </tr>
+        <tr>
+            <td>Conjuror</td>
+            <td>Grease</td>
+            <td>10 Int</td>
+            <td>Cover an area in slick grease. Units moving in the area must roll a dexterity 
+                check or fall prone.
+            </td>
+        </tr>
+        <tr>
+            <td>Conjuror</td>
+            <td>Ensnare</td>
+            <td>10 Int</td>
+            <td>Summon chains that ensnare a target, preventing its movement and giving
+                a penalty to hit if it fails an Athletics check.
+            </td>
+        </tr>
+        <tr>
+            <td>Conjuror</td>
+            <td>Bend Nature</td>
+            <td>15 Int</td>
+            <td>The user causes living plants to temporarily bend to their will. Higher
+                Intelligence will allow stronger control.
+            </td>
+        </tr>
+        <tr>
+            <td>Conjuror</td>
+            <td>Spectral Fist</td>
+            <td>15 Int</td>
+            <td>Summon an 8 foot fist from the ground at target location which attacks
+                adjacent enemies. The fist can be attacked and destroyed.
+            </td>
+        </tr>
+        <tr>
+            <td>Conjuror</td>
+            <td>Create Portal</td>
+            <td>20 Int</td>
+            <td>Create a small, short-lived portal to a nearby location. Portal size and
+                distance between portals is increased with Intelligence.
+            </td>
+        </tr>
+        <tr>
+            <td>Conjuror</td>
+            <td>Insect Swarm</td>
+            <td>20 Int</td>
+            <td>A cloud of locusts is summoned and deals damage in a 4 space area for 2
+                turns. Units in the are can reduce damage taken with a successful 
+                Fortitude check.
+            </td>
+        </tr>
+        <tr>
+            <td>Conjuror</td>
+            <td>Illusion</td>
+            <td>25 Int</td>
+            <td>Create an illusion that can be seen through with a Perception check. Less
+                likely illusions will be easier to detect.
+            </td>
+        </tr>
+        <tr>
+            <td>Conjuror</td>
+            <td>Alter Memory</td>
+            <td>40 Int</td>
+            <td>The user can alter the memories of a target while touching them. The spell
+                takes concentration to cast and must occur in a non-combat scenario.
+            </td>
         </tr>
         <tr>
             <td>Sorceror</td>
-            <td>Dragon's Breath</td>
-            <td>15 Int</td>
-            <td>Shoot a pillar of flames, dealing fire damage to targets in 5 space line
-                from caster.</td>           
+            <td>Magic Missile</td>
+            <td>5 Int  (No Spell Slot)</td>
+            <td>Shoot magical projectiles to deal damage to target in caster's line of
+                sight.</td>            
         </tr>
         <tr>
             <td>Sorceror</td>
@@ -172,11 +311,20 @@
         </tr>
         <tr>
             <td>Sorceror</td>
-            <td>Chain Lightning</td>
-            <td>20 Int</td>
-            <td>Deal electrical damage to target in line of sight. Chain Lightning may hit up
-                to 3 other targets within 3 spaces of initial target if there is an
-                unblocked path between them.          
+            <td>Gust</td>
+            <td>10 Int</td>
+            <td>Create a gust of wind in a 5 space line from the caster, unsteadying
+                or launching those caught in the blast.
+            </td>
+        </tr>
+        <tr>
+            <td>Sorceror</td>
+            <td>Wall of Flames</td>
+            <td>10 Int</td>
+            <td>Create a wall of flames of max length 8 at target location within caster's
+                line of sight. Units who pass through or end their turn in the area take
+                fire damage.
+            </td>
         </tr>
         <tr>
             <td>Sorceror</td>
@@ -197,37 +345,18 @@
         </tr>
         <tr>
             <td>Sorceror</td>
-            <td>Telekinesis</td>
-            <td>20 Int</td>
-            <td>Manipulate a small object from a distance.</td>
-        </tr>
-        <tr>
-            <td>Sorceror</td>
-            <td>Earthquake</td>
-            <td>35 Int</td>
-            <td>Cause a tremor at target location, unsteadying targets and affecting
-                terrain.      
-            </td>
-        </tr>
-        <tr>
-            <td>Sorceror</td>
-            <td>Gust</td>
-            <td>10 Int</td>
-            <td>Create a gust of wind in a 5 space line from the caster, unsteadying
-                or launching those caught in the blast.
-            </td>
-        </tr>
-        <tr>
-            <td>Sorceror</td>
-            <td>Immolation</td>
+            <td>Dragon's Breath</td>
             <td>15 Int</td>
-            <td>Set target ablaze.</td>
+            <td>Shoot a pillar of flames, dealing fire damage to targets in 5 space line
+                from caster.</td>           
         </tr>
         <tr>
             <td>Sorceror</td>
-            <td>Meteor Strike</td>
-            <td>40 Int</td>
-            <td>Call down a hail of meteors at target location.</td>
+            <td>Chain Lightning</td>
+            <td>20 Int</td>
+            <td>Deal electrical damage to target in line of sight. Chain Lightning may hit
+                up to 3 other targets within 3 spaces of initial target if there is an
+                unblocked path between them.          
         </tr>
         <tr>
             <td>Sorceror</td>
@@ -240,6 +369,12 @@
         </tr>
         <tr>
             <td>Sorceror</td>
+            <td>Telekinesis</td>
+            <td>20 Int</td>
+            <td>Manipulate a small object from a distance.</td>
+        </tr>
+        <tr>
+            <td>Sorceror</td>
             <td>Mind Shatter</td>
             <td>25 Int</td>
             <td>Caster assaults the target's mind, forcing a Will save for the target to
@@ -248,13 +383,18 @@
         </tr>
         <tr>
             <td>Sorceror</td>
-            <td>Wall of Flames</td>
-            <td>10 Int</td>
-            <td>Create a wall of flames of max length 8 at target location within caster's
-                line of sight. Units who pass through or end their turn in the area take
-                fire damage.
+            <td>Earthquake</td>
+            <td>35 Int</td>
+            <td>Cause a tremor at target location, unsteadying targets and affecting
+                terrain.      
             </td>
-        </tr>
+        </tr>       
+        <tr>
+            <td>Sorceror</td>
+            <td>Meteor Strike</td>
+            <td>40 Int</td>
+            <td>Call down a hail of meteors at target location.</td>
+        </tr>       
     </table>
     <hr>
     <h2>Abilities</h2>
@@ -272,57 +412,19 @@
             <td>User gains a bonus for hit and damage rolls the following turn.</td>
         </tr>
         <tr>
-            <td>Miscellaneous</td>
-            <td>Charge</td>
-            <td>5 Dexterity</td>
-            <td>User's movement is doubled the following turn.</td>
-        </tr>
-        <tr>
             <td>Aggressive</td>
-            <td>Rage</td>
-            <td>10 Strength (No mana cost)</td>
-            <td>User enters a Rage, giving a bonus to Athletics and Fortitude checks
-                and damage rolls. While in Rage, the user has penalties to Will checks 
-                and cannot use other abilities. The user's Rage only ends with the end
-                of an encounter.
+            <td>Reckless Attack</td>
+            <td>-</td>
+            <td>The user's next attack has a bonus to hit, but for the following turn
+                enemy attacks against them also have a small bonus to hit.
             </td>
-        </tr>
-        <tr>
-            <td>Passive</td>
-            <td>Deft Movements</td>
-            <td>40 Dexterity</td>
-            <td>The character may perform an additional secondary action each turn.</td>
         </tr>
         <tr>
             <td>Defensive</td>
             <td>Stalwart Defense</td>
-            <td>15 Constitution</td>
-            <td>User takes the damage for the next targeted attack that hits a chosen
-                adjacent ally.
-            </td>
-        </tr>
-        <tr>
-            <td>Aggressive</td>
-            <td>Counterattack</td>
-            <td>15 Dexterity (melee)</td>
-            <td>For the next turn, if an enemy misses their targeted physical attack and is 
-                in range you may make a free attack back with a penalty to hit.
-            </td>
-        </tr>
-        <tr>
-            <td>Aggressive</td>
-            <td>Cleave (melee)</td>
-            <td>20 Strength</td>
-            <td>User makes a wild swing around them, rolling with a penalty to hit all
-                adjacent units.
-            </td>
-        </tr>
-        <tr>
-            <td>Aggressive</td>
-            <td>Grapple</td>
-            <td>20 Constitution</td>
-            <td>User grapples an enemy, dealing damage and preventing the enemy's next
-                action if they fail an athleticism check. 
+            <td>10 Constitution</td>
+            <td>User takes the damage for targeted attacks that hit a chosen adjacent
+                ally until the user's next action or target leaves range.
             </td>
         </tr>
         <tr>
@@ -335,33 +437,17 @@
         </tr>
         <tr>
             <td>Aggressive</td>
-            <td>Careful Aim</td>
-            <td>10 Dexerity (Ranged)</td>
-            <td>User increases critical hit chance for the rest of the encounter (19
-                <u>and</u> 20).
-            </td>
-        </tr>
-        <tr>
-            <td>Aggressive</td>
-            <td>Piercing Shot</td>
-            <td>10 Dexterity, 10 Strength (Ranged)</td>
-            <td>The user's next attack is strengthened, increasing the damage of the attack
-                and allowing it to hit a unit behind the initial target.
-            </td>
-        </tr>
-        <tr>
-            <td>Aggressive</td>
-            <td>Reckless Attack</td>
-            <td>-</td>
-            <td>The user's next attack has a bonus to hit, but for the following turn
-                enemy attacks against them also have a small bonus to hit.
+            <td>Grapple</td>
+            <td>20 Constitution</td>
+            <td>User grapples an enemy, dealing damage and preventing the enemy's next
+                action if they fail an athleticism check. 
             </td>
         </tr>
         <tr>
             <td>Passive</td>
-            <td>Brutal Strike</td>
-            <td>40 Strength</td>
-            <td>The damage bonus from critical hits is tripled.</td>
+            <td>Hefty</td>
+            <td>25 Constitution</td>
+            <td>The character is considered a medium sized unit.</td>
         </tr>
         <tr>
             <td>Passive</td>
@@ -369,6 +455,58 @@
             <td>40 Constitution</td>
             <td>The first hit in an encounter that would otherwise kill the character
                 instead reduces them to 1 health.
+            </td>
+        </tr>
+        <tr>
+            <td>Miscellaneous</td>
+            <td>Charge</td>
+            <td>5 Dexterity</td>
+            <td>User's movement is doubled the following turn.</td>
+        </tr>
+        <tr>
+            <td>Aggressive</td>
+            <td>Careful Aim</td>
+            <td>(Ranged) 10 Dexerity</td>
+            <td>User increases critical hit chance for the rest of the encounter (19
+                <u>and</u> 20).
+            </td>
+        </tr>
+        <tr>
+            <td>Aggressive</td>
+            <td>Piercing Shot</td>
+            <td>(Ranged) 10 Dexterity, 10 Strength</td>
+            <td>The user's next attack is strengthened, increasing the damage of the attack
+                and allowing it to hit a unit behind the initial target.
+            </td>
+        </tr>
+        <tr>
+            <td>Aggressive</td>
+            <td>Counterattack</td>
+            <td>(Melee) 15 Dexterity</td>
+            <td>For the next turn, if an enemy misses their targeted physical attack and is 
+                in range you may make a free attack back with a penalty to hit.
+            </td>
+        </tr>
+        <tr>
+            <td>Passive</td>
+            <td>Lockpicking</td>
+            <td>20 Dexterity</td>
+            <td>The character can pick locks provided that they pass a check.</td>
+        </tr>
+        <tr>
+            <td>Passive</td>
+            <td>Deft Movements</td>
+            <td>40 Dexterity</td>
+            <td>The character may perform an additional secondary action each turn.</td>
+        </tr>
+        <tr>
+            <td>Aggressive</td>
+            <td>Rage</td>
+            <td>10 Strength (No mana cost)</td>
+            <td>User enters a Rage, giving a bonus to Athletics and Fortitude checks
+                and damage rolls. While in Rage, the user has penalties to Will checks 
+                and cannot use other abilities. The user's Rage only ends with the end
+                of an encounter.
             </td>
         </tr>
         <tr>
@@ -380,18 +518,6 @@
             </td>
         </tr>
         <tr>
-            <td>Passive</td>
-            <td>Lockpicking</td>
-            <td>20 Dexterity</td>
-            <td>The character can pick locks provided that they pass a check.</td>
-        </tr>
-        <tr>
-            <td>Passive</td>
-            <td>Hefty</td>
-            <td>25 Constitution</td>
-            <td>The character is considered a medium sized unit.</td>
-        </tr>
-        <tr>
             <td>Miscellaneous</td>
             <td>Battle Cry</td>
             <td>20 Strength</td>
@@ -400,31 +526,25 @@
             </td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Passive</td>
+            <td>Bully</td>
+            <td>20 Strength</td>
+            <td>Gain a bonus to charisma checks being used to intimidate.</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Aggressive</td>
+            <td>Cleave</td>
+            <td>(Melee) 20 Strength</td>
+            <td>User makes a wild swing around them, rolling with a penalty to hit all
+                adjacent units.
+            </td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Passive</td>
+            <td>Brutal Strike</td>
+            <td>40 Strength</td>
+            <td>The damage bonus from critical hits is tripled.</td>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
-
     <script src="DandD.js"></script>
 </body>
 </html>
