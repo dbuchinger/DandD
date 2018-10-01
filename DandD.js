@@ -1,54 +1,41 @@
-function sortTable(n) {
-    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("sortable");
-    switching = true;
-    //Set the sorting direction to ascending:
-    dir = "asc"; 
-    /*Make a loop that will continue until
-    no switching has been done:*/
-    while (switching) {
-      //start by saying: no switching is done:
-      switching = false;
-      rows = table.rows;
-      /*Loop through all table rows (except the
-      first, which contains table headers):*/
-      for (i = 1; i < (rows.length - 1); i++) {
-        //start by saying there should be no switching:
-        shouldSwitch = false;
-        /*Get the two elements you want to compare,
-        one from current row and one from the next:*/
-        x = rows[i].getElementsByTagName("TD")[n];
-        y = rows[i + 1].getElementsByTagName("TD")[n];
-        /*check if the two rows should switch place,
-        based on the direction, asc or desc:*/
-        if (dir == "asc") {
-          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-            //if so, mark as a switch and break the loop:
-            shouldSwitch= true;
-            break;
-          }
-        } else if (dir == "desc") {
-          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-            //if so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;
-          }
-        }
-      }
-      if (shouldSwitch) {
-        /*If a switch has been marked, make the switch
-        and mark that a switch has been done:*/
-        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-        switching = true;
-        //Each time a switch is done, increase this count by 1:
-        switchcount ++;      
-      } else {
-        /*If no switching has been done AND the direction is "asc",
-        set the direction to "desc" and run the while loop again.*/
-        if (switchcount == 0 && dir == "asc") {
-          dir = "desc";
-          switching = true;
-        }
-      }
-    }
-  }
+function stats() {
+  var x = document.getElementById("stats");
+  var dexterity = x.elements[0].value;
+  var constitution = x.elements[1].value;
+  var intelligence = x.elements[2].value;
+  var strength = x.elements[3].value;
+  var weapon = x.elements[4].value;
+
+  var health = 10 + Math.floor(1.5 * constitution);
+  var armorClass = 10 + Math.floor(dexterity/5 + constitution/4);
+  var speed = 4 + Math.floor(dexterity/10);
+  var sneak = -5 + Math.floor(dexterity/3);
+  var athletics = -4 + Math.floor(dexterity/8 + strength/4);
+  var finesse = -4 + Math.floor(dexterity/4 + intelligence/7);
+  var charisma = -4 + Math.floor(intelligence/4);
+  var perception = -4 + Math.floor(intelligence/3 + dexterity/10);
+  var mana = -1 + Math.floor((intelligence-1)/2);
+  var will = -4 + Math.floor(intelligence/3 + constitution/10);
+  var fortitude = -4 + Math.floor(constitution/4 + strength/8);
+
+  document.getElementById("statSheet").innerHTML =
+  "Weapon: " + weapon + "<br/>" +
+  "Dexterity: " + dexterity + "<br/>" + 
+  "Constitution: " + constitution + "<br/>" +
+  "Intelligence: " + intelligence + "<br/>" +
+  "Strength: " + strength + "<br/><br/>" + 
+  "Health: " + health + "<br/>" + 
+  "Armor Class: " + armorClass + "<br/>" + 
+  "Speed: " + speed + "<br/>" + 
+  "Sneak: " + sneak + "<br/>" + 
+  "Athletics: " + athletics + "<br/>" + 
+  "Finesse: " + finesse + "<br/>" + 
+  "Charisma: " + charisma + "<br/>" + 
+  "Perception: " + perception + "<br/>" + 
+  "Mana: " + mana + "<br/>" + 
+  "Will: " + will + "<br/>" + 
+  "Fortitude: " + fortitude + "<br/>" + 
+  "Hit:<br/>" + 
+  "Damage:<br/>" 
+  ;
+}

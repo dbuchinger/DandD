@@ -27,14 +27,14 @@
             <td>800 gold, +1 Dmg</td>
             <td>1,000 gold, +1 AC</td>
             <td>45 gold, heal 10 health</td>
-            <td>40 gold, restore 2 mana</td>
+            <td>40 gold, restore 3 mana</td>
         </tr>
         <tr>
             <td>B</td>
             <td>1,600 gold, +2 Dmg</td>
             <td>2,000 gold, +2 AC</td>
             <td>120 gold, heal 20 health</td>
-            <td>100 gold, restore 4 mana</td>
+            <td>100 gold, restore 5 mana</td>
         </tr>
         <tr>
             <td>A</td>
@@ -101,6 +101,22 @@
         </tr>
     </table>
     <hr>
+    <h2>Player Stats</h2>
+    <form id="stats">
+        Dexterity:
+        <input type="text" name="dexterity"><br>
+        Constitution:
+        <input type="text" name="constitution"><br>
+        Intelligence:
+        <input type="text" name="intelligence"><br>
+        Strength:
+        <input type="text" name="strength"><br>
+        Weapon:
+        <input type="text" name="strength"><br>
+    </form>
+    <button type="button" onclick="stats()">Submit</button>
+    <p id="statSheet"></p>
+    <hr>
 	<!-- https://www.hexcolortool.com/ -->
     <h2>Spells</h2>
     <table>
@@ -110,25 +126,25 @@
             <th>Requirements</th>
             <th>Effect</th>
         </tr>
-        <tr>
+        <tr bgcolor="#c6bccd">
             <td>All Casters</td>
             <td>Detect Magic</td>
             <td>5 Int (No Spell Slot)</td>         
             <td>Detect and identify the magical energy of a room or object.</td>
         </tr>
-        <tr bgcolor="#f8ff7a">
+        <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Resist Evil</td>
             <td>Passive</td>         
             <td>Gain a bonus to rolls against undead or demonic units.</td>
         </tr>
-        <tr bgcolor="#f8ff7a">
+        <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Heal</td>
             <td>5 Int (No Spell Slot)</td>         
             <td>Restore health to a single target.</td>
         </tr>
-        <tr bgcolor="#f8ff7a">
+        <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Bestow Luck</td>
             <td>10 Int</td>
@@ -136,37 +152,37 @@
                 bonus are increased by Intelligence.
             </td>
         </tr>
-        <tr bgcolor="#f8ff7a">
+        <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Bless</td>
             <td>10 Int</td>
             <td>Give target a bonus to hit for encounter duration.</td>
         </tr>
-        <tr bgcolor="#f8ff7a">
+        <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Holy Armor</td>
             <td>10 Int</td>
             <td>Give target a bonus to AC and Will for a turn.</td>            
         </tr>
-        <tr bgcolor="#f8ff7a">
+        <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Cleanse</td>
             <td>15 Int</td>
             <td>Roll a check to remove status effects from a target.</td>
         </tr>
-        <tr bgcolor="#f8ff7a">
+        <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Dispel Magic</td>
             <td>15 Int</td>
             <td>Roll a check to remove a magical entity or effect.</td>
         </tr>
-        <tr bgcolor="#f8ff7a">
+        <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Smite</td>
             <td>15 Int</td>
             <td>Shoot a bolt of light at a target, dealing damage.</td>
         </tr>
-        <tr bgcolor="#f8ff7a">
+        <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Daze</td>
             <td>20 Int</td>
@@ -175,7 +191,7 @@
                 next action.
             </td>
         </tr>
-        <tr bgcolor="#f8ff7a">
+        <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Necrotize</td>
             <td>20 Int</td>
@@ -183,19 +199,19 @@
                 bleeding damage if injured and healing effects on them are halved.
             </td>
         </tr>
-        <tr bgcolor="#f8ff7a">
+        <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Restore</td>
             <td>20 Int (Passive)</td>
             <td>Casting a single target spell on an ally restores 1 mana to them.</td>
         </tr>
-        <tr bgcolor="#f8ff7a">
+        <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Group Heal</td>
             <td>25 Int</td>
             <td>Restore health to up to 4 targets.</td>
         </tr>
-        <tr bgcolor="#f8ff7a">
+        <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Resurrect</td>
             <td>40 Int</td>
@@ -205,7 +221,13 @@
                 also requires an artifact of great value, which is consumed by the spell.
             </td>
         </tr>
-        <tr bgcolor="#7bff61">
+        <tr bgcolor="#abf1a2">
+            <td>Conjuror</td>
+            <td>Cantrip</td>
+            <td>Passive</td>
+            <td>All conjuration spells are considered secondary actions.</td>
+        </tr>
+        <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
             <td>Flaming Weapon</td>
             <td>5 Int (No Spell Slot)</td>
@@ -213,7 +235,7 @@
                 to their strikes for the encounter.
             </td>
         </tr>
-        <tr bgcolor="#7bff61">
+        <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
             <td>Orb of Light</td>
             <td>5 Int (No Spell Slot)</td>
@@ -222,7 +244,7 @@
                 check to resist temporary blindness.
             </td>
         </tr>
-        <tr bgcolor="#7bff61">
+        <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
             <td>Dull Senses</td>
             <td>10 Int</td>
@@ -230,7 +252,7 @@
                 them a penalty to hit.
             </td>
         </tr>
-        <tr bgcolor="#7bff61">
+        <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
             <td>Grease</td>
             <td>10 Int</td>
@@ -238,7 +260,7 @@
                 check or fall prone.
             </td>
         </tr>
-        <tr bgcolor="#7bff61">
+        <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
             <td>Ensnare</td>
             <td>10 Int</td>
@@ -246,7 +268,7 @@
                 a penalty to hit if it fails an Athletics check.
             </td>
         </tr>
-        <tr bgcolor="#7bff61">
+        <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
             <td>Bend Nature</td>
             <td>15 Int</td>
@@ -254,7 +276,15 @@
                 Intelligence will allow stronger control.
             </td>
         </tr>
-        <tr bgcolor="#7bff61">
+        <tr bgcolor="#abf1a2">
+            <td>Conjuror</td>
+            <td>Charm</td>
+            <td>15 Int</td>
+            <td>Creates positive feelings on the target towards the caster. The effect is
+                increased by a lower Will save by the target.
+            </td>
+        </tr>
+        <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
             <td>Spectral Fist</td>
             <td>15 Int</td>
@@ -262,7 +292,7 @@
                 adjacent enemies. The fist can be attacked and destroyed.
             </td>
         </tr>
-        <tr bgcolor="#7bff61">
+        <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
             <td>Create Portal</td>
             <td>20 Int</td>
@@ -270,7 +300,7 @@
                 distance between portals is increased with Intelligence.
             </td>
         </tr>
-        <tr bgcolor="#7bff61">
+        <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
             <td>Insect Swarm</td>
             <td>20 Int</td>
@@ -279,7 +309,15 @@
                 Fortitude check.
             </td>
         </tr>
-        <tr bgcolor="#7bff61">
+        <tr bgcolor="#abf1a2">
+            <td>Conjuror</td>
+            <td>Protective Barrier</td>
+            <td>20 Int</td>
+            <td>An invisible protective barrier surrounds the target, preventing physical
+                projectiles from hitting it until broken.
+            </td>
+        </tr>
+        <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
             <td>Illusion</td>
             <td>25 Int</td>
@@ -287,7 +325,7 @@
                 likely illusions will be easier to detect.
             </td>
         </tr>
-        <tr bgcolor="#7bff61">
+        <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
             <td>Alter Memory</td>
             <td>40 Int</td>
@@ -299,7 +337,7 @@
             <td>Sorceror</td>
             <td>Magic Missile</td>
             <td>5 Int  (No Spell Slot)</td>
-            <td>Shoot magical projectiles to deal damage to target in caster's line of
+            <td>Shoot undodgeable magical projectiles to deal damage to target in caster's line of
                 sight.</td>            
         </tr>
         <tr bgcolor="#ff8585">
