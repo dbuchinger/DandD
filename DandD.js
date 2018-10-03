@@ -252,3 +252,26 @@ function stats() {
   endDamage;
   ;
 }
+
+function spells() {
+	var x = document.getElementById("spells");
+	var level = Number(x.elements[0].value);
+	var intelligence = Number(x.elements[1].value);
+	detectMagic();
+	resistEvil();
+	
+	function detectMagic() {
+		var bonus = -3 + Math.floor(intelligence/4);
+		if (bonus < 0) {
+			document.getElementById("detectMagic").innerHTML = "d20 - " + (-bonus);
+		}
+		else {
+		document.getElementById("detectMagic").innerHTML = "d20 + " + bonus;
+		}
+	}
+	function resistEvil() {
+		var hitBonus = 1 + Math.floor(level/3 + intelligence/10);
+		var damageBonus = 1 + Math.floor(level + intelligence/8);
+		document.getElementById("resistEvil").innerHTML = "Hit/Checks: +" + hitBonus + "<br/>Damage: +" + damageBonus;
+	}
+}
