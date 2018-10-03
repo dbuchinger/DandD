@@ -1,10 +1,150 @@
+// globals
+var finalDex = 0;
+var finalCon = 0;
+var finalInt = 0;
+var finalStr = 0;
+
+// Race and Class stat displays
+function raceClass() {
+  var x = document.getElementById("stats");
+  var race = x.elements[0].value;
+  var charClass = x.elements[1].value;
+  var dexterity = x.elements[2].value;
+  var constitution = x.elements[3].value;
+  var intelligence = x.elements[4].value;
+  var strength = x.elements[5].value;
+
+  // races
+  if (race === "Human") {
+    document.getElementById("raceDex").innerHTML = 2;
+    document.getElementById("raceCon").innerHTML = 2;
+    document.getElementById("raceInt").innerHTML = 2;
+    document.getElementById("raceStr").innerHTML = 2;
+  }
+  else if (race === "Elf") {
+    document.getElementById("raceDex").innerHTML = 3;
+    document.getElementById("raceCon").innerHTML = 1;
+    document.getElementById("raceInt").innerHTML = 3;
+    document.getElementById("raceStr").innerHTML = 1;
+  }
+  else if (race === "Dwarf") {
+    document.getElementById("raceDex").innerHTML = 0;
+    document.getElementById("raceCon").innerHTML = 4;
+    document.getElementById("raceInt").innerHTML = 1;
+    document.getElementById("raceStr").innerHTML = 3;
+  }
+  else if (race === "Halfling") {
+    document.getElementById("raceDex").innerHTML = 4;
+    document.getElementById("raceCon").innerHTML = 1;
+    document.getElementById("raceInt").innerHTML = 2;
+    document.getElementById("raceStr").innerHTML = 1;
+  }
+  else if (race === "Half-Orc") {
+    document.getElementById("raceDex").innerHTML = 1;
+    document.getElementById("raceCon").innerHTML = 2;
+    document.getElementById("raceInt").innerHTML = 1;
+    document.getElementById("raceStr").innerHTML = 4;
+  }
+  else if (race === "Dragonborn") {
+    document.getElementById("raceDex").innerHTML = 1;
+    document.getElementById("raceCon").innerHTML = 1;
+    document.getElementById("raceInt").innerHTML = 3;
+    document.getElementById("raceStr").innerHTML = 3;
+  }
+  else if (race === "Gnome") {
+    document.getElementById("raceDex").innerHTML = 3;
+    document.getElementById("raceCon").innerHTML = 1;
+    document.getElementById("raceInt").innerHTML = 4;
+    document.getElementById("raceStr").innerHTML = 0;
+  }
+  else {
+    document.getElementById("raceDex").innerHTML = 0;
+    document.getElementById("raceCon").innerHTML = 0;
+    document.getElementById("raceInt").innerHTML = 0;
+    document.getElementById("raceStr").innerHTML = 0;
+  }
+
+  // classes
+  if (charClass === "Fighter") {
+    document.getElementById("classDex").innerHTML = 1;
+    document.getElementById("classCon").innerHTML = 1;
+    document.getElementById("classInt").innerHTML = 0;
+    document.getElementById("classStr").innerHTML = 2;
+  }
+  else if (charClass === "Barbarian") {
+    document.getElementById("classDex").innerHTML = 0;
+    document.getElementById("classCon").innerHTML = 1;
+    document.getElementById("classInt").innerHTML = 0;
+    document.getElementById("classStr").innerHTML = 3;
+  }
+  else if (charClass === "Cleric") {
+    document.getElementById("classDex").innerHTML = 0;
+    document.getElementById("classCon").innerHTML = 1;
+    document.getElementById("classInt").innerHTML = 3;
+    document.getElementById("classStr").innerHTML = 0;
+  }
+  else if (charClass === "Conjurer") {
+    document.getElementById("classDex").innerHTML = 0;
+    document.getElementById("classCon").innerHTML = 1;
+    document.getElementById("classInt").innerHTML = 3;
+    document.getElementById("classStr").innerHTML = 0;
+  }
+  else if (charClass === "Sorceror") {
+    document.getElementById("classDex").innerHTML = 0;
+    document.getElementById("classCon").innerHTML = 1;
+    document.getElementById("classInt").innerHTML = 3;
+    document.getElementById("classStr").innerHTML = 0;
+  }
+  else if (charClass === "Rogue") {
+    document.getElementById("classDex").innerHTML = 3;
+    document.getElementById("classCon").innerHTML = 0;
+    document.getElementById("classInt").innerHTML = 0;
+    document.getElementById("classStr").innerHTML = 1;
+  }
+  else if (charClass === "Ranger") {
+    document.getElementById("classDex").innerHTML = 2;
+    document.getElementById("classCon").innerHTML = 0;
+    document.getElementById("classInt").innerHTML = 0;
+    document.getElementById("classStr").innerHTML = 2;
+  }
+  else if (charClass === "Paladin") {
+    document.getElementById("classDex").innerHTML = 0;
+    document.getElementById("classCon").innerHTML = 0;
+    document.getElementById("classInt").innerHTML = 2;
+    document.getElementById("classStr").innerHTML = 2;
+  }
+  else {
+    document.getElementById("classDex").innerHTML = 0;
+    document.getElementById("classCon").innerHTML = 0;
+    document.getElementById("classInt").innerHTML = 0;
+    document.getElementById("classStr").innerHTML = 0;
+  }
+
+  finalDex = Number(document.getElementById("raceDex").innerHTML) +
+    Number(document.getElementById("classDex").innerHTML) + Number(dexterity);
+  finalCon = Number(document.getElementById("raceCon").innerHTML) +
+    Number(document.getElementById("classCon").innerHTML) + Number(constitution);
+  finalInt = Number(document.getElementById("raceInt").innerHTML) +
+    Number(document.getElementById("classInt").innerHTML) + Number(intelligence);
+  finalStr = Number(document.getElementById("raceStr").innerHTML) +
+    Number(document.getElementById("classStr").innerHTML) + Number(strength);
+
+    document.getElementById("finalDex").innerHTML = finalDex;
+    document.getElementById("finalCon").innerHTML = finalCon;
+    document.getElementById("finalInt").innerHTML = finalInt;
+    document.getElementById("finalStr").innerHTML = finalStr;
+}
+
+
+
+// stat calculations
 function stats() {
   var x = document.getElementById("stats");
-  var dexterity = x.elements[0].value;
-  var constitution = x.elements[1].value;
-  var intelligence = x.elements[2].value;
-  var strength = x.elements[3].value;
-  var weapon = x.elements[4].value;
+  var dexterity = finalDex;
+  var constitution = finalCon;
+  var intelligence = finalInt;
+  var strength = finalStr;
+  var weapon = x.elements[6].value;
 
   var health = 10 + Math.floor(1.5 * constitution);
   var armorClass = 10 + Math.floor(dexterity/5 + constitution/4);
@@ -232,6 +372,7 @@ function stats() {
     }
   }
 
+  // final display
   document.getElementById("statSheet").innerHTML =
   "Weapon: " + weapon + "<br/>" +
   "Dexterity: " + dexterity + "<br/>" + 
@@ -253,12 +394,14 @@ function stats() {
   ;
 }
 
+// ---------------------------- SPELLS ---------------------------------
 function spells() {
 	var x = document.getElementById("spells");
 	var level = Number(x.elements[0].value);
 	var intelligence = Number(x.elements[1].value);
 	detectMagic();
-	resistEvil();
+  resistEvil();
+  heal();
 	
 	function detectMagic() {
 		var bonus = -3 + Math.floor(intelligence/4);
@@ -268,10 +411,75 @@ function spells() {
 		else {
 		document.getElementById("detectMagic").innerHTML = "d20 + " + bonus;
 		}
-	}
+  }
+  
 	function resistEvil() {
 		var hitBonus = 1 + Math.floor(level/3 + intelligence/10);
 		var damageBonus = 1 + Math.floor(level + intelligence/8);
 		document.getElementById("resistEvil").innerHTML = "Hit/Checks: +" + hitBonus + "<br/>Damage: +" + damageBonus;
-	}
+  }
+
+  function heal() {
+    var dice;
+    var bonus;
+    var alter;
+    var diceNum = Math.floor(intelligence/9);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      alter = 0;
+      break;
+
+      case 1: dice = "d6";
+      alter = 2;
+      break;
+      
+      case 2: dice = "d8";
+      alter = 4;
+      break;
+
+      case 3: dice = "d10";
+      alter = 6;
+      break;
+
+      case 4: dice = "2d6";
+      alter = 8;
+      break;
+      
+      default: dice = "3d6";
+      alter = 8;
+      break;
+    }
+
+    if ((intelligence%9) === 0) {
+      bonus = Math.floor((intelligence%9)/2) + alter;
+    }
+    else {
+      bonus = Math.floor((intelligence%9 - 1)/2) + alter;
+    }
+    document.getElementById("heal").innerHTML = dice + " + " + bonus;
+  }
+
+}
+
+// Abilities
+function abilities() {
+  var x = document.getElementById("classAb");
+  var classAbSel = x.elements[0].value;
+  var allAbs = document.getElementsByClassName("ability");
+
+  if (classAbSel === "all") {
+    for (var i = 0; i < allAbs.length; i++) {
+      allAbs[i].style.display = "block";
+    }
+  }
+  else if (classAbSel === "barbarian") {
+    for (var i = 0; i < allAbs.length; i++) {
+      if (selection[i].value != "barbarian") { 
+        selection[i].style.display = "none";
+      }
+      else {
+        selection[i].style.display = "block";
+      }
+    }
+  }
 }

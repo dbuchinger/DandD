@@ -103,16 +103,70 @@
     <hr>
     <h2>Player Stats</h2>
     <form id="stats">
-        Dexterity:
-        <input type="text" name="dexterity"><br/>
-        Constitution:
-        <input type="text" name="constitution"><br/>
-        Intelligence:
-        <input type="text" name="intelligence"><br/>
-        Strength:
-        <input type="text" name="strength"><br/>
+        Race:
+        <select name="race" onchange="raceClass()">
+            <option value="select">- Select -</option>
+            <option value="Human">Human</option>
+            <option value="Elf">Elf</option>
+            <option value="Dwarf">Dwarf</option>
+            <option value="Halfling">Halfling</option>
+            <option value="Half-Orc">Half-Orc</option>
+            <option value="Dragonborn">Dragonborn</option>
+            <option value="Gnome">Gnome</option>
+        </select><br/><br/>
+        Class:
+        <select name="class" onchange="raceClass()">
+            <option value="select">- Select -</option>
+            <option value="Fighter">Fighter</option>
+            <option value="Barbarian">Barbarian</option>
+            <option value="Cleric">Cleric</option>
+            <option value="Conjurer">Conjurer</option>
+            <option value="Sorceror">Sorceror</option>
+            <option value="Rogue">Rogue</option>
+            <option value="Ranger">Ranger</option>
+            <option value="Paladin">Paladin</option>
+        </select>
+        <br/><br/>
+        <table>
+            <tr>
+                <th>Stat</th>
+                <th>Racial Bonuses</th>
+                <th>Class Bonuses</th>
+                <th>Player Allocated</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <th>Dexterity</th>
+                <td><span id="raceDex">0</span></td>
+                <td><span id="classDex">0</span></td>
+                <td><input type="text" name="dexterity" onchange="raceClass()"></td>
+                <td><span id="finalDex">0</span></td>
+            </tr>
+            <tr>
+                <th>Constitution</th>
+                <td><span id="raceCon">0</span></td>
+                <td><span id="classCon">0</span></td>
+                <td><input type="text" name="constitution" onchange="raceClass()"></td>
+                <td><span id="finalCon">0</span></td>
+            </tr>
+            <tr>
+                <th>Intelligence</th>
+                <td><span id="raceInt">0</span></td>
+                <td><span id="classInt">0</span></td>
+                <td><input type="text" name="intelligence" onchange="raceClass()"></td>
+                <td><span id="finalInt">0</span></td>
+            </tr>
+            <tr>
+                <th>Strength</th>
+                <td><span id="raceStr">0</span></td>
+                <td><span id="classStr">0</span></td>
+                <td><input type="text" name="strength" onchange="raceClass()"></td>
+                <td><span id="finalStr">0</span></td>
+            </tr>
+        </table><br/>
         Weapon:
-        <select name="cars">
+        <select name="weapon">
+            <option value="select">- Select -</option>
             <option value="Sword">Sword</option>
             <option value="Axe">Axe</option>
             <option value="Spear">Spear</option>
@@ -125,7 +179,7 @@
             <option value="Crossbow">Crossbow</option>
             <option value="Dual Daggers">Dual Daggers</option>
         </select>
-    </form>
+    </form><br/>
     <button type="button" onclick="stats()">Submit</button>
     <p id="statSheet"></p>
     <hr>
@@ -166,7 +220,7 @@
             <td>Heal</td>
             <td>5 Int (No Spell Slot)</td>         
             <td>Restore health to a single target.</td>
-			<td></td>
+			<td><span id="heal"></span></td>
         </tr>
         <tr bgcolor="#fcf18d">
             <td>Cleric</td>
@@ -442,7 +496,8 @@
             <td>Dragon's Breath</td>
             <td>15 Int</td>
             <td>Shoot a pillar of flames, dealing fire damage to targets in 5 space line
-                from caster.</td>
+                from caster.
+            </td>
 			<td></td>
         </tr>
         <tr bgcolor="#ff8585">
@@ -499,29 +554,49 @@
         </tr>       
     </table>
     <hr>
-    <h2>Abilities</h2>
+    <h2>Class Abilities</h2>
+    <form id="classAb">
+        <select name="classAbSel" onchange="abilities()">
+            <option value="all">All Classes</option>
+            <option value="barbarian">Barbarian</option>
+        </select>
+    </form>
     <table>
         <tr>
-            <th>Type</th>
+            <th>Class</th>
             <th>Name</th>
             <th>Requirements</th>
             <th>Effect</th>
         </tr>
-        <tr>
-            <td>Aggressive</td>
-            <td>Focus</td>
-            <td>-</td>
-            <td>User gains a bonus for hit and damage rolls the following turn.</td>
+        <tr class="ability barbarian">
+            <td>Barbarian</td>
+            <td>Rage</td>
+            <td>- (No Mana Cost)</td>
+            <td>User enters a Rage, giving a bonus to Athletics and Fortitude checks
+                and damage rolls. While in Rage, the user has penalties to Will checks 
+                and cannot use other abilities. The user's Rage only ends with the end
+                of an encounter.
+            </td>
         </tr>
-        <tr>
-            <td>Aggressive</td>
+        <tr class="ability barbarian">
+            <td>Barbarian</td>
             <td>Reckless Attack</td>
             <td>-</td>
             <td>The user's next attack has a bonus to hit, but for the following turn
                 enemy attacks against them also have a small bonus to hit.
             </td>
         </tr>
-        <tr>
+
+
+
+        
+        <tr class="ability">
+            <td>Aggressive</td>
+            <td>Focus</td>
+            <td>-</td>
+            <td>User gains a bonus for hit and damage rolls the following turn.</td>
+        </tr>
+        <tr class="ability">
             <td>Defensive</td>
             <td>Stalwart Defense</td>
             <td>10 Constitution</td>
@@ -529,7 +604,7 @@
                 ally until the user's next action or target leaves range.
             </td>
         </tr>
-        <tr>
+        <tr class="ability">
             <td>Defensive</td>
             <td>Turtle Stance</td>
             <td>15 Constitution</td>
@@ -537,7 +612,7 @@
                 their next movement.
             </td>
         </tr>
-        <tr>
+        <tr class="ability">
             <td>Aggressive</td>
             <td>Grapple</td>
             <td>20 Constitution</td>
@@ -545,13 +620,13 @@
                 action if they fail an athleticism check. 
             </td>
         </tr>
-        <tr>
+        <tr class="ability">
             <td>Passive</td>
             <td>Hefty</td>
             <td>25 Constitution</td>
             <td>The character is considered a medium sized unit.</td>
         </tr>
-        <tr>
+        <tr class="ability">
             <td>Passive</td>
             <td>Grit</td>
             <td>40 Constitution</td>
@@ -559,13 +634,13 @@
                 instead reduces them to 1 health.
             </td>
         </tr>
-        <tr>
+        <tr class="ability">
             <td>Miscellaneous</td>
             <td>Charge</td>
             <td>5 Dexterity</td>
             <td>User's movement is doubled the following turn.</td>
         </tr>
-        <tr>
+        <tr class="ability">
             <td>Aggressive</td>
             <td>Careful Aim</td>
             <td>(Ranged) 10 Dexerity</td>
@@ -573,7 +648,7 @@
                 <u>and</u> 20).
             </td>
         </tr>
-        <tr>
+        <tr class="ability">
             <td>Aggressive</td>
             <td>Piercing Shot</td>
             <td>(Ranged) 10 Dexterity, 10 Strength</td>
@@ -581,7 +656,7 @@
                 and allowing it to hit a unit behind the initial target.
             </td>
         </tr>
-        <tr>
+        <tr class="ability">
             <td>Aggressive</td>
             <td>Counterattack</td>
             <td>(Melee) 15 Dexterity</td>
@@ -589,29 +664,19 @@
                 in range you may make a free attack back with a penalty to hit.
             </td>
         </tr>
-        <tr>
+        <tr class="ability">
             <td>Passive</td>
             <td>Lockpicking</td>
             <td>20 Dexterity</td>
             <td>The character can pick locks provided that they pass a check.</td>
         </tr>
-        <tr>
+        <tr class="ability">
             <td>Passive</td>
             <td>Deft Movements</td>
             <td>40 Dexterity</td>
             <td>The character may perform an additional secondary action each turn.</td>
         </tr>
-        <tr>
-            <td>Aggressive</td>
-            <td>Rage</td>
-            <td>10 Strength (No mana cost)</td>
-            <td>User enters a Rage, giving a bonus to Athletics and Fortitude checks
-                and damage rolls. While in Rage, the user has penalties to Will checks 
-                and cannot use other abilities. The user's Rage only ends with the end
-                of an encounter.
-            </td>
-        </tr>
-        <tr>
+        <tr class="ability">
             <td>Aggressive</td>
             <td>Stunning Blow</td>
             <td>10 Strength</td>
@@ -619,7 +684,7 @@
                 passes a Fortitude check.
             </td>
         </tr>
-        <tr>
+        <tr class="ability">
             <td>Miscellaneous</td>
             <td>Battle Cry</td>
             <td>20 Strength</td>
@@ -627,13 +692,13 @@
                 action.
             </td>
         </tr>
-        <tr>
+        <tr class="ability">
             <td>Passive</td>
             <td>Bully</td>
             <td>20 Strength</td>
             <td>Gain a bonus to charisma checks being used to intimidate.</td>
         </tr>
-        <tr>
+        <tr class="ability">
             <td>Aggressive</td>
             <td>Cleave</td>
             <td>(Melee) 20 Strength</td>
@@ -641,7 +706,7 @@
                 adjacent units.
             </td>
         </tr>
-        <tr>
+        <tr class="ability">
             <td>Passive</td>
             <td>Brutal Strike</td>
             <td>40 Strength</td>
@@ -650,16 +715,26 @@
 	</table>
 	<hr>
 	<h2>Almanac</h2>
-	<p><strong>Check (Rolling a stat check)</strong>:Used interchangeably with rolling a save, this means to roll the d20 and
-	apply the character's bonus in whatever stat is being checked to see if they pass or fail the event.</p>
-	<p><strong>Level</strong>: An indicator of a character's power. Each successive level grants a player 1 point in each of the
-	4 main skills along with 2 points the player may allocate as they please.</p>
-	<p><strong>Primary Action (P)</strong>: A class of action that takes up a player's entire turn except for movement.</p>
+    <p><strong>Check (Rolling a stat check)</strong>:Used interchangeably with rolling a
+        save, this means to roll the d20 and apply the character's bonus in whatever stat
+        is being checked to see if they pass or fail the event.
+    </p>
+    <p><strong>Level</strong>: An indicator of a character's power. Each successive level
+        grants a player 1 point in each of the 4 main skills along with 2 points the
+        player may allocate as they please.
+    </p>
+    <p><strong>Primary Action (P)</strong>: A class of action that takes up a player's
+        entire turn except for movement.
+    </p>
 	<p><strong>Save (Rolling a save)</strong>: See <strong>Check</strong></p>
-	<p><strong>Secondary Action (S)</strong>: A class of action that a player can do up to two of in a turn. A secondary action
-	cannot be done in the same turn as a primary action.</p>
-	<p><strong>Turn</strong>: A player's action phase. It can either consist of up to 2 secondary actions or a single primary action,
-	along with movement which is considered a "free" action.</p>
+    <p><strong>Secondary Action (S)</strong>: A class of action that a player can do
+        up to two of in a turn. A secondary action cannot be done in the same turn as
+        a primary action.
+    </p>
+    <p><strong>Turn</strong>: A player's action phase. It can either consist of up to
+        2 secondary actions or a single primary action, along with movement which is
+        considered a "free" action.
+    </p>
     <script src="DandD.js"></script>
 </body>
 </html>
