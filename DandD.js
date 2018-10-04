@@ -402,28 +402,38 @@ function spells() {
 	detectMagic();
   resistEvil();
   heal();
+  bestowLuck();
+  bless();
+  holyArmor();
+  cleanse();
+  dispelMagic();
+  smite();
+  daze();
+  necrotize();
+  groupHeal();
 	
 	function detectMagic() {
-		var bonus = -3 + Math.floor(intelligence/4);
+		var bonus = -3 + Math.floor(level/5 + intelligence/5);
 		if (bonus < 0) {
 			document.getElementById("detectMagic").innerHTML = "d20 - " + (-bonus);
 		}
 		else {
-		document.getElementById("detectMagic").innerHTML = "d20 + " + bonus;
+		  document.getElementById("detectMagic").innerHTML = "d20 + " + bonus;
 		}
   }
   
 	function resistEvil() {
 		var hitBonus = 1 + Math.floor(level/3 + intelligence/10);
 		var damageBonus = 1 + Math.floor(level + intelligence/8);
-		document.getElementById("resistEvil").innerHTML = "Hit/Checks: +" + hitBonus + "<br/>Damage: +" + damageBonus;
+    document.getElementById("resistEvil").innerHTML = "Hit/Checks: +" + hitBonus +
+      "<br/>Damage: +" + damageBonus;
   }
 
   function heal() {
     var dice;
     var bonus;
     var alter;
-    var diceNum = Math.floor(intelligence/9);
+    var diceNum = Math.floor((level + intelligence)/8);
     switch (diceNum) {
       case 0: dice = "d4";
       alter = 0;
@@ -449,14 +459,160 @@ function spells() {
       alter = 8;
       break;
     }
+    bonus = Math.floor(((level + intelligence)%8)/3) + alter;
+  
+    document.getElementById("heal").innerHTML = dice + " + " + bonus;
+  }
 
-    if ((intelligence%9) === 0) {
-      bonus = Math.floor((intelligence%9)/2) + alter;
+  function bestowLuck() {
+    var bonus = Math.floor(level/5 + intelligence/6);
+		var duration = 1 + Math.floor(level/5 + intelligence/10);
+    document.getElementById("bestowLuck").innerHTML = "Bonus: +" + bonus +
+      "<br/>Duration: " + duration + " hours";
+  }
+
+  function bless() {
+    var bonus = 1 + Math.floor(level/7 + intelligence/12);
+    document.getElementById("bless").innerHTML = "+" + bonus;
+  }
+
+  function holyArmor() {
+    var bonus = 1 + Math.floor(level/5 + intelligence/6);
+    document.getElementById("holyArmor").innerHTML = "+" + bonus;
+  }
+
+  function cleanse() {
+		var bonus = -3 + Math.floor(level/6 + intelligence/5);
+		if (bonus < 0) {
+			document.getElementById("cleanse").innerHTML = "d20 - " + (-bonus);
+		}
+		else {
+		  document.getElementById("cleanse").innerHTML = "d20 + " + bonus;
+    }
+  }
+  function dispelMagic() {
+    var bonus = -4 + Math.floor(level/6 + intelligence/6);
+    if (bonus < 0) {
+      document.getElementById("dispelMagic").innerHTML = "d20 - " + (-bonus);
     }
     else {
-      bonus = Math.floor((intelligence%9 - 1)/2) + alter;
+      document.getElementById("dispelMagic").innerHTML = "d20 + " + bonus;
     }
-    document.getElementById("heal").innerHTML = dice + " + " + bonus;
+  }
+
+  function smite() {
+    var dice;
+    var bonus;
+    var alter;
+    var diceNum = Math.floor(intelligence/6);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      alter = 0;
+      break;
+
+      case 1: dice = "d6";
+      alter = 1;
+      break;
+      
+      case 2: dice = "d8";
+      alter = 2;
+      break;
+
+      case 3: dice = "d10";
+      alter = 3;
+      break;
+
+      case 4: dice = "2d6";
+      alter = 4;
+      break;
+      
+      default: dice = "3d6";
+      alter = 3;
+      break;
+    }
+    bonus = Math.floor((intelligence%6)/2) + alter;
+   
+    document.getElementById("smite").innerHTML = dice + " + " + bonus;
+  }
+
+  function daze() {
+    var dc = 10 + Math.floor(level/5 + intelligence/5);
+    document.getElementById("daze").innerHTML = "DC: " + dc;
+  }
+  function necrotize() {
+    var dc = 10 + Math.floor(level/4 + intelligence/4);
+    var dice;
+    var bonus;
+    var alter;
+    var diceNum = Math.floor((level + intelligence)/9);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      alter = -1;
+      break;
+
+      case 1: dice = "d6";
+      alter = 0;
+      break;
+      
+      case 2: dice = "d8";
+      alter = 1;
+      break;
+
+      case 3: dice = "d10";
+      alter = 2;
+      break;
+
+      case 4: dice = "2d6";
+      alter = 3;
+      break;
+      
+      default: dice = "3d6";
+      alter = 2;
+      break;
+    }
+    bonus = Math.floor(((level + intelligence)%9)/3) + alter;
+    
+    if (bonus < 0) {
+			document.getElementById("necrotize").innerHTML = "DC: " + dc + "<br/>" + dice + " - " + -bonus;
+		}
+		else {
+      document.getElementById("necrotize").innerHTML = "DC: " + dc + "<br/>" + dice + " + " + bonus;
+    }
+  }
+
+  function groupHeal() {
+    var dice;
+    var bonus;
+    var alter;
+    var diceNum = Math.floor((level + intelligence)/12);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      alter = 0;
+      break;
+
+      case 1: dice = "d6";
+      alter = 2;
+      break;
+      
+      case 2: dice = "d8";
+      alter = 4;
+      break;
+
+      case 3: dice = "d10";
+      alter = 6;
+      break;
+
+      case 4: dice = "2d6";
+      alter = 8;
+      break;
+      
+      default: dice = "3d6";
+      alter = 8;
+      break;
+    }
+    bonus = Math.floor(((level + intelligence)%12)/4) + alter;
+  
+    document.getElementById("groupHeal").innerHTML = dice + " + " + bonus;
   }
 
 }
