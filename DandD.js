@@ -467,18 +467,19 @@ function abilities() {
   var classAbSel = x.elements[0].value;
   var allAbs = document.getElementsByClassName("ability");
 
-  if (classAbSel === "all") {
+  if (classAbSel === "allAbs") {
     for (var i = 0; i < allAbs.length; i++) {
-      allAbs[i].style.display = "block";
+      allAbs[i].style.display = "table-row";
     }
   }
   else if (classAbSel === "barbarian") {
     for (var i = 0; i < allAbs.length; i++) {
-      if (selection[i].value != "barbarian") { 
-        selection[i].style.display = "none";
+      if (!(allAbs[i].classList.contains("barbarian"))
+		  && !(allAbs[i].classList.contains("all"))) { 
+        allAbs[i].style.display = "none";
       }
       else {
-        selection[i].style.display = "block";
+        allAbs[i].style.display = "table-row";
       }
     }
   }

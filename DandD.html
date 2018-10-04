@@ -557,8 +557,12 @@
     <h2>Class Abilities</h2>
     <form id="classAb">
         <select name="classAbSel" onchange="abilities()">
-            <option value="all">All Classes</option>
+            <option value="allAbs">All Classes</option>
+			<option value="fighter">Fighter</option>
             <option value="barbarian">Barbarian</option>
+			<option value="rogue">Rogue</option>
+			<option value="ranger">Ranger</option>
+			<option value="paladin">Paladin</option>
         </select>
     </form>
     <table>
@@ -567,6 +571,20 @@
             <th>Name</th>
             <th>Requirements</th>
             <th>Effect</th>
+        </tr>
+		<tr class="ability all">
+            <td>All Classes</td>
+            <td>Focus</td>
+            <td>-</td>
+            <td>User gains a bonus for hit and damage rolls the following turn.</td>
+        </tr>
+		<tr class="ability all">
+            <td>All Classes</td>
+            <td>Stalwart Defense</td>
+            <td>10 Constitution</td>
+            <td>User takes the damage for targeted attacks that hit a chosen adjacent
+                ally until the user's next action or target leaves range.
+            </td>
         </tr>
         <tr class="ability barbarian">
             <td>Barbarian</td>
@@ -590,20 +608,8 @@
 
 
         
-        <tr class="ability">
-            <td>Aggressive</td>
-            <td>Focus</td>
-            <td>-</td>
-            <td>User gains a bonus for hit and damage rolls the following turn.</td>
-        </tr>
-        <tr class="ability">
-            <td>Defensive</td>
-            <td>Stalwart Defense</td>
-            <td>10 Constitution</td>
-            <td>User takes the damage for targeted attacks that hit a chosen adjacent
-                ally until the user's next action or target leaves range.
-            </td>
-        </tr>
+        
+        
         <tr class="ability">
             <td>Defensive</td>
             <td>Turtle Stance</td>
@@ -676,7 +682,7 @@
             <td>40 Dexterity</td>
             <td>The character may perform an additional secondary action each turn.</td>
         </tr>
-        <tr class="ability">
+        <tr class="ability barbarian fighter">
             <td>Aggressive</td>
             <td>Stunning Blow</td>
             <td>10 Strength</td>
