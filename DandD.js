@@ -189,7 +189,7 @@ function stats() {
   else {
     manaPool = 10;
   }
-  var will = -4 + Math.floor(intelligence/3 + constitution/10);
+  var will = -4 + Math.floor(intelligence/3 + constitution/9);
   var fortitude = -4 + Math.floor(constitution/4 + strength/8);
   var endDamage = combatNumbers(strength, dexterity);
 
@@ -411,6 +411,13 @@ function spells() {
   daze();
   necrotize();
   groupHeal();
+  flamingWeapon();
+  orbOfLight();
+  dullSenses();
+  grease();
+  ensnare();
+  bendNature();
+  charm();
 	
 	function detectMagic() {
 		var bonus = -3 + Math.floor(level/5 + intelligence/5);
@@ -536,11 +543,13 @@ function spells() {
   }
 
   function daze() {
-    var dc = 10 + Math.floor(level/5 + intelligence/5);
-    document.getElementById("daze").innerHTML = "DC: " + dc;
+    var dc = 10 + Math.floor(level/8 + intelligence/5);
+	var penalty = Math.floor(level/5 +intelligence/5);
+    document.getElementById("daze").innerHTML = "DC: " + dc + "<br/>Penalty: -" + penalty;
   }
+  
   function necrotize() {
-    var dc = 10 + Math.floor(level/4 + intelligence/4);
+    var dc = 10 + Math.floor(level/4 + intelligence/5);
     var dice;
     var bonus;
     var alter;
@@ -613,6 +622,47 @@ function spells() {
     bonus = Math.floor(((level + intelligence)%12)/4) + alter;
   
     document.getElementById("groupHeal").innerHTML = dice + " + " + bonus;
+  }
+  
+  function flamingWeapon() {
+		var bonus = Math.floor(level/4 + intelligence/5);
+		  document.getElementById("flamingWeapon").innerHTML = "+" + bonus;
+  }
+  
+  function orbOfLight() {
+    var dc = 8 + Math.floor(level/4 + intelligence/5);
+    document.getElementById("orbOfLight").innerHTML = "DC: " + dc;
+  }
+  
+  function dullSenses() {
+    var dc = 10 + Math.floor(level/4 + intelligence/5);
+    var penalty = Math.floor(level/4 +intelligence/4);
+    document.getElementById("dullSenses").innerHTML = "DC: " + dc + "<br/>Penalty: -" + penalty;
+  }
+  
+  function grease() {
+    var dc = 8 + Math.floor(level/3 + intelligence/5);
+    document.getElementById("grease").innerHTML = "DC: " + dc;
+  }
+  
+  function ensnare() {
+    var dc = 8 + Math.floor(level/5 + intelligence/6);
+    document.getElementById("ensnare").innerHTML = "DC: " + dc;
+  }
+  
+  function bendNature() {
+	var bonus = -5 + Math.floor(level/5 + intelligence/5);
+	if (bonus < 0) {
+		document.getElementById("bendNature").innerHTML = "d20 - " + (-bonus);
+	}
+	else {
+	  document.getElementById("bendNature").innerHTML = "d20 + " + bonus;
+	}
+  }
+  
+  function charm() {
+    var dc = 8 + Math.floor(level/8 + intelligence/5);
+    document.getElementById("charm").innerHTML = "DC: " + dc;
   }
 
 }
