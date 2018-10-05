@@ -278,7 +278,7 @@
             <td>Cleric</td>
             <td>Necrotize</td>
             <td>20 Int</td>
-            <td>Target must roll a Constitution check. If they fail, the will take
+            <td>Target must roll a Fortitude check. If they fail, the will take
                 bleeding damage if injured and healing effects on them are halved for
 				the encounter.
             </td>
@@ -331,7 +331,7 @@
             <td>5 Int (No Spell Slot)</td>
             <td>User creates an orb of light in their hand. Light given off can be feeble,
                 or be a bright enough flash that units who see it must roll a Fortitude
-                check to resist temporary blindness.
+                check to resist short-lived temporary blindness.
             </td>
 			<td><span id="orbOfLight"></span></td>
         </tr>
@@ -348,8 +348,8 @@
             <td>Conjuror</td>
             <td>Grease</td>
             <td>10 Int</td>
-            <td>Cover an area in slick grease. Units moving in the area must roll a Dexterity 
-                check or fall prone.
+            <td>Cover an area in slick grease. Units moving in the area will fall prone
+                if they fail a Finesse check and may still be slowed if they pass.
             </td>
 			<td><span id="grease"></span></td>
         </tr>
@@ -386,7 +386,7 @@
             <td>Summon an 8 foot fist from the ground at target location which attacks
                 adjacent enemies. The fist can be attacked and destroyed.
             </td>
-			<td></td>
+			<td><span id="spectralFist"></span></td>
         </tr>
         <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
@@ -395,7 +395,7 @@
             <td>Create a small, short-lived portal to a nearby location. Portal size and
                 distance between portals is increased with Intelligence.
             </td>
-			<td></td>
+			<td><span id="createPortal"></span></td>
         </tr>
         <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
@@ -405,7 +405,7 @@
                 turns. Units in the are can reduce damage taken with a successful 
                 Fortitude check.
             </td>
-			<td></td>
+			<td><span id="insectSwarm"></span></td>
         </tr>
         <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
@@ -414,7 +414,7 @@
             <td>An invisible protective barrier surrounds the target, preventing physical
                 projectiles from hitting it until broken.
             </td>
-			<td></td>
+			<td><span id="protectiveBarrier"></span></td>
         </tr>
         <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
@@ -423,16 +423,17 @@
             <td>Create an illusion that can be seen through with a Perception check. Less
                 likely illusions will be easier to detect.
             </td>
-			<td></td>
+			<td><span id="illusion"></span></td>
         </tr>
         <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
             <td>Alter Memory</td>
             <td>40 Int</td>
             <td>The user can alter the memories of a target while touching them. The spell
-                takes concentration to cast and must occur in a non-combat scenario.
+                takes concentration and time to cast and must occur in a non-combat scenario.
+                Targets may resist with a Will save.
             </td>
-			<td></td>
+			<td><span id="alterMemory"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
@@ -440,7 +441,7 @@
             <td>5 Int  (No Spell Slot)</td>
             <td>Shoot undodgeable magical projectiles to deal damage to target in caster's line of
                 sight.</td>
-			<td></td>
+			<td><span id="magicMissile"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
@@ -449,45 +450,45 @@
             <td>Shoot a fireball that explodes at a target location in the caster's line
                 of sight, dealing fire damage to units in a 4 space square.
             </td>
-			<td></td>
+			<td><span id="fireball"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
             <td>Gust</td>
             <td>10 Int</td>
             <td>Create a gust of wind in a 5 space line from the caster, unsteadying
-                or launching those caught in the blast.
+                or launching those caught in the blast if they fail a Fortitude
+                check.
             </td>
-			<td></td>
+			<td><span id="gust"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
             <td>Wall of Flames</td>
             <td>10 Int</td>
-            <td>Create a wall of flames of max length 8 at target location within caster's
-                line of sight. Units who pass through or end their turn in the area take
-                fire damage.
+            <td>Create a wall of flames that deals fire damage to units already in the
+                area or that pass through it.
             </td>
-			<td></td>
+			<td><span id="wallOfFlames"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
             <td>Blight</td>
             <td>15 Int</td>
-            <td>Drain the vitality of a target, which must make a Fortitude save to avoid
+            <td>Drain the vitality of a target, which must make a Fortitude save to lessen
                 damage.
             </td>
-			<td></td>
+			<td><span id="blight"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
             <td>Cone of Cold</td>
             <td>15 Int</td>
             <td>Create a blast of icy winds, dealing ice damage to enemies in a cone of
-                length 4 spaces starting at the caster. Enemies hit make a fortitude save
+                length 4 spaces starting at the caster. Enemies hit make a Fortitude save
                 to see if they are inhibited by the frost next turn.
             </td>
-			<td></td>
+			<td><span id="coneOfCold"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
@@ -496,7 +497,7 @@
             <td>Shoot a pillar of flames, dealing fire damage to targets in 5 space line
                 from caster.
             </td>
-			<td></td>
+			<td><span id="dragonsBreath"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
@@ -506,7 +507,7 @@
                 up to 3 other targets within 3 spaces of initial target if there is an
                 unblocked path between them.
 			</td>
-			<td></td>
+			<td><span id="chainLightning"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
@@ -516,23 +517,23 @@
                 line of sight. Units within square make a fortitude save each turn in cloud
                 to avoid poison damage.
             </td>
-			<td></td>
+			<td><span id="noxiousCloud"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
             <td>Telekinesis</td>
             <td>20 Int</td>
             <td>Manipulate a small object from a distance.</td>
-			<td></td>
+			<td><span id="telekinesis"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
             <td>Mind Shatter</td>
             <td>25 Int</td>
             <td>Caster assaults the target's mind, forcing a Will save for the target to
-                avoid damage and being stunned.
+                lessen damage and avoid being stunned.
             </td>
-			<td></td>
+			<td><span id="mindShatter"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
@@ -541,14 +542,14 @@
             <td>Cause a tremor at target location, unsteadying targets and affecting
                 terrain.      
             </td>
-			<td></td>
+			<td><span id="earthquake"></span></td>
         </tr>       
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
             <td>Meteor Strike</td>
             <td>40 Int</td>
             <td>Call down a hail of meteors at target location.</td>
-			<td></td>
+			<td><span id="meteorStrike"></span></td>
         </tr>       
     </table>
     <hr>

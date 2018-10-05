@@ -149,10 +149,10 @@ function stats() {
   var health = 10 + Math.floor(1.5 * constitution);
   var armorClass = 10 + Math.floor(dexterity/5 + constitution/4);
   var speed = 4 + Math.floor(dexterity/10);
-  var sneak = -5 + Math.floor(dexterity/3);
+  var sneak = -4 + Math.floor(dexterity/3);
   var athletics = -4 + Math.floor(dexterity/8 + strength/4);
   var finesse = -4 + Math.floor(dexterity/4 + intelligence/7);
-  var charisma = -4 + Math.floor(intelligence/4);
+  var charisma = -3 + Math.floor(intelligence/4);
   var perception = -4 + Math.floor(intelligence/3 + dexterity/10);
   var mana = -1 + Math.floor((intelligence-1)/2);
   var manaPool;
@@ -208,7 +208,7 @@ function stats() {
 
     if ((weapon === "Sword") || (weapon === "Axe") || (weapon === "Spear")
 				|| (weapon === "Mace") || (weapon === "Hammer")) {
-			hitRoll1 = -4 + Math.floor(intStr/3 + intDex/3);
+			hitRoll1 = -4 + Math.floor(intStr/4 + intDex/3);
 			damageRoll = damageRollBig(intStr);
 		}
 		else if ((weapon === "Dagger") || (weapon === "Knife")) {
@@ -418,6 +418,20 @@ function spells() {
   ensnare();
   bendNature();
   charm();
+  spectralFist();
+  createPortal();
+  insectSwarm();
+  protectiveBarrier();
+  illusion();
+  alterMemory();
+  magicMissile();
+  fireball();
+  gust();
+  wallOfFlames();
+  blight();
+  coneOfCold();
+  dragonsBreath();
+  chainLightning();
 	
 	function detectMagic() {
 		var bonus = -3 + Math.floor(level/5 + intelligence/5);
@@ -497,6 +511,7 @@ function spells() {
 		  document.getElementById("cleanse").innerHTML = "d20 + " + bonus;
     }
   }
+
   function dispelMagic() {
     var bonus = -4 + Math.floor(level/6 + intelligence/6);
     if (bonus < 0) {
@@ -543,13 +558,13 @@ function spells() {
   }
 
   function daze() {
-    var dc = 10 + Math.floor(level/8 + intelligence/5);
-	var penalty = Math.floor(level/5 +intelligence/5);
+    var dc = 10 + Math.floor(level/10 + intelligence/5);
+	  var penalty = Math.floor(level/8 +intelligence/5);
     document.getElementById("daze").innerHTML = "DC: " + dc + "<br/>Penalty: -" + penalty;
   }
   
   function necrotize() {
-    var dc = 10 + Math.floor(level/4 + intelligence/5);
+    var dc = 10 + Math.floor(level/6 + intelligence/5);
     var dice;
     var bonus;
     var alter;
@@ -630,39 +645,433 @@ function spells() {
   }
   
   function orbOfLight() {
-    var dc = 8 + Math.floor(level/4 + intelligence/5);
+    var dc = 6 + Math.floor(level/3 + intelligence/6);
     document.getElementById("orbOfLight").innerHTML = "DC: " + dc;
   }
   
   function dullSenses() {
-    var dc = 10 + Math.floor(level/4 + intelligence/5);
-    var penalty = Math.floor(level/4 +intelligence/4);
+    var dc = 9 + Math.floor(level/4 + intelligence/5);
+    var penalty = Math.floor(level/4 +intelligence/5);
     document.getElementById("dullSenses").innerHTML = "DC: " + dc + "<br/>Penalty: -" + penalty;
   }
   
   function grease() {
-    var dc = 8 + Math.floor(level/3 + intelligence/5);
+    var dc = 7 + Math.floor(level/5 + intelligence/6);
     document.getElementById("grease").innerHTML = "DC: " + dc;
   }
   
   function ensnare() {
-    var dc = 8 + Math.floor(level/5 + intelligence/6);
+    var dc = 6 + Math.floor(level/5 + intelligence/6);
     document.getElementById("ensnare").innerHTML = "DC: " + dc;
   }
   
   function bendNature() {
-	var bonus = -5 + Math.floor(level/5 + intelligence/5);
-	if (bonus < 0) {
-		document.getElementById("bendNature").innerHTML = "d20 - " + (-bonus);
-	}
-	else {
-	  document.getElementById("bendNature").innerHTML = "d20 + " + bonus;
-	}
+    var bonus = -5 + Math.floor(level/5 + intelligence/5);
+    if (bonus < 0) {
+      document.getElementById("bendNature").innerHTML = "d20 - " + (-bonus);
+    }
+    else {
+      document.getElementById("bendNature").innerHTML = "d20 + " + bonus;
+    }
   }
   
   function charm() {
     var dc = 8 + Math.floor(level/8 + intelligence/5);
     document.getElementById("charm").innerHTML = "DC: " + dc;
+  }
+
+  function spectralFist() {
+    var health = 7 + Math.floor(level/10 + intelligence/3);
+    var dice;
+    var bonus;
+    var alter;
+    var diceNum = Math.floor((level + intelligence)/9);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      alter = -1;
+      break;
+
+      case 1: dice = "d6";
+      alter = 0;
+      break;
+      
+      case 2: dice = "d8";
+      alter = 1;
+      break;
+
+      case 3: dice = "d10";
+      alter = 2;
+      break;
+
+      case 4: dice = "2d6";
+      alter = 3;
+      break;
+      
+      default: dice = "3d6";
+      alter = 2;
+      break;
+    }
+    bonus = Math.floor(((level + intelligence)%9)/3) + alter;
+    
+    if (bonus < 0) {
+			document.getElementById("spectralFist").innerHTML = "Health: " + health + "<br/>" + dice + " - " + -bonus;
+		}
+		else {
+      document.getElementById("spectralFist").innerHTML = "Health: " + health + "<br/>" + dice + " + " + bonus;
+    }
+  }
+
+  function createPortal() {
+    var size = Math.floor(level/5 + intelligence/8);
+    var distance = Math.floor(level/5 + intelligence/4) * 5;
+    document.getElementById("createPortal").innerHTML = "Size: " + size +
+      " feet<br/>Distance: " + distance + " feet";
+  }
+
+  function insectSwarm() {
+    var dc = 9 + Math.floor(level/7 + intelligence/5);
+    var dice;
+    var bonus;
+    var alter;
+    var diceNum = Math.floor((level + intelligence)/12);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      alter = 0;
+      break;
+
+      case 1: dice = "d6";
+      alter = 1;
+      break;
+      
+      case 2: dice = "d8";
+      alter = 2;
+      break;
+
+      case 3: dice = "d10";
+      alter = 3;
+      break;
+
+      case 4: dice = "2d6";
+      alter = 4;
+      break;
+      
+      default: dice = "3d6";
+      alter = 3;
+      break;
+    }
+    bonus = Math.floor(((level + intelligence)%12)/4) + alter;
+    
+    if (bonus < 0) {
+			document.getElementById("insectSwarm").innerHTML = "DC: " + dc + "<br/>" + dice + " - " + -bonus;
+		}
+		else {
+      document.getElementById("insectSwarm").innerHTML = "DC: " + dc + "<br/>" + dice + " + " + bonus;
+    }
+  }
+
+  function protectiveBarrier() {
+    var health = 10 + Math.floor(level/10 + intelligence/2);
+    document.getElementById("protectiveBarrier").innerHTML = "Health: " + health;
+  }
+
+  function illusion() {
+    var bonus = -6 + Math.floor(level/10 + intelligence/3);
+    if (bonus < 0) {
+      document.getElementById("illusion").innerHTML = "d20 - " + (-bonus);
+    }
+    else {
+      document.getElementById("illusion").innerHTML = "d20 + " + bonus;
+    }
+  }
+
+  function alterMemory() {
+    var dc = 15 + Math.floor(intelligence/4);
+    document.getElementById("alterMemory").innerHTML = "DC: " + dc;
+  }
+
+  function magicMissile() {
+    var dice;
+    var bonus;
+    var alter;
+    var diceNum = Math.floor((level + intelligence)/12);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      alter = -1;
+      break;
+
+      case 1: dice = "d6";
+      alter = 1;
+      break;
+      
+      case 2: dice = "d8";
+      alter = 3;
+      break;
+
+      case 3: dice = "d10";
+      alter = 5;
+      break;
+
+      case 4: dice = "2d6";
+      alter = 6;
+      break;
+      
+      default: dice = "3d6";
+      alter = 5;
+      break;
+    }
+    bonus = Math.floor(((level + intelligence)%12)/3) + alter;
+  
+    if (bonus < 0) {
+      document.getElementById("magicMissile").innerHTML = dice + " - " + -bonus;
+    }
+    else {
+      document.getElementById("magicMissile").innerHTML = dice + " + " + bonus;
+    }
+  }
+
+  function fireball() {
+    var dice;
+    var bonus;
+    var alter = 0;
+    var diceNum = Math.floor((level + intelligence)/6);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      break;
+
+      case 1: dice = "d6";
+      break;
+      
+      case 2: dice = "d8";
+      break;
+
+      case 3: dice = "d10";
+      break;
+
+      case 4: dice = "2d6";
+      break;
+      
+      default: dice = "3d6";
+      break;
+    }
+    bonus = Math.floor(((level + intelligence)%7)/4) + alter;
+  
+    if (bonus < 0) {
+      document.getElementById("fireball").innerHTML = dice + " - " + -bonus;
+    }
+    else {
+      document.getElementById("fireball").innerHTML = dice + " + " + bonus;
+    }
+  }
+
+  function gust() {
+    var dc = 8 + Math.floor(level/4 + intelligence/5);
+    document.getElementById("gust").innerHTML = "DC: " + dc;
+  }
+
+  function wallOfFlames() {
+    var length = 2 + Math.floor(level/6 + intelligence/8);
+    var depth = 1 + Math.floor(level/18 + intelligence/25);
+    var dice;
+    var bonus;
+    var alter;
+    var diceNum = Math.floor((level + intelligence)/12);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      alter = -1;
+      break;
+
+      case 1: dice = "d6";
+      alter = 0;
+      break;
+      
+      case 2: dice = "d8";
+      alter = 1;
+      break;
+
+      case 3: dice = "d10";
+      alter = 2;
+      break;
+
+      case 4: dice = "2d6";
+      alter = 3;
+      break;
+      
+      default: dice = "3d6";
+      alter = 2;
+      break;
+    }
+    bonus = Math.floor(((level + intelligence)%12)/4) + alter;
+    
+    if (bonus < 0) {
+      document.getElementById("wallOfFlames").innerHTML = dice + " - " + -bonus +
+        "<br/>Length: " + length + " feet<br/>Depth: " + depth + " feet";
+		}
+		else {
+      document.getElementById("wallOfFlames").innerHTML = dice + " + " + bonus +
+        "<br/>Length: " + length + " feet<br/>Depth: " + depth + " feet";
+    }
+  }
+
+  function blight() {
+    var dc = 10 + Math.floor(level/10 + intelligence/5);
+    var dice;
+    var bonus;
+    var alter;
+    var diceNum = Math.floor((level + intelligence)/9);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      alter = 0;
+      break;
+
+      case 1: dice = "d6";
+      alter = 1;
+      break;
+      
+      case 2: dice = "d8";
+      alter = 2;
+      break;
+
+      case 3: dice = "d10";
+      alter = 3;
+      break;
+
+      case 4: dice = "2d6";
+      alter = 4;
+      break;
+      
+      default: dice = "3d6";
+      alter = 3;
+      break;
+    }
+    bonus = Math.floor(((level + intelligence)%9)/3) + alter;
+    
+    if (bonus < 0) {
+			document.getElementById("blight").innerHTML = "DC: " + dc + "<br/>" + dice + " - " + -bonus;
+		}
+		else {
+      document.getElementById("blight").innerHTML = "DC: " + dc + "<br/>" + dice + " + " + bonus;
+    }
+  }
+
+  function coneOfCold() {
+    var dc = 7 + Math.floor(level/10 + intelligence/7);
+    var dice;
+    var bonus;
+    var alter;
+    var diceNum = Math.floor((level + (intelligence*0.8))/9);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      alter = -2;
+      break;
+
+      case 1: dice = "d6";
+      alter = -1;
+      break;
+      
+      case 2: dice = "d8";
+      alter = 0;
+      break;
+
+      case 3: dice = "d10";
+      alter = 1;
+      break;
+
+      case 4: dice = "2d6";
+      alter = 2;
+      break;
+      
+      default: dice = "3d6";
+      alter = 1;
+      break;
+    }
+    bonus = Math.floor(((level + (intelligence*0.8))%9)/3) + alter;
+    
+    if (bonus < 0) {
+			document.getElementById("coneOfCold").innerHTML = "DC: " + dc + "<br/>" + dice + " - " + -bonus;
+		}
+		else {
+      document.getElementById("coneOfCold").innerHTML = "DC: " + dc + "<br/>" + dice + " + " + bonus;
+    }
+  }
+
+  function dragonsBreath() {
+    var dice;
+    var bonus;
+    var alter;
+    var diceNum = Math.floor((level + (intelligence*.9))/9);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      alter = -1;
+      break;
+
+      case 1: dice = "d6";
+      alter = 0;
+      break;
+      
+      case 2: dice = "d8";
+      alter = 1;
+      break;
+
+      case 3: dice = "d10";
+      alter = 2;
+      break;
+
+      case 4: dice = "2d6";
+      alter = 2;
+      break;
+      
+      default: dice = "3d6";
+      alter = 1;
+      break;
+    }
+    bonus = Math.floor(((level + (intelligence*.9))%9)/3) + alter;
+    
+    if (bonus < 0) {
+			document.getElementById("dragonsBreath").innerHTML = dice + " - " + -bonus;
+		}
+		else {
+      document.getElementById("dragonsBreath").innerHTML = dice + " + " + bonus;
+    }
+  }
+
+  function chainLightning() {
+    var dice;
+    var bonus;
+    var alter;
+    var diceNum = Math.floor((level + (intelligence*.9))/9);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      alter = -1;
+      break;
+
+      case 1: dice = "d6";
+      alter = 0;
+      break;
+      
+      case 2: dice = "d8";
+      alter = 1;
+      break;
+
+      case 3: dice = "d10";
+      alter = 2;
+      break;
+
+      case 4: dice = "2d6";
+      alter = 2;
+      break;
+      
+      default: dice = "3d6";
+      alter = 1;
+      break;
+    }
+    bonus = Math.floor(((level + (intelligence*.9))%9)/3) + alter;
+    
+    if (bonus < 0) {
+			document.getElementById("chainLightning").innerHTML = dice + " - " + -bonus;
+		}
+		else {
+      document.getElementById("chainLightning").innerHTML = dice + " + " + bonus;
+    }
   }
 
 }
