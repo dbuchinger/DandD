@@ -40,10 +40,10 @@ function raceClass() {
     document.getElementById("raceStr").innerHTML = 1;
   }
   else if (race === "Half-Orc") {
-    document.getElementById("raceDex").innerHTML = 1;
+    document.getElementById("raceDex").innerHTML = 0;
     document.getElementById("raceCon").innerHTML = 2;
     document.getElementById("raceInt").innerHTML = 1;
-    document.getElementById("raceStr").innerHTML = 4;
+    document.getElementById("raceStr").innerHTML = 5;
   }
   else if (race === "Dragonborn") {
     document.getElementById("raceDex").innerHTML = 1;
@@ -148,7 +148,7 @@ function stats() {
 
   var health = 10 + Math.floor(1.5 * constitution);
   var armorClass = 10 + Math.floor(dexterity/5 + constitution/4);
-  var speed = 4 + Math.floor(dexterity/10);
+  var speed = 4 + Math.floor(dexterity/12);
   var sneak = -4 + Math.floor(dexterity/3);
   var athletics = -4 + Math.floor(dexterity/8 + strength/4);
   var finesse = -4 + Math.floor(dexterity/4 + intelligence/7);
