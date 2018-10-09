@@ -1082,12 +1082,7 @@ function abilities() {
   var classAbSel = x.elements[0].value;
   var allAbs = document.getElementsByClassName("ability");
 
-  if (classAbSel === "allAbs") {
-    for (var i = 0; i < allAbs.length; i++) {
-      allAbs[i].style.display = "table-row";
-    }
-  }
-  else if (classAbSel === "barbarian") {
+  if (classAbSel === "barbarian") {
     for (var i = 0; i < allAbs.length; i++) {
       if (!(allAbs[i].classList.contains("barbarian"))
 		  && !(allAbs[i].classList.contains("all"))) { 
@@ -1096,6 +1091,55 @@ function abilities() {
       else {
         allAbs[i].style.display = "table-row";
       }
+    }
+  }
+  else if (classAbSel === "fighter") {
+    for (var i = 0; i < allAbs.length; i++) {
+      if (!(allAbs[i].classList.contains("fighter"))
+		  && !(allAbs[i].classList.contains("all"))) { 
+        allAbs[i].style.display = "none";
+      }
+      else {
+        allAbs[i].style.display = "table-row";
+      }
+    }
+  }
+  else if (classAbSel === "rogue") {
+    for (var i = 0; i < allAbs.length; i++) {
+      if (!(allAbs[i].classList.contains("rogue"))
+		  && !(allAbs[i].classList.contains("all"))) { 
+        allAbs[i].style.display = "none";
+      }
+      else {
+        allAbs[i].style.display = "table-row";
+      }
+    }
+  }
+  else if (classAbSel === "ranger") {
+    for (var i = 0; i < allAbs.length; i++) {
+      if (!(allAbs[i].classList.contains("ranger"))
+		  && !(allAbs[i].classList.contains("all"))) { 
+        allAbs[i].style.display = "none";
+      }
+      else {
+        allAbs[i].style.display = "table-row";
+      }
+    }
+  }
+  else if (classAbSel === "paladin") {
+    for (var i = 0; i < allAbs.length; i++) {
+      if (!(allAbs[i].classList.contains("paladin"))
+		  && !(allAbs[i].classList.contains("all"))) { 
+        allAbs[i].style.display = "none";
+      }
+      else {
+        allAbs[i].style.display = "table-row";
+      }
+    }
+  }
+  else {
+    for (var i = 0; i < allAbs.length; i++) {
+      allAbs[i].style.display = "table-row";
     }
   }
 }
