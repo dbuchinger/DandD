@@ -164,20 +164,39 @@
                 <td><span id="finalStr">0</span></td>
             </tr>
         </table><br/>
-        Weapon:
+        Weapon(s): 1. 
         <select name="weapon">
             <option value="select">- Select -</option>
-            <option value="Sword">Sword</option>
-            <option value="Axe">Axe</option>
+            <option value="Battleaxe">Battleaxe</option>
+            <option value="Hammer">Hammer</option>
+            <option value="Sword">Sword</option>           
             <option value="Spear">Spear</option>
             <option value="Mace">Mace</option>
-            <option value="Hammer">Hammer</option>
-            <option value="Dagger">Dagger</option>
-            <option value="Knife">Knife</option>
-            <option value="Staff">Staff</option>
-            <option value="Bow">Bow</option>
             <option value="Crossbow">Crossbow</option>
+            <option value="Staff">Staff</option>
+            <option value="Javelin">Javelin</option>        
+            <option value="Hand Axe">Hand Axe</option>
+            <option value="Bow">Bow</option>        
+            <option value="Dagger">Dagger</option>
+            <option value="Knife">Knife</option>         
             <option value="Dual Daggers">Dual Daggers</option>
+        </select>
+        &nbsp;&nbsp;2. 
+        <select name="weapon2">
+            <option value="select">- Select -</option>
+        <!--<option value="Battleaxe">Battleaxe</option>
+            <option value="Hammer">Hammer</option>-->
+            <option value="Sword">Sword</option>           
+        <!--<option value="Spear">Spear</option>
+            <option value="Mace">Mace</option>
+            <option value="Crossbow">Crossbow</option>
+            <option value="Staff">Staff</option>-->
+            <option value="Javelin">Javelin</option>        
+            <option value="Hand Axe">Hand Axe</option>
+            <option value="Bow">Bow</option>        
+            <option value="Dagger">Dagger</option>
+            <option value="Knife">Knife</option>         
+        <!--<option value="Dual Daggers">Dual Daggers</option>-->
         </select>
     </form><br/>
     <button type="button" onclick="stats()">Submit</button>
@@ -412,7 +431,7 @@
             <td>Protective Barrier</td>
             <td>20 Int</td>
             <td>An invisible protective barrier surrounds the target, preventing physical
-                projectiles from hitting it until broken.
+                effects from hitting it until broken.
             </td>
 			<td><span id="protectiveBarrier"></span></td>
         </tr>
@@ -486,7 +505,8 @@
             <td>15 Int</td>
             <td>Create a blast of icy winds, dealing ice damage to enemies in a cone of
                 length 4 spaces starting at the caster. Enemies hit make a Fortitude save
-                to see if they are inhibited by the frost next turn.
+                to see if they are inhibited by the frost next turn, lowering their
+                Athletics, Finesse, and hit rolls.
             </td>
 			<td><span id="coneOfCold"></span></td>
         </tr>
@@ -548,7 +568,7 @@
             <td>Sorceror</td>
             <td>Meteor Strike</td>
             <td>40 Int</td>
-            <td>Call down a hail of meteors at target location.</td>
+            <td>Call down a hail of meteors at a 16 square target location.</td>
 			<td><span id="meteorStrike"></span></td>
         </tr>       
     </table>
@@ -569,13 +589,22 @@
             <th>Class</th>
             <th>Name</th>
             <th>Requirements</th>
+            <th>Description</th>
             <th>Effect</th>
         </tr>
-		<tr class="ability fighter">
-            <td>All Classes</td>
+		<tr class="ability fighter paladin ranger">
+            <td>Fighter, Paladin, Ranger</td>
             <td>Focus</td>
-            <td>-</td>
+            <td>Level 1<br/>Secondary Action<br/>1 Mana</td>
             <td>User gains a bonus for hit and damage rolls the following turn.</td>
+            <td><span id="focus"></span></td>
+        </tr>
+        <tr class="ability fighter">
+            <td>All Classes</td>
+            <td>Inspire</td>
+            <td>-</td>
+            <td>Units within 10 feet of the character have their resolve strengthened and
+                gain a bonus to hit and resist being frightened.</td>
         </tr>
 		<tr class="ability all">
             <td>All Classes</td>

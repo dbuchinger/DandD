@@ -40,10 +40,10 @@ function raceClass() {
     document.getElementById("raceStr").innerHTML = 1;
   }
   else if (race === "Half-Orc") {
-    document.getElementById("raceDex").innerHTML = 0;
+    document.getElementById("raceDex").innerHTML = 1;
     document.getElementById("raceCon").innerHTML = 2;
     document.getElementById("raceInt").innerHTML = 1;
-    document.getElementById("raceStr").innerHTML = 5;
+    document.getElementById("raceStr").innerHTML = 4;
   }
   else if (race === "Dragonborn") {
     document.getElementById("raceDex").innerHTML = 1;
@@ -145,15 +145,16 @@ function stats() {
   var intelligence = finalInt;
   var strength = finalStr;
   var weapon = x.elements[6].value;
+  var weapon2 = x.elements[7].value;
 
   var health = 10 + Math.floor(1.5 * constitution);
   var armorClass = 10 + Math.floor(dexterity/5 + constitution/4);
   var speed = 4 + Math.floor(dexterity/12);
   var sneak = -4 + Math.floor(dexterity/3);
-  var athletics = -4 + Math.floor(dexterity/8 + strength/4);
-  var finesse = -4 + Math.floor(dexterity/4 + intelligence/7);
+  var athletics = -3 + Math.floor(dexterity/8 + strength/4);
+  var finesse = -3 + Math.floor(dexterity/4 + intelligence/7);
   var charisma = -3 + Math.floor(intelligence/4);
-  var perception = -4 + Math.floor(intelligence/3 + dexterity/10);
+  var perception = -3 + Math.floor(intelligence/4 + dexterity/10);
   var mana = -1 + Math.floor((intelligence-1)/2);
   var manaPool;
   if (mana < 1){
@@ -189,15 +190,17 @@ function stats() {
   else {
     manaPool = 10;
   }
-  var will = -4 + Math.floor(intelligence/3 + constitution/9);
-  var fortitude = -4 + Math.floor(constitution/4 + strength/8);
-  var endDamage = combatNumbers(strength, dexterity);
+  var will = -3 + Math.floor(intelligence/4 + constitution/9);
+  var fortitude = -3 + Math.floor(constitution/4 + strength/8);
+  var endDamage = combatNumbers(weapon, strength, dexterity);
+  var endDamage2 = combatNumbers(weapon2, strength, dexterity);
 
   // -------------    MAIN WEAPONS FUNCTION    ----------------
 
-  function combatNumbers(strength, dexterity) {
+  function combatNumbers(weapon, strength, dexterity) {
     var intStr = Number(strength);
     var intDex = Number(dexterity);
+    var curWeapon = weapon;
     var hitRoll1 = 0;
     var hitRoll2 = -100;
     var damageRoll;
@@ -205,49 +208,74 @@ function stats() {
     var damageRollDice;
     var damageRollBonus;
     var damageString;
+    var throwable = 0;
+    var throwDam;
+    var throwHit;
 
-    if ((weapon === "Sword") || (weapon === "Axe") || (weapon === "Spear")
-				|| (weapon === "Mace") || (weapon === "Hammer")) {
-			hitRoll1 = -4 + Math.floor(intStr/4 + intDex/3);
-			damageRoll = damageRollBig(intStr);
+    if ((curWeapon === "Battleaxe") || (curWeapon === "Hammer")) {
+			hitRoll1 = -5 + Math.floor(intStr/4 + intDex/8);
+			damageRoll = damageRollHeavy(intStr);
 		}
-		else if ((weapon === "Dagger") || (weapon === "Knife")) {
-			hitRoll1 = -2 + Math.floor(intStr/4 + intDex/3);
+    else if ((curWeapon === "Sword") || (curWeapon === "Mace") || (curWeapon === "Spear")) {
+			hitRoll1 = -4 + Math.floor(intStr/4 + intDex/4);
+			damageRoll = damageRollBig(intStr);
+    }
+		else if ((curWeapon === "Dagger") || (curWeapon === "Knife")) {
+			hitRoll1 = -2 + Math.floor(intStr/5 + intDex/3);
 			damageRoll = damageRollSmall(intStr + intDex/3);
 		}
-		else if (weapon === "Staff") {
+		else if (curWeapon === "Staff") {
 			hitRoll1 = -1 + Math.floor(intStr/5 + intDex/3);
-			damageRoll = damageRollMedium(intStr);
+			damageRoll = damageRollSmall(intStr);
+    }
+    else if ((curWeapon === "Javelin") || (curWeapon === "Hand Axe")) {
+      throwable = 1;
+			hitRoll1 = -3 + Math.floor(intStr/4 + intDex/4);
+      damageRoll = damageRollMedium(intStr);
+      throwHit = -5 + Math.floor(intStr/5 + intDex/3);
+      throwDam = damageRollMedium(intStr);
 		}
-		else if (weapon === "Bow") {
-			hitRoll1 = -4 + Math.floor(intStr/6 + intDex/3);
-			damageRoll = damageRollMedium(intStr/2 + intDex/3);
+		else if (curWeapon === "Bow") {
+			hitRoll1 = -4 + Math.floor(intStr/8 + intDex/3);
+			damageRoll = damageRollMedium(intStr/2 + intDex/2);
 		}
-		else if (weapon === "Crossbow") {
-			hitRoll1 = -1 + Math.floor(intStr/3);
+		else if (curWeapon === "Crossbow") {
+			hitRoll1 = -1 + Math.floor(intDex/3);
 			damageRoll = damageRollBig(intStr);
 		}
-		else if (weapon === "Dual Daggers") {
+		else if (curWeapon === "Dual Daggers") {
 			hitRoll1 = -7 + Math.floor(intStr/5 + intDex/3);
 			hitRoll2 = -7 + Math.floor(intStr/5 + intDex/4);
 			damageRoll = damageRollSmall(intStr + intDex/3);
 		}
 		else {
-      damageString = "Unnaccounted for weapon";
+      damageString = "Unaccounted for weapon";
       return damageString;
 		}
-		
-		if (hitRoll2 == -100) {
-			damageString = "\nHit: " + hitRoll1 + "<br/>Damage: " + damageRoll;
-		}
-		else {
-			damageString = "\nHit: " + hitRoll1 + " / " + hitRoll2 + "<br/>Damage: " + damageRoll;
-		}
-		return damageString;
+    
+    if (throwable == 0) {
+      if (hitRoll2 == -100) {
+        damageString = "<u>" + curWeapon + "</u><br/>&nbsp&nbsp&nbsp&nbspHit: " + hitRoll1 +
+          "<br/>&nbsp&nbsp&nbsp&nbspDamage: " + damageRoll;
+      }
+      else {
+        damageString = "<u>" + curWeapon + "</u><br/>&nbsp&nbsp&nbsp&nbspHit: " + hitRoll1 +
+          " / " + hitRoll2 + "<br/>&nbsp&nbsp&nbsp&nbspDamage: " + damageRoll;
+      }
+      return damageString;
+    }
+    else {
+      damageString = "<u>" + curWeapon + "</u><br/>&nbsp&nbsp&nbsp&nbspHit: " + hitRoll1 +
+          "<br/>&nbsp&nbsp&nbsp&nbspDamage: " + damageRoll + "<br/><u>" + curWeapon +
+          "(Thrown)</u><br/>&nbsp&nbsp&nbsp&nbspHit: " + throwHit +
+          "<br/>&nbsp&nbsp&nbsp&nbspDamage: " + throwDam;
+      return damageString;
+    }
 
-    // ------------ BIG DAMAGE --------------
-    function damageRollBig(intStr) {
+    // ------------ HEAVY DAMAGE --------------
+    function damageRollHeavy(intStr) {
       damageRollNum = Number(intStr);
+      var returned;
       damageRollDiceNum = Math.floor(damageRollNum / 6);
       switch (damageRollDiceNum) {
       case 0:  damageRollDice = "d4";
@@ -275,22 +303,66 @@ function stats() {
       break;
       }
       
-      damageRollBonus = Math.floor((damageRollNum % 6 - 1)/2) + alter;
+      damageRollBonus = Math.floor((damageRollNum % 6 + 2)/3) + alter;
       
       if (damageRollBonus >= 0) { 
-        damageRoll = damageRollDice + " + " + damageRollBonus;
+        returned= damageRollDice + " + " + damageRollBonus;
       }
       else {
-        damageRoll = damageRollDice + " - " + (damageRollBonus * -1);
+        returned= damageRollDice + " - " + (damageRollBonus * -1);
       }
       
-      return damageRoll;
+      return returned
+    }
+    
+    // ------------ BIG DAMAGE --------------
+    function damageRollBig(intStr) {
+      damageRollNum = Number(intStr);
+      var returned;
+      damageRollDiceNum = Math.floor(damageRollNum / 7);
+      switch (damageRollDiceNum) {
+      case 0:  damageRollDice = "d4";
+      alter = 0;
+      break;
+      
+      case 1:  damageRollDice = "d6";
+      alter = 1;
+      break;
+      
+      case 2:  damageRollDice = "d8";
+      alter = 2;
+      break;
+      
+      case 3:  damageRollDice = "2d6";
+      alter = 2;
+      break;
+      
+      case 4: damageRollDice = "3d6";
+      alter = 1;
+      break;
+      
+      default: damageRollDice = "4d6";
+      alter = 0;
+      break;
+      }
+      
+      damageRollBonus = Math.floor((damageRollNum % 7 + 1)/3) + alter;
+      
+      if (damageRollBonus >= 0) { 
+        returned= damageRollDice + " + " + damageRollBonus;
+      }
+      else {
+        returned= damageRollDice + " - " + (damageRollBonus * -1);
+      }
+      
+      return returned
     }
     
     // -------------  MEDIUM DAMAGE  --------------
     function damageRollMedium(intStr) {
       damageRollNum = Number(intStr);
-      damageRollDiceNum = Math.floor(damageRollNum / 7);
+      var returned;
+      damageRollDiceNum = Math.floor(damageRollNum / 9);
       switch (damageRollDiceNum) {
       case 0:  damageRollDice = "d4";
       alter = 0;
@@ -317,41 +389,42 @@ function stats() {
       break;
       }
       
-      damageRollBonus = Math.floor((damageRollNum % 7 - 1)/2) + alter;
+      damageRollBonus = Math.floor((damageRollNum % 9)/3) + alter;
       
       if (damageRollBonus >= 0) { 
-        damageRoll = damageRollDice + " + " + damageRollBonus;
+        returned= damageRollDice + " + " + damageRollBonus;
       }
       else {
-        damageRoll = damageRollDice + " - " + (damageRollBonus * -1);
+        returned= damageRollDice + " - " + (damageRollBonus * -1);
       }
       
-      return damageRoll;
+      return returned
     }
     
     // -------------  SMALL DAMAGE  ---------------------
     function damageRollSmall(intStr) {
       damageRollNum = Number(intStr);
-      damageRollDiceNum = Math.floor(damageRollNum / 7);
+      var returned;
+      damageRollDiceNum = Math.floor(damageRollNum / 10);
       switch (damageRollDiceNum) {
       case 0:  damageRollDice = "d4";
-      alter = 0;
+      alter = -1;
       break;
       
       case 1:  damageRollDice = "d6";
-      alter = 1;
+      alter = 0;
       break;
       
       case 2:  damageRollDice = "d8";
-      alter = 2;
+      alter = 1;
       break;
       
       case 3:  damageRollDice = "2d6";
-      alter = 2;
+      alter = 1;
       break;
       
       case 4: damageRollDice = "3d6";
-      alter = 1;
+      alter = 0;
       break;
       
       default: damageRollDice = "4d6";
@@ -359,39 +432,61 @@ function stats() {
       break;
       }
       
-      damageRollBonus = Math.floor((damageRollNum % 7 - 1)/2) + alter - 1;
+      damageRollBonus = Math.floor((damageRollNum % 10 + 2)/4) + alter;
       
       if (damageRollBonus >= 0) { 
-        damageRoll = damageRollDice + " + " + damageRollBonus;
+        returned= damageRollDice + " + " + damageRollBonus;
       }
       else {
-        damageRoll = damageRollDice + " - " + (damageRollBonus * -1);
+        returned= damageRollDice + " - " + (damageRollBonus * -1);
       }
       
-      return damageRoll;
+      return returned
     }
   }
 
   // final display
-  document.getElementById("statSheet").innerHTML =
-  "Weapon: " + weapon + "<br/>" +
-  "Dexterity: " + dexterity + "<br/>" + 
-  "Constitution: " + constitution + "<br/>" +
-  "Intelligence: " + intelligence + "<br/>" +
-  "Strength: " + strength + "<br/><br/>" + 
-  "Health: " + health + "<br/>" + 
-  "Armor Class: " + armorClass + "<br/>" + 
-  "Speed: " + speed + "<br/>" + 
-  "Sneak: " + sneak + "<br/>" + 
-  "Athletics: " + athletics + "<br/>" + 
-  "Finesse: " + finesse + "<br/>" + 
-  "Charisma: " + charisma + "<br/>" + 
-  "Perception: " + perception + "<br/>" + 
-  "Mana: " + manaPool + "<br/>" + 
-  "Will: " + will + "<br/>" + 
-  "Fortitude: " + fortitude + "<br/>" + 
-  endDamage;
-  ;
+  if (!(weapon2 === "select")) {
+    document.getElementById("statSheet").innerHTML =
+    "Weapons: " + weapon + ", " + weapon2 + "<br/>" +
+    "Dexterity: " + dexterity + "<br/>" + 
+    "Constitution: " + constitution + "<br/>" +
+    "Intelligence: " + intelligence + "<br/>" +
+    "Strength: " + strength + "<br/><br/>" + 
+    "Health: " + health + "<br/>" + 
+    "Armor Class: " + armorClass + "<br/>" + 
+    "Speed: " + speed + "<br/>" + 
+    "Sneak: " + sneak + "<br/>" + 
+    "Athletics: " + athletics + "<br/>" + 
+    "Finesse: " + finesse + "<br/>" + 
+    "Charisma: " + charisma + "<br/>" + 
+    "Perception: " + perception + "<br/>" + 
+    "Mana: " + manaPool + "<br/>" + 
+    "Will: " + will + "<br/>" + 
+    "Fortitude: " + fortitude + "<br/>" + 
+    endDamage + "<br/>" + endDamage2;
+    ;
+  }
+  else {
+    document.getElementById("statSheet").innerHTML =
+    "Weapons: " + weapon + "<br/>" +
+    "Dexterity: " + dexterity + "<br/>" + 
+    "Constitution: " + constitution + "<br/>" +
+    "Intelligence: " + intelligence + "<br/>" +
+    "Strength: " + strength + "<br/><br/>" + 
+    "Health: " + health + "<br/>" + 
+    "Armor Class: " + armorClass + "<br/>" + 
+    "Speed: " + speed + "<br/>" + 
+    "Sneak: " + sneak + "<br/>" + 
+    "Athletics: " + athletics + "<br/>" + 
+    "Finesse: " + finesse + "<br/>" + 
+    "Charisma: " + charisma + "<br/>" + 
+    "Perception: " + perception + "<br/>" + 
+    "Mana: " + manaPool + "<br/>" + 
+    "Will: " + will + "<br/>" + 
+    "Fortitude: " + fortitude + "<br/>" + 
+    endDamage;
+  }
 }
 
 // ---------------------------- SPELLS ---------------------------------
@@ -432,6 +527,11 @@ function spells() {
   coneOfCold();
   dragonsBreath();
   chainLightning();
+  noxiousCloud();
+  telekinesis();
+  mindShatter();
+  earthquake();
+  meteorStrike();
 	
 	function detectMagic() {
 		var bonus = -3 + Math.floor(level/5 + intelligence/5);
@@ -444,8 +544,8 @@ function spells() {
   }
   
 	function resistEvil() {
-		var hitBonus = 1 + Math.floor(level/3 + intelligence/10);
-		var damageBonus = 1 + Math.floor(level + intelligence/8);
+		var hitBonus = Math.floor(level/3 + intelligence/10);
+		var damageBonus = Math.floor(level + intelligence/8);
     document.getElementById("resistEvil").innerHTML = "Hit/Checks: +" + hitBonus +
       "<br/>Damage: +" + damageBonus;
   }
@@ -526,7 +626,7 @@ function spells() {
     var dice;
     var bonus;
     var alter;
-    var diceNum = Math.floor(intelligence/6);
+    var diceNum = Math.floor((intelligence*0.75)/6);
     switch (diceNum) {
       case 0: dice = "d4";
       alter = 0;
@@ -568,7 +668,7 @@ function spells() {
     var dice;
     var bonus;
     var alter;
-    var diceNum = Math.floor((level + intelligence)/9);
+    var diceNum = Math.floor(intelligence/9);
     switch (diceNum) {
       case 0: dice = "d4";
       alter = -1;
@@ -640,7 +740,7 @@ function spells() {
   }
   
   function flamingWeapon() {
-		var bonus = Math.floor(level/4 + intelligence/5);
+		var bonus = Math.floor(level/5 + intelligence/6);
 		  document.getElementById("flamingWeapon").innerHTML = "+" + bonus;
   }
   
@@ -681,7 +781,7 @@ function spells() {
   }
 
   function spectralFist() {
-    var health = 7 + Math.floor(level/10 + intelligence/3);
+    var health = 7 + Math.floor(intelligence/3);
     var dice;
     var bonus;
     var alter;
@@ -770,12 +870,12 @@ function spells() {
   }
 
   function protectiveBarrier() {
-    var health = 10 + Math.floor(level/10 + intelligence/2);
+    var health = 3 + Math.floor(level/5 + intelligence/3);
     document.getElementById("protectiveBarrier").innerHTML = "Health: " + health;
   }
 
   function illusion() {
-    var bonus = -6 + Math.floor(level/10 + intelligence/3);
+    var bonus = -6 + Math.floor(level/5 + intelligence/3);
     if (bonus < 0) {
       document.getElementById("illusion").innerHTML = "d20 - " + (-bonus);
     }
@@ -785,7 +885,7 @@ function spells() {
   }
 
   function alterMemory() {
-    var dc = 15 + Math.floor(intelligence/4);
+    var dc = 15 + Math.floor(level/5 + intelligence/4);
     document.getElementById("alterMemory").innerHTML = "DC: " + dc;
   }
 
@@ -819,7 +919,7 @@ function spells() {
       alter = 5;
       break;
     }
-    bonus = Math.floor(((level + intelligence)%12)/3) + alter;
+    bonus = Math.floor(((level + intelligence)%12)/4) + alter;
   
     if (bonus < 0) {
       document.getElementById("magicMissile").innerHTML = dice + " - " + -bonus;
@@ -849,11 +949,14 @@ function spells() {
 
       case 4: dice = "2d6";
       break;
+
+      case 5: dice = "3d6";
+      break;
       
-      default: dice = "3d6";
+      default: dice = "4d6";
       break;
     }
-    bonus = Math.floor(((level + intelligence)%7)/4) + alter;
+    bonus = Math.floor(((level + intelligence)%6 + 1)/4) + alter;
   
     if (bonus < 0) {
       document.getElementById("fireball").innerHTML = dice + " - " + -bonus;
@@ -913,34 +1016,34 @@ function spells() {
   }
 
   function blight() {
-    var dc = 10 + Math.floor(level/10 + intelligence/5);
+    var dc = 10 + Math.floor(level/10 + intelligence/4);
     var dice;
     var bonus;
     var alter;
     var diceNum = Math.floor((level + intelligence)/9);
     switch (diceNum) {
       case 0: dice = "d4";
-      alter = 0;
+      alter = 1;
       break;
 
       case 1: dice = "d6";
-      alter = 1;
+      alter = 2;
       break;
       
       case 2: dice = "d8";
-      alter = 2;
+      alter = 3;
       break;
 
       case 3: dice = "d10";
-      alter = 3;
+      alter = 4;
       break;
 
       case 4: dice = "2d6";
-      alter = 4;
+      alter = 5;
       break;
       
       default: dice = "3d6";
-      alter = 3;
+      alter = 4;
       break;
     }
     bonus = Math.floor(((level + intelligence)%9)/3) + alter;
@@ -954,11 +1057,12 @@ function spells() {
   }
 
   function coneOfCold() {
-    var dc = 7 + Math.floor(level/10 + intelligence/7);
+    var dc = 6 + Math.floor(level/10 + intelligence/7);
+    var penalty = Math.floor(level/10 + intelligence/10);
     var dice;
     var bonus;
     var alter;
-    var diceNum = Math.floor((level + (intelligence*0.8))/9);
+    var diceNum = Math.floor((level + (intelligence*0.75))/9);
     switch (diceNum) {
       case 0: dice = "d4";
       alter = -2;
@@ -984,13 +1088,15 @@ function spells() {
       alter = 1;
       break;
     }
-    bonus = Math.floor(((level + (intelligence*0.8))%9)/3) + alter;
+    bonus = Math.floor(((level + (intelligence*0.75))%9)/3) + alter;
     
     if (bonus < 0) {
-			document.getElementById("coneOfCold").innerHTML = "DC: " + dc + "<br/>" + dice + " - " + -bonus;
+      document.getElementById("coneOfCold").innerHTML = "DC: " + dc + "<br/>" +
+      dice + " - " + -bonus + "<br/>Penalty: -" + penalty;
 		}
 		else {
-      document.getElementById("coneOfCold").innerHTML = "DC: " + dc + "<br/>" + dice + " + " + bonus;
+      document.getElementById("coneOfCold").innerHTML = "DC: " + dc + "<br/>" +
+      dice + " + " + bonus + "<br/>Penalty: -" + penalty;
     }
   }
 
@@ -1071,6 +1177,142 @@ function spells() {
 		}
 		else {
       document.getElementById("chainLightning").innerHTML = dice + " + " + bonus;
+    }
+  }
+
+  function noxiousCloud() {
+    var dc = 8 + Math.floor(level/10 + intelligence/7);
+    var dice;
+    var bonus;
+    var alter;
+    var diceNum = Math.floor((level + intelligence)/12);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      alter = 0;
+      break;
+
+      case 1: dice = "d6";
+      alter = 1;
+      break;
+      
+      case 2: dice = "d8";
+      alter = 2;
+      break;
+
+      case 3: dice = "d10";
+      alter = 3;
+      break;
+
+      case 4: dice = "2d6";
+      alter = 4;
+      break;
+      
+      default: dice = "3d6";
+      alter = 2;
+      break;
+    }
+    bonus = Math.floor(((level + intelligence)%12)/4) + alter;
+    
+    if (bonus < 0) {
+			document.getElementById("noxiousCloud").innerHTML = "DC: " + dc + "<br/>" + dice + " - " + -bonus;
+		}
+		else {
+      document.getElementById("noxiousCloud").innerHTML = "DC: " + dc + "<br/>" + dice + " + " + bonus;
+    }
+  }
+
+  function telekinesis() {
+    var size = 3 + Math.floor(level/5 + intelligence/5);
+    var distance = Math.floor(level/4 + intelligence/4) * 5;
+    document.getElementById("telekinesis").innerHTML = "Size: " + size +
+      " pounds<br/>Distance: " + distance + " feet";
+  }
+
+  function mindShatter() {
+    var dc = 8 + Math.floor(level/10 + intelligence/5);
+    var dice;
+    var bonus;
+    var alter;
+    var diceNum = Math.floor((level + intelligence)/9);
+    switch (diceNum) {
+      case 0: dice = "d4";
+      alter = 0;
+      break;
+
+      case 1: dice = "d6";
+      alter = 1;
+      break;
+      
+      case 2: dice = "d8";
+      alter = 2;
+      break;
+
+      case 3: dice = "d10";
+      alter = 3;
+      break;
+
+      case 4: dice = "2d6";
+      alter = 4;
+      break;
+      
+      default: dice = "3d6";
+      alter = 3;
+      break;
+    }
+    bonus = Math.floor(((level + intelligence)%9)/3) + alter;
+    
+    if (bonus < 0) {
+			document.getElementById("mindShatter").innerHTML = "DC: " + dc + "<br/>" + dice + " - " + -bonus;
+		}
+		else {
+      document.getElementById("mindShatter").innerHTML = "DC: " + dc + "<br/>" + dice + " + " + bonus;
+    }
+  }
+
+  function earthquake() {
+    var bonus = -4 + Math.floor(level/5 + intelligence/6);
+    if (bonus < 0) {
+      document.getElementById("earthquake").innerHTML = "d20 - " + (-bonus);
+    }
+    else {
+      document.getElementById("earthquake").innerHTML = "d20 + " + bonus;
+    }
+  }
+
+  function meteorStrike() {
+    var dice;
+    var bonus;
+    var alter = 0;
+    var diceNum = Math.floor((level + intelligence)/6);
+    switch (diceNum) {
+      case 0: dice = "d8";
+      break;
+
+      case 1: dice = "d10";
+      break;
+      
+      case 2: dice = "2d6";
+      break;
+
+      case 3: dice = "3d6";
+      break;
+
+      case 4: dice = "4d6";
+      break;
+
+      case 5: dice = "5d6";
+      break;
+      
+      default: dice = "6d6";
+      break;
+    }
+    bonus = Math.floor(((level + intelligence)%6)/4) + 2;
+  
+    if (bonus < 0) {
+      document.getElementById("meteorStrike").innerHTML = dice + " - " + -bonus;
+    }
+    else {
+      document.getElementById("meteorStrike").innerHTML = dice + " + " + bonus;
     }
   }
 
