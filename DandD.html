@@ -124,7 +124,6 @@
             <option value="Sorceror">Sorceror</option>
             <option value="Rogue">Rogue</option>
             <option value="Ranger">Ranger</option>
-            <option value="Paladin">Paladin</option>
         </select>
         <br/><br/>
         <table>
@@ -164,7 +163,7 @@
                 <td><span id="finalStr">0</span></td>
             </tr>
         </table><br/>
-        Weapon(s): 1. 
+        Weapon(s): &nbsp;&nbsp;Primary 
         <select name="weapon">
             <option value="select">- Select -</option>
             <option value="Battleaxe">Battleaxe</option>
@@ -181,7 +180,7 @@
             <option value="Knife">Knife</option>         
             <option value="Dual Daggers">Dual Daggers</option>
         </select>
-        &nbsp;&nbsp;2. 
+        &nbsp;&nbsp;Secondary 
         <select name="weapon2">
             <option value="select">- Select -</option>
         <!--<option value="Battleaxe">Battleaxe</option>
@@ -202,11 +201,12 @@
     <button type="button" onclick="stats()">Submit</button>
     <p id="statSheet"></p>
     <hr>
-	<!-- https://www.hexcolortool.com/ -->
+
+	<!-----------SPELLS------------------ https://www.hexcolortool.com/ -->
     <h2>Spells</h2>
 	<form id="spells">
 		Level:
-		<input type="text" name="intelligence"><br/>
+		<input type="text" name="level"><br/>
 		Intelligence:
         <input type="text" name="intelligence"><br/>
 		<button type="button" onclick="spells()">Submit</button>
@@ -573,263 +573,281 @@
         </tr>       
     </table>
     <hr>
-    <h2>Class Abilities</h2>
-    <form id="classAb">
-        <select name="classAbSel" onchange="abilities()">
+
+    <!--------------------------ABILITIES----------------------->
+    <h2>Class Traits and Abilities</h2>
+    <form id="abilities">
+        Level:
+        <input type="text" name="level"><br/>
+        <button type="button" onclick="abilities()">Submit</button><br/><br/>
+        <select name="classAbs" onchange="abilities()">
             <option value="allAbs">All Classes</option>
 			<option value="fighter">Fighter</option>
             <option value="barbarian">Barbarian</option>
 			<option value="rogue">Rogue</option>
 			<option value="ranger">Ranger</option>
-			<option value="paladin">Paladin</option>
         </select>
     </form>
     <table>
         <tr>
             <th>Class</th>
             <th>Name</th>
-            <th>Requirements</th>
+            <th style="width:120px">Details</th>
             <th>Description</th>
-            <th>Effect</th>
+            <th style="width:120px">Effect</th>
         </tr>
-		<tr class="ability fighter paladin ranger">
-            <td>Fighter, Paladin, Ranger</td>
+        <tr class="ability barbarian">
+            <td>Barbarian</td>
+            <td>Traits</td>
+            <td>Passive</td>
+            <td><strong><em>Dual Weapon Proficiency</em></strong>: This character has
+                mastery of two weapon types (cannot be Bow).<br/>
+                <strong><em>Battle Ready</em></strong>: Barbarians feel at home in the middle
+                of a fray and are ready to fight at all times. As such, surprise attacks
+                against them do not gain a bonus. <br/>
+                <strong><em>Bully</em></strong>: Gain a <span id="bully"></span> bonus to
+                charisma checks being used to intimidate.<br/>
+            </td>
+            <td>-</td>
+        </tr>
+        <tr class="ability fighter">
+            <td>Fighter</td>
+            <td>Traits</td>
+            <td>Passive</td>
+            <td><strong><em>Dual Weapon Proficiency</em></strong>: This character has
+                mastery of two weapon types.<br/>
+                <strong><em>Battle Trained</em></strong>: The character has strong discipine
+                from years of coordinated fighting experience and is resistant to being
+                stunned or frightened in combat.
+            </td>
+            <td>-</td>
+        </tr>
+        <tr class="ability rogue">
+            <td>Rogue</td>
+            <td>Traits</td>
+            <td>Passive</td>
+            <td><strong><em>Dual Weapon Proficiency</em></strong>: This character has
+                mastery of two weapon types (cannot be Hammer or Battleaxe).<br/>
+                <strong><em>Blindsense</em></strong>: Used to dealing in shadows and secrecy,
+                rogues can sense creatures they can't see within 10 feet of them.<br/>
+                <strong><em>Thief Traits</em></strong>: The character can attempt to
+                pick locks and disarm traps <span id="thiefTraits"></span>, and also
+                gains a bonus <span id="pickpocket"></span> to Finesse rolls used to
+                pickpocket.
+            </td>
+            <td>-</td>
+        </tr>
+        <tr class="ability ranger">
+            <td>Ranger</td>
+            <td>Traits</td>
+            <td>Passive</td>
+            <td><strong><em>Dual Weapon Proficiency</em></strong>: This character has
+                mastery of two weapon types.<br/>
+                <strong><em>Camouflage</em></strong>: The character has spent thousands of
+                hours moving stealthily through nature and has a <span id="camouflage"></span>
+                bonus to Sneak when in the wild.<br/>
+                <strong><em>Favored Enemy:</em></strong>: The character has studied and
+                interacted extensively with a specific creature type during their life,
+                giving them a bonus <span id="favoredEnemy"></span> in rolls against
+                them. Possible choices are humanoid, beast, monstrocities, dragons, or
+                Giant Sized creatures.<br/>
+                <strong><em>Nimble</em></strong>: The character is light on their feet,
+                allowing them to climb with ease and making them unaffected by all but
+                the roughest terrain.
+            </td>
+            <td>-</td>
+        </tr>
+        <tr class="ability all">
+            <td>All Classes</td>
+            <td>Charge</td>
+            <td>Level 1<br/>Bonus Action<br/>1 Mana</td>
+            <td>The character's movement is doubled this turn.</td>
+            <td>-</td>
+        </tr>
+		<tr class="ability fighter ranger rogue">
+            <td>Fighter, Ranger, Rogue</td>
             <td>Focus</td>
             <td>Level 1<br/>Secondary Action<br/>1 Mana</td>
             <td>User gains a bonus for hit and damage rolls the following turn.</td>
             <td><span id="focus"></span></td>
         </tr>
-        <tr class="ability fighter">
-            <td>All Classes</td>
-            <td>Inspire</td>
-            <td>-</td>
-            <td>Units within 10 feet of the character have their resolve strengthened and
-                gain a bonus to hit and resist being frightened.</td>
-        </tr>
-		<tr class="ability all">
-            <td>All Classes</td>
-            <td>Stalwart Defense</td>
-            <td>10 Constitution</td>
-            <td>User takes the damage for targeted attacks that hit a chosen adjacent
-                ally until the user's next action or target leaves range.
-            </td>
-        </tr>
-		<tr class="ability all">
-            <td>All Classes</td>
-            <td>Dual Weapon Proficiency</td>
-            <td>-</td>
-            <td>The character has mastery for two weapon types.</td>
-        </tr>
-		<tr class="ability ranger">
-            <td>Ranger</td>
-            <td>Favored Enemy</td>
-            <td>-</td>
-            <td>The character has studied and interacted extensively with a specific
-				creature type during their life, giving them a bonus in rolls against
-				them. Possible choices are humanoid, beast, monstrocities, dragons,
-				or Giant creatures.</td>
-        </tr>
-		<tr class="ability ranger">
-            <td>Ranger</td>
-            <td>Camoflage</td>
-            <td>-</td>
-            <td>The character has spent thousands of hours moving stealthily through
-				nature and has a bonus to Sneak.</td>
-        </tr>
-		<tr class="ability ranger">
-            <td>Ranger</td>
-            <td>Volley</td>
-            <td>-</td>
-            <td>The character takes two rapid shots with their bow with a small
-				penalty to hit.</td>
-        </tr>
-		<tr class="ability fighter">
-            <td>Fighter</td>
-            <td>Weapon Mastery</td>
-            <td>-</td>
-            <td>The character has mastery of 3 weapon types and a smaller
-				disadvantage when using other weapons.</td>
-        </tr>
-		<tr class="ability rogue">
-            <td>Rogue</td>
-            <td>Blindsense</td>
-            <td>-</td>
-            <td>Used to dealing in shadows and secrecy, you are able to
-				sense creatures you can't see within 10 feet of you.</td>
-        </tr>
-		<tr class="ability rogue">
-            <td>Rogue</td>
-            <td>Nimble</td>
-            <td>-</td>
-            <td>The character is light on their feet and is unaffected by
-				all but the roughest terrain.</td>
-        </tr>
-		<tr class="ability ranger rogue">
-            <td>Ranger</td>
-            <td>Uncanny Dodge</td>
-            <td>-</td>
-            <td>The character dodges</td>
-        </tr>
         <tr class="ability barbarian">
             <td>Barbarian</td>
             <td>Rage</td>
-            <td>- (No Mana Cost)</td>
+            <td>Level 1<br/>Bonus Action</td>
             <td>User enters a Rage, giving a bonus to Athletics and Fortitude checks
                 and damage rolls. While in Rage, the user has penalties to Will checks 
                 and cannot use other abilities. The user's Rage only ends with the end
                 of an encounter.
             </td>
+            <td><span id="rage"></span></td>
         </tr>
-		<tr class="ability barbarian">
-            <td>Barbarian</td>
-            <td>Battle Ready</td>
+        
+        <tr class="ability fighter ranger rogue">
+            <td>Fighter, Ranger, Rogue</td>
+            <td>Careful Aim</td>
+            <td>(Ranged)<br/>Level 2<br/>Secondary Action<br/>1 Mana</td>
+            <td>User increases critical hit chance by 1 for the rest of the encounter.</td>
             <td>-</td>
-            <td>Barbarians feel at home in the middle of a fray and are ready to fight at all times.
-				As such, they cannot be taken by surprise and surprise attacks against them do
-				not gain a bonus.
+        </tr>
+        <tr class="ability fighter barbarian">
+            <td>Fighter, Barbarian</td>
+            <td>Grapple</td>
+            <td>Level 2<br/>Primary Action<br/></td>
+            <td>User grapples an enemy, dealing damage and preventing the enemy's next
+                action until the grapple is released or they pass an Athletics check.
+                Attacks made against the grappling and grappled character gain a +5 
+                bonus to hit. If the grappling character takes damage, the grapple is
+                broken.
             </td>
+            <td><span id="grapple"></span></td>
         </tr>
         <tr class="ability barbarian">
             <td>Barbarian</td>
             <td>Reckless Attack</td>
+            <td>Level 2<br/>Primary Action</td>
+            <td>The character swings wildy and gains a bonus to hit, but for the following
+                turn enemy attacks against them also have a small bonus to hit.
+            </td>
+            <td><span id="recklessAttack"></span></td>
+        </tr>
+        <tr class="ability ranger rogue">
+            <td>Ranger, Rogue</td>
+            <td>Uncanny Dodge</td>
+            <td>Level 2<br/>Instant Action<br/>1 Mana</td>
+            <td>The character reacts extremely quickly to an incoming attack, making them
+                take only half damage if they are hit.
+            </td>
             <td>-</td>
-            <td>The user's next attack has a bonus to hit, but for the following turn
-                enemy attacks against them also have a small bonus to hit.
-            </td>
         </tr>
-
-
-
-        
-        
-        
-        <tr class="ability">
-            <td>Defensive</td>
-            <td>Turtle Stance</td>
-            <td>15 Constitution</td>
-            <td>User has increased Armor Class and a bonus to Fortitude checks until
-                their next movement.
+        <tr class="ability ranger fighter rogue">
+            <td>Fighter, Ranger, Rogue</td>
+            <td>Volley</td>
+            <td>(Ranged)<br/>Level 2<br/>Primary Action<br/>1 Mana</td>
+            <td>The character takes two rapid shots with their bow with a penalty to hit.
             </td>
+            <td><span id="volley"></span></td>
         </tr>
         <tr class="ability barbarian">
-            <td>Aggressive</td>
-            <td>Grapple</td>
-            <td>20 Constitution</td>
-            <td>User grapples an enemy, dealing damage and preventing the enemy's next
-                action if they fail an athleticism check. 
-            </td>
-        </tr>
-        <tr class="ability">
-            <td>Passive</td>
-            <td>Hefty</td>
-            <td>25 Constitution</td>
-            <td>The character is considered a medium sized unit.</td>
-        </tr>
-		<tr class="ability fighter">
-            <td>Fighter</td>
-            <td>Battle Trained</td>
-            <td>25 Constitution</td>
-            <td>The character has years of fighting experience and is
-				is resistant to being stunned or frightened in combat.</td>
-        </tr>
-		<tr class="ability fighter">
-            <td>Fighter</td>
-            <td>True Mastery</td>
-            <td>25 Constitution</td>
-            <td>The character critical hits for rolls of 19 and 20.</td>
-        </tr>
-		<tr class="ability fighter">
-            <td>Fighter</td>
-            <td>Bottomless Endurance</td>
-            <td>25 Constitution</td>
-            <td>The character gains 1 point of mana.</td>
-        </tr>
-        <tr class="ability">
-            <td>Passive</td>
-            <td>Grit</td>
-            <td>40 Constitution</td>
-            <td>The first hit in an encounter that would otherwise kill the character
-                instead reduces them to 1 health.
-            </td>
-        </tr>
-        <tr class="ability">
-            <td>Miscellaneous</td>
-            <td>Charge</td>
-            <td>5 Dexterity</td>
-            <td>User's movement is doubled the following turn.</td>
-        </tr>
-        <tr class="ability">
-            <td>Aggressive</td>
-            <td>Careful Aim</td>
-            <td>(Ranged) 10 Dexerity</td>
-            <td>User increases critical hit chance for the rest of the encounter (19
-                <u>and</u> 20).
-            </td>
-        </tr>
-        <tr class="ability">
-            <td>Aggressive</td>
-            <td>Piercing Shot</td>
-            <td>(Ranged) 10 Dexterity, 10 Strength</td>
-            <td>The user's next attack is strengthened, increasing the damage of the attack
-                and allowing it to hit a unit behind the initial target.
-            </td>
-        </tr>
-        <tr class="ability">
-            <td>Aggressive</td>
-            <td>Counterattack</td>
-            <td>(Melee) 15 Dexterity</td>
-            <td>For the next turn, if an enemy misses their targeted physical attack and is 
-                in range you may make a free attack back with a penalty to hit.
-            </td>
-        </tr>
-        <tr class="ability">
-            <td>Passive</td>
-            <td>Lockpicking</td>
-            <td>20 Dexterity</td>
-            <td>The character can pick locks provided that they pass a check.</td>
-        </tr>
-        <tr class="ability">
-            <td>Passive</td>
-            <td>Deft Movements</td>
-            <td>40 Dexterity</td>
-            <td>The character may perform an additional secondary action each turn.</td>
-        </tr>
-        <tr class="ability barbarian fighter">
-            <td>Aggressive</td>
-            <td>Stunning Blow</td>
-            <td>10 Strength</td>
-            <td>The user's next hit will stun the target if it hits unless the target
-                passes a Fortitude check.
-            </td>
-        </tr>
-        <tr class="ability barbarian">
-            <td>Miscellaneous</td>
+            <td>Barbarian</td>
             <td>Battle Cry</td>
-            <td>20 Strength</td>
-            <td>Enemy units must roll a Will check or be Terrified during their next
-                action.
+            <td>Level 3<br/>Bonus Action<br/>1 Mana</td>
+            <td>Enemy units within 2 spaces must roll a Will check or be Terrified during
+                their next action.
             </td>
+            <td><span id="battleCry"></span></td>
         </tr>
         <tr class="ability barbarian">
-            <td>Passive</td>
-            <td>Bully</td>
-            <td>20 Strength</td>
-            <td>Gain a bonus to charisma checks being used to intimidate.</td>
-        </tr>
-        <tr class="ability barbarian">
-            <td>Aggressive</td>
+            <td>Barbarian</td>
             <td>Cleave</td>
-            <td>(Melee) 20 Strength</td>
+            <td>Level 3<br/>Primary Action<br/>1 Mana</td>
             <td>User makes a wild swing around them, rolling with a penalty to hit all
                 adjacent units.
             </td>
+            <td><span id="cleave"></span></td>
+        </tr>
+        <tr class="ability fighter barbarian">
+            <td>Fighter, Barbarian</td>
+            <td>Inspire</td>
+            <td>Level 3<br/>Bonus Action<br/>1 Mana</td>
+            <td>Allied units within 10 feet of the character have their resolve strengthened
+                and gain a bonus to hit and resist being frightened until leaving range.
+            </td>
+            <td><span id="inspire"></span></td>
+        </tr>
+        <tr class="ability fighter">
+            <td>Fighter</td>
+            <td>Second Wind</td>
+            <td>Level 3<br/>Bonus Action<br/>1 Mana</td>
+            <td>The character refortifies themself and gains a small amount of health
+                back.
+            </td>
+            <td><span id="secondWind"></span></td>
+        </tr>
+		<tr class="ability fighter">
+            <td>Fighter</td>
+            <td>Stalwart Defense</td>
+            <td>Level 3<br/>Secondary Action<br/>1 Mana</td>
+            <td>User takes the damage for targeted attacks that hit a chosen adjacent
+                ally until the user's next action or target leaves range.
+            </td>
+            <td>-</td>
+        </tr>
+        <tr class="ability barbarian fighter">
+            <td>Fighter, Barbarian</td>
+            <td>Stunning Blow</td>
+            <td>Level 3<br/>Primary Action<br/>1 Mana</td>
+            <td>The user's hit will stun the target if it hits unless the target
+                passes a Fortitude check.
+            </td>
+            <td><span id="stunningBlow"></span></td>
+        </tr>
+        <tr class="ability fighter">
+            <td>Fighter</td>
+            <td>Turtle Stance</td>
+            <td>Level 3<br/>Bonus Action<br/>1 Mana</td>
+            <td>User has increased Armor Class and a bonus to Fortitude checks until
+                their next movement.
+            </td>
+            <td><span id="turtleStance"></span></td>
         </tr>
         <tr class="ability barbarian">
-            <td>Passive</td>
-            <td>Brutal Strike</td>
-            <td>40 Strength</td>
-            <td>The damage bonus from critical hits is tripled.</td>
+            <td>Barbarian</td>
+            <td>Bottomless Endurance</td>
+            <td>Level 4<br/>Passive</td>
+            <td>The first hit in an encounter that would otherwise kill the character
+                instead reduces them to 1 health. This effect can only occur once a day.
+            </td>
+            <td>-</td>
         </tr>
+        <tr class="ability rogue">
+            <td>Rogue</td>
+            <td>Counterattack</td>
+            <td>Level 4<br/>Bonus Action<br/>1 Mana</td>
+            <td>For the next turn, if an enemy misses their targeted melee attack and is 
+                in range you may make a free attack back with a penalty to hit.
+            </td>
+            <td><span id="counterattack"></span></td>
+        </tr>
+        <tr class="ability fighter ranger rogue">
+            <td>Fighter, Ranger, Rogue</td>
+            <td>Piercing Shot</td>
+            <td>(Ranged)<br/>Level 4<br/>Primary Action<br/>1 Mana</td>
+            <td>The user's next attack is strengthened, increasing the damage of the attack
+                and allowing it to hit a unit behind the initial target.
+            </td>
+            <td><span id="piercingShot"></span></td>
+        </tr>
+        <tr class="ability fighter">
+            <td>Fighter</td>
+            <td>True Mastery</td>
+            <td>Level 4<br/>Passive</td>
+            <td>The character critical hits for rolls of 19 and 20.</td>
+            <td>-</td>
+        </tr>
+        <tr class="ability barbarian">
+            <td>Barbarian</td>
+            <td>Brutal Strike</td>
+            <td>Level 5<br/>Passive</td>
+            <td>Instead of doing max damage on critical hits, roll normally and then
+                double it.
+            </td>
+            <td>-</td>
+        </tr>
+        <tr class="ability rogue">
+            <td>Rogue</td>
+            <td>Deft Movements</td>
+            <td>Level 5<br/>Passive</td>
+            <td>The character may perform an additional secondary action each turn.</td>
+            <td>-</td>
+        </tr>
+
+
+        
+        
+        
+        
+        
 	</table>
 	<hr>
 	<h2>Race Attributes</h2>

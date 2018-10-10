@@ -107,12 +107,6 @@ function raceClass() {
     document.getElementById("classInt").innerHTML = 0;
     document.getElementById("classStr").innerHTML = 2;
   }
-  else if (charClass === "Paladin") {
-    document.getElementById("classDex").innerHTML = 0;
-    document.getElementById("classCon").innerHTML = 0;
-    document.getElementById("classInt").innerHTML = 2;
-    document.getElementById("classStr").innerHTML = 2;
-  }
   else {
     document.getElementById("classDex").innerHTML = 0;
     document.getElementById("classCon").innerHTML = 0;
@@ -279,31 +273,31 @@ function stats() {
       damageRollDiceNum = Math.floor(damageRollNum / 6);
       switch (damageRollDiceNum) {
       case 0:  damageRollDice = "d4";
-      alter = 0;
+      alter = 1;
       break;
       
       case 1:  damageRollDice = "d6";
-      alter = 1;
+      alter = 2;
       break;
       
       case 2:  damageRollDice = "d8";
-      alter = 2;
+      alter = 3;
       break;
       
       case 3:  damageRollDice = "2d6";
-      alter = 2;
+      alter = 3;
       break;
       
       case 4: damageRollDice = "3d6";
-      alter = 1;
+      alter = 2;
       break;
       
       default: damageRollDice = "4d6";
-      alter = 0;
+      alter = 1;
       break;
       }
       
-      damageRollBonus = Math.floor((damageRollNum % 6 + 2)/3) + alter;
+      damageRollBonus = Math.floor((damageRollNum % 6)/3) + alter;
       
       if (damageRollBonus >= 0) { 
         returned= damageRollDice + " + " + damageRollBonus;
@@ -389,7 +383,7 @@ function stats() {
       break;
       }
       
-      damageRollBonus = Math.floor((damageRollNum % 9)/3) + alter;
+      damageRollBonus = Math.floor((damageRollNum % 9 + 2)/4) + alter;
       
       if (damageRollBonus >= 0) { 
         returned= damageRollDice + " + " + damageRollBonus;
@@ -408,23 +402,23 @@ function stats() {
       damageRollDiceNum = Math.floor(damageRollNum / 10);
       switch (damageRollDiceNum) {
       case 0:  damageRollDice = "d4";
-      alter = -1;
+      alter = 0;
       break;
       
       case 1:  damageRollDice = "d6";
-      alter = 0;
+      alter = 1;
       break;
       
       case 2:  damageRollDice = "d8";
-      alter = 1;
+      alter = 2;
       break;
       
       case 3:  damageRollDice = "2d6";
-      alter = 1;
+      alter = 2;
       break;
       
       case 4: damageRollDice = "3d6";
-      alter = 0;
+      alter = 1;
       break;
       
       default: damageRollDice = "4d6";
@@ -432,7 +426,7 @@ function stats() {
       break;
       }
       
-      damageRollBonus = Math.floor((damageRollNum % 10 + 2)/4) + alter;
+      damageRollBonus = Math.floor((damageRollNum % 10)/4) + alter;
       
       if (damageRollBonus >= 0) { 
         returned= damageRollDice + " + " + damageRollBonus;
@@ -870,7 +864,7 @@ function spells() {
   }
 
   function protectiveBarrier() {
-    var health = 3 + Math.floor(level/5 + intelligence/3);
+    var health = 3 + Math.floor(intelligence/3);
     document.getElementById("protectiveBarrier").innerHTML = "Health: " + health;
   }
 
@@ -1320,11 +1314,12 @@ function spells() {
 
 // Abilities
 function abilities() {
-  var x = document.getElementById("classAb");
-  var classAbSel = x.elements[0].value;
+  var x = document.getElementById("abilities");
+  var level = Number(x.elements[0].value);
+  var classAbs = x.elements[2].value;
   var allAbs = document.getElementsByClassName("ability");
 
-  if (classAbSel === "barbarian") {
+  if (classAbs === "barbarian") {
     for (var i = 0; i < allAbs.length; i++) {
       if (!(allAbs[i].classList.contains("barbarian"))
 		  && !(allAbs[i].classList.contains("all"))) { 
@@ -1335,7 +1330,7 @@ function abilities() {
       }
     }
   }
-  else if (classAbSel === "fighter") {
+  else if (classAbs === "fighter") {
     for (var i = 0; i < allAbs.length; i++) {
       if (!(allAbs[i].classList.contains("fighter"))
 		  && !(allAbs[i].classList.contains("all"))) { 
@@ -1346,7 +1341,7 @@ function abilities() {
       }
     }
   }
-  else if (classAbSel === "rogue") {
+  else if (classAbs === "rogue") {
     for (var i = 0; i < allAbs.length; i++) {
       if (!(allAbs[i].classList.contains("rogue"))
 		  && !(allAbs[i].classList.contains("all"))) { 
@@ -1357,20 +1352,9 @@ function abilities() {
       }
     }
   }
-  else if (classAbSel === "ranger") {
+  else if (classAbs === "ranger") {
     for (var i = 0; i < allAbs.length; i++) {
       if (!(allAbs[i].classList.contains("ranger"))
-		  && !(allAbs[i].classList.contains("all"))) { 
-        allAbs[i].style.display = "none";
-      }
-      else {
-        allAbs[i].style.display = "table-row";
-      }
-    }
-  }
-  else if (classAbSel === "paladin") {
-    for (var i = 0; i < allAbs.length; i++) {
-      if (!(allAbs[i].classList.contains("paladin"))
 		  && !(allAbs[i].classList.contains("all"))) { 
         allAbs[i].style.display = "none";
       }
@@ -1384,4 +1368,198 @@ function abilities() {
       allAbs[i].style.display = "table-row";
     }
   }
+
+  focus();
+  inspire();
+  favoredEnemy();
+  camouflage();
+  volley();
+  rage();
+  recklessAttack();
+  turtleStance();
+  grapple();
+  secondWind();
+  piercingShot();
+  counterattack();
+  thiefTraits();
+  stunningBlow();
+  battleCry();
+  bully();
+  cleave();
+
+  function focus() {
+    var hit = 2 + Math.floor(level/2);
+    var damage = -1 + level*2;
+    document.getElementById("focus").innerHTML = "Hit: +" + hit +
+      "<br/>Damage: +" + damage;
+  }
+
+  function inspire() {
+    var resist = level + 2;
+    var hit = 1 + Math.floor(level/2);
+    document.getElementById("inspire").innerHTML = "Hit: +" + hit +
+      "<br/>Resist: +" + resist;
+  }
+
+  function favoredEnemy() {
+    var d20 = level;
+    var damage = Math.floor(level*1.75);
+    document.getElementById("favoredEnemy").innerHTML = "(d20 Bonus: +" + d20 +
+      " | Damage: +" + damage + ")";
+  }
+
+  function camouflage() {
+    var bonus = 1 + Math.floor(level/2);
+    document.getElementById("camouflage").innerHTML = "+" + bonus;
+  }
+
+  function volley() {
+    var penalty = 3;// - Math.floor(level/2);
+    document.getElementById("volley").innerHTML = "Penalty: -" + penalty;
+  }
+
+  function rage() {
+    var penalty = -4 + Math.floor(level/3);
+    var d20 = 1 + Math.floor(level/2);
+    var damage = Math.floor(level*1.25);
+    document.getElementById("rage").innerHTML = "Penalty: " + penalty +
+    "<br/>d20 Bonus: +" + d20 + "<br/>Damage: +" + damage;
+  }
+
+  function recklessAttack() {
+    var bonus = 3 + Math.floor(level/2);
+    var enemyBonus = 2;
+    document.getElementById("recklessAttack").innerHTML = "Bonus: " + bonus +
+    "<br/>Enemy Bonus: " + enemyBonus;
+  }
+
+  function turtleStance() {
+    var acBonus = 1 + Math.floor(level/3);
+    var fortitude = 1 + Math.floor(level/2);
+    document.getElementById("turtleStance").innerHTML = "AC Bonus: " + acBonus +
+    "<br/>Fortitude Bonus: " + fortitude;
+  }
+
+  function grapple() {
+    var damage;
+    var dc = 9 + level;
+    switch (level) {
+      case 2: damage = "d4";
+      break;
+
+      case 3: damage = "d6";
+      break;
+
+      case 4: damage = "d6 + 1";
+      break;
+
+      case 5: damage = "d8";
+      break;
+
+      case 6: damage = "d8 + 1";
+      break;
+
+      case 7: damage = "d10";
+      break;
+      
+      default: damage = "-";
+      break;
+    }
+    document.getElementById("grapple").innerHTML = "Damage: " + damage +
+    "<br/>DC: " + dc;
+  }
+
+  function secondWind() {
+    var heal;
+    switch (level) {
+      case 3: heal = "d6 + 1";
+      break;
+
+      case 4: heal = "d6 + 2";
+      break;
+
+      case 5: heal = "d8 + 1";
+      break;
+
+      case 6: heal = "d8 + 2";
+      break;
+
+      case 7: heal = "d10 + 1";
+      break;
+      
+      default: heal = "-";
+      break;
+    }
+    document.getElementById("secondWind").innerHTML = "Heal: " + heal;
+  }
+
+  function piercingShot() {
+    var damage;
+    switch (level) {
+      case 2: damage = "d4";
+      break;
+
+      case 3: damage = "d4 + 1";
+      break;
+
+      case 4: damage = "d6";
+      break;
+
+      case 5: damage = "d6 + 1";
+      break;
+
+      case 6: damage = "d8";
+      break;
+
+      case 7: damage = "d8 + 1";
+      break;
+      
+      default: damage = "-";
+      break;
+    }
+    document.getElementById("piercingShot").innerHTML = "Damage: " + damage;
+  }
+
+  function counterattack() {
+    var penalty = 5 - Math.floor(level/2);
+    document.getElementById("counterattack").innerHTML = "Penalty: -" + penalty;
+  }
+
+  function thiefTraits() {
+    var d20 = -1 + Math.floor(level/2);
+    var bonus = level;
+    if (d20 < 0) {
+      document.getElementById("thiefTraits").innerHTML = "(d20 - " + -d20 + ")";
+    }
+    else {
+      document.getElementById("thiefTraits").innerHTML = "(d20 + " + d20 + ")";
+    }
+    document.getElementById("pickpocket").innerHTML = "(+" + bonus + ")";
+  }
+
+  function stunningBlow() {
+    var dc = 10 + Math.floor(level/2);
+    document.getElementById("stunningBlow").innerHTML = "DC: " + dc;
+  }
+
+  function battleCry() {
+    var dc = 6 + Math.floor(level/3);
+    document.getElementById("battleCry").innerHTML = "DC: " + dc;
+  }
+
+  function bully() {
+    var bonus = 2 + Math.floor(level/2);
+    document.getElementById("bully").innerHTML = "+" + bonus;
+  }
+
+  function cleave() {
+    var penalty = 3;// - Math.floor(level/3);
+    document.getElementById("cleave").innerHTML = "Penalty: -" + penalty;
+  }
+
+}
+
+// Races
+function Races() {
+
 }
