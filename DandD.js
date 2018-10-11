@@ -104,8 +104,8 @@ function raceClass() {
   else if (charClass === "Ranger") {
     document.getElementById("classDex").innerHTML = 2;
     document.getElementById("classCon").innerHTML = 0;
-    document.getElementById("classInt").innerHTML = 0;
-    document.getElementById("classStr").innerHTML = 2;
+    document.getElementById("classInt").innerHTML = 1;
+    document.getElementById("classStr").innerHTML = 1;
   }
   else {
     document.getElementById("classDex").innerHTML = 0;
@@ -620,7 +620,7 @@ function spells() {
     var dice;
     var bonus;
     var alter;
-    var diceNum = Math.floor((intelligence*0.75)/6);
+    var diceNum = Math.floor((intelligence)/8);
     switch (diceNum) {
       case 0: dice = "d4";
       alter = 0;
@@ -646,7 +646,7 @@ function spells() {
       alter = 3;
       break;
     }
-    bonus = Math.floor((intelligence%6)/2) + alter;
+    bonus = Math.floor((intelligence%8)/3) + alter;
    
     document.getElementById("smite").innerHTML = dice + " + " + bonus;
   }
@@ -1052,7 +1052,7 @@ function spells() {
 
   function coneOfCold() {
     var dc = 6 + Math.floor(level/10 + intelligence/7);
-    var penalty = Math.floor(level/10 + intelligence/10);
+    var penalty = Math.floor(level/10 + intelligence/9);
     var dice;
     var bonus;
     var alter;
@@ -1101,27 +1101,27 @@ function spells() {
     var diceNum = Math.floor((level + (intelligence*.9))/9);
     switch (diceNum) {
       case 0: dice = "d4";
-      alter = -1;
+      alter = 0;
       break;
 
       case 1: dice = "d6";
-      alter = 0;
+      alter = 1;
       break;
       
       case 2: dice = "d8";
-      alter = 1;
+      alter = 2;
       break;
 
       case 3: dice = "d10";
-      alter = 2;
+      alter = 3;
       break;
 
       case 4: dice = "2d6";
-      alter = 2;
+      alter = 3;
       break;
       
       default: dice = "3d6";
-      alter = 1;
+      alter = 2;
       break;
     }
     bonus = Math.floor(((level + (intelligence*.9))%9)/3) + alter;
@@ -1312,11 +1312,9 @@ function spells() {
 
 }
 
-// Abilities
-function abilities() {
+function abilitySort() {
   var x = document.getElementById("abilities");
-  var level = Number(x.elements[0].value);
-  var classAbs = x.elements[2].value;
+  var classAbs = x.elements[1].value;
   var allAbs = document.getElementsByClassName("ability");
 
   if (classAbs === "barbarian") {
@@ -1368,6 +1366,13 @@ function abilities() {
       allAbs[i].style.display = "table-row";
     }
   }
+}
+
+
+// Abilities
+function abilities() {
+  var x = document.getElementById("abilities");
+  var level = Number(x.elements[0].value);
 
   focus();
   inspire();
@@ -1386,10 +1391,13 @@ function abilities() {
   battleCry();
   bully();
   cleave();
+  groupFighter();
+  wary();
+  nimble();
 
   function focus() {
-    var hit = 2 + Math.floor(level/2);
-    var damage = -1 + level*2;
+    var hit = 1 + Math.floor((level+1)/2);
+    var damage = 1 + Math.floor(level*1.25);
     document.getElementById("focus").innerHTML = "Hit: +" + hit +
       "<br/>Damage: +" + damage;
   }
@@ -1402,14 +1410,14 @@ function abilities() {
   }
 
   function favoredEnemy() {
-    var d20 = level;
-    var damage = Math.floor(level*1.75);
+    var d20 = Math.floor((level+1)/2);
+    var damage = level;
     document.getElementById("favoredEnemy").innerHTML = "(d20 Bonus: +" + d20 +
       " | Damage: +" + damage + ")";
   }
 
   function camouflage() {
-    var bonus = 1 + Math.floor(level/2);
+    var bonus = 2 + Math.floor(level/2);
     document.getElementById("camouflage").innerHTML = "+" + bonus;
   }
 
@@ -1534,11 +1542,11 @@ function abilities() {
     else {
       document.getElementById("thiefTraits").innerHTML = "(d20 + " + d20 + ")";
     }
-    document.getElementById("pickpocket").innerHTML = "(+" + bonus + ")";
+    document.getElementById("pickpocket").innerHTML = "+" + bonus;
   }
 
   function stunningBlow() {
-    var dc = 10 + Math.floor(level/2);
+    var dc = 10 + level;
     document.getElementById("stunningBlow").innerHTML = "DC: " + dc;
   }
 
@@ -1557,9 +1565,74 @@ function abilities() {
     document.getElementById("cleave").innerHTML = "Penalty: -" + penalty;
   }
 
+  function groupFighter() {
+    var bonus = Math.floor((level+1)/2);
+    document.getElementById("groupFighter").innerHTML = "+" + bonus;
+  }
+
+  function wary() {
+    var bonus = 2 + Math.floor(level/2);
+    document.getElementById("wary").innerHTML = "+" + bonus;
+  }
+
+  function nimble() {
+    var bonus = 2 + Math.floor(level/2);
+    document.getElementById("nimble").innerHTML = "(+" + bonus + ")";
+  }
+
 }
 
 // Races
-function Races() {
+function races() {
+  var x = document.getElementById("races");
+  var level = Number(x.elements[0].value);
 
+  breathWeapon();
+  poisonResist();
+  metalWorking();
+
+  function breathWeapon() {
+    var damage;
+    switch (level) {
+      case 1: damage = "d6 + 1";
+      break;
+
+      case 2: damage = "d8";
+      break;
+
+      case 3: damage = "d8 + 1";
+      break;
+
+      case 4: damage = "d10";
+      break;
+
+      case 5: damage = "2d6";
+      break;
+
+      case 6: damage = "2d6 + 2";
+      break;
+      
+      case 7: damage = "3d6";
+      break;
+
+      default: damage = "-";
+      break;
+    }
+    document.getElementById("breathWeapon").innerHTML = damage;
+  }
+
+  function poisonResist() {
+    var bonus = 2 + Math.floor(level/2);
+    document.getElementById("poisonResist").innerHTML = "+" + bonus;
+  }
+
+  function metalWorking() {
+    var d20 = -2 + Math.floor(level/2);
+    if (d20 < 0) {
+      document.getElementById("metalWorking").innerHTML = "(d20 - " + -d20 + ")";
+    }
+    else {
+      document.getElementById("metalWorking").innerHTML = "(d20 + " + d20 + ")";
+    }
+  }
 }

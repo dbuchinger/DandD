@@ -320,7 +320,7 @@
         <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Resurrect</td>
-            <td>40 Int</td>
+            <td>35 Int</td>
             <td>You touch a dead creature that has been dead for no more than a century,
                 that didn't die of old age, and that isn't undead. If its soul is free
                 and willing, the target returns to life with all its hit points. This spell
@@ -421,7 +421,7 @@
             <td>Insect Swarm</td>
             <td>20 Int</td>
             <td>A cloud of locusts is summoned and deals damage in a 4 space area for 2
-                turns. Units in the are can reduce damage taken with a successful 
+                turns. Units in the are can reduce damage taken by half with a successful 
                 Fortitude check.
             </td>
 			<td><span id="insectSwarm"></span></td>
@@ -447,7 +447,7 @@
         <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
             <td>Alter Memory</td>
-            <td>40 Int</td>
+            <td>35 Int</td>
             <td>The user can alter the memories of a target while touching them. The spell
                 takes concentration and time to cast and must occur in a non-combat scenario.
                 Targets may resist with a Will save.
@@ -495,7 +495,7 @@
             <td>Blight</td>
             <td>15 Int</td>
             <td>Drain the vitality of a target, which must make a Fortitude save to lessen
-                damage.
+                damage by half.
             </td>
 			<td><span id="blight"></span></td>
         </tr>
@@ -535,7 +535,7 @@
             <td>20 Int</td>
             <td>Create a cloud of poisonous fumes in a nine space square within caster's
                 line of sight. Units within square make a fortitude save each turn in cloud
-                to avoid poison damage.
+                to lessen poison damage by half.
             </td>
 			<td><span id="noxiousCloud"></span></td>
         </tr>
@@ -558,7 +558,7 @@
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
             <td>Earthquake</td>
-            <td>35 Int</td>
+            <td>30 Int</td>
             <td>Cause a tremor at target location, unsteadying targets and affecting
                 terrain.      
             </td>
@@ -567,7 +567,7 @@
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
             <td>Meteor Strike</td>
-            <td>40 Int</td>
+            <td>35 Int</td>
             <td>Call down a hail of meteors at a 16 square target location.</td>
 			<td><span id="meteorStrike"></span></td>
         </tr>       
@@ -578,9 +578,8 @@
     <h2>Class Traits and Abilities</h2>
     <form id="abilities">
         Level:
-        <input type="text" name="level"><br/>
-        <button type="button" onclick="abilities()">Submit</button><br/><br/>
-        <select name="classAbs" onchange="abilities()">
+        <input type="text" name="level">
+        <select name="classAbs" onchange="abilitySort()">
             <option value="allAbs">All Classes</option>
 			<option value="fighter">Fighter</option>
             <option value="barbarian">Barbarian</option>
@@ -588,6 +587,8 @@
 			<option value="ranger">Ranger</option>
         </select>
     </form>
+    <br/>
+    <button type="button" onclick="abilities()">Submit</button><br/><br/>
     <table>
         <tr>
             <th>Class</th>
@@ -600,8 +601,8 @@
             <td>Barbarian</td>
             <td>Traits</td>
             <td>Passive</td>
-            <td><strong><em>Dual Weapon Proficiency</em></strong>: This character has
-                mastery of two weapon types (cannot be Bow).<br/>
+            <td class="left"><strong><em>Dual Weapon Proficiency</em></strong>: This
+                character has mastery of two weapon types (cannot be Bow).<br/>
                 <strong><em>Battle Ready</em></strong>: Barbarians feel at home in the middle
                 of a fray and are ready to fight at all times. As such, surprise attacks
                 against them do not gain a bonus. <br/>
@@ -614,11 +615,14 @@
             <td>Fighter</td>
             <td>Traits</td>
             <td>Passive</td>
-            <td><strong><em>Dual Weapon Proficiency</em></strong>: This character has
-                mastery of two weapon types.<br/>
+            <td class="left"><strong><em>Dual Weapon Proficiency</em></strong>: This
+                character has mastery of two weapon types.<br/>
                 <strong><em>Battle Trained</em></strong>: The character has strong discipine
                 from years of coordinated fighting experience and is resistant to being
-                stunned or frightened in combat.
+                stunned or frightened in combat.<br/>
+                <strong><em>Group Fighter</em></strong>: Fighters are used to attacking as
+                a team. The Fighter and other characters attacking the same target gain
+                a <span id="groupFighter"></span> bonus to hit. 
             </td>
             <td>-</td>
         </tr>
@@ -626,14 +630,18 @@
             <td>Rogue</td>
             <td>Traits</td>
             <td>Passive</td>
-            <td><strong><em>Dual Weapon Proficiency</em></strong>: This character has
-                mastery of two weapon types (cannot be Hammer or Battleaxe).<br/>
+            <td class="left"><strong><em>Dual Weapon Proficiency</em></strong>: This
+                character has mastery of two weapon types (cannot be Hammer or Battleaxe).<br/>
                 <strong><em>Blindsense</em></strong>: Used to dealing in shadows and secrecy,
                 rogues can sense creatures they can't see within 10 feet of them.<br/>
                 <strong><em>Thief Traits</em></strong>: The character can attempt to
-                pick locks and disarm traps <span id="thiefTraits"></span>, and also
-                gains a bonus <span id="pickpocket"></span> to Finesse rolls used to
-                pickpocket.
+                pick locks and set and disarm traps <span id="thiefTraits"></span>, and also
+                gains a <span id="pickpocket"></span> bonus to Finesse rolls used to
+                pickpocket.<br/>
+                <strong><em>Wary</em></strong>: The character has dealt extensively with
+                thieves and other untrustworthy acquaintances. They gain a
+                <span id="wary"></span> bonus to perception rolls used to detect
+                the motives and truthfulness of other characters.
             </td>
             <td>-</td>
         </tr>
@@ -641,8 +649,8 @@
             <td>Ranger</td>
             <td>Traits</td>
             <td>Passive</td>
-            <td><strong><em>Dual Weapon Proficiency</em></strong>: This character has
-                mastery of two weapon types.<br/>
+            <td class="left"><strong><em>Dual Weapon Proficiency</em></strong>: This
+                character has mastery of two weapon types (One must be Bow).<br/>
                 <strong><em>Camouflage</em></strong>: The character has spent thousands of
                 hours moving stealthily through nature and has a <span id="camouflage"></span>
                 bonus to Sneak when in the wild.<br/>
@@ -652,8 +660,8 @@
                 them. Possible choices are humanoid, beast, monstrocities, dragons, or
                 Giant Sized creatures.<br/>
                 <strong><em>Nimble</em></strong>: The character is light on their feet,
-                allowing them to climb with ease and making them unaffected by all but
-                the roughest terrain.
+                allowing them to climb with ease <span id="nimble"></span> and making them
+                unaffected by all but the roughest terrain.
             </td>
             <td>-</td>
         </tr>
@@ -668,7 +676,7 @@
             <td>Fighter, Ranger, Rogue</td>
             <td>Focus</td>
             <td>Level 1<br/>Secondary Action<br/>1 Mana</td>
-            <td>User gains a bonus for hit and damage rolls the following turn.</td>
+            <td>User gains a bonus for hit and damage rolls for their next attack.</td>
             <td><span id="focus"></span></td>
         </tr>
         <tr class="ability barbarian">
@@ -683,11 +691,14 @@
             <td><span id="rage"></span></td>
         </tr>
         
-        <tr class="ability fighter ranger rogue">
-            <td>Fighter, Ranger, Rogue</td>
+        <tr class="ability ranger">
+            <td>Ranger</td>
             <td>Careful Aim</td>
-            <td>(Ranged)<br/>Level 2<br/>Secondary Action<br/>1 Mana</td>
-            <td>User increases critical hit chance by 1 for the rest of the encounter.</td>
+            <td>(Ranged)<br/>Level 2<br/>Primary Action<br/>1 Mana</td>
+            <td>The character's next attack is a guaranteed critical hit. This ability
+                does not work if the target cannot be sensed or line of sight to the
+                target is obstructed.
+            </td>
             <td>-</td>
         </tr>
         <tr class="ability fighter barbarian">
@@ -711,6 +722,15 @@
             </td>
             <td><span id="recklessAttack"></span></td>
         </tr>
+        <tr class="ability fighter">
+            <td>Fighter</td>
+            <td>Stalwart Defense</td>
+            <td>Level 2<br/>Secondary Action<br/>1 Mana</td>
+            <td>User takes the damage for targeted attacks that hit a chosen adjacent
+                ally until the user's next action or target leaves range.
+            </td>
+            <td>-</td>
+        </tr>
         <tr class="ability ranger rogue">
             <td>Ranger, Rogue</td>
             <td>Uncanny Dodge</td>
@@ -719,14 +739,6 @@
                 take only half damage if they are hit.
             </td>
             <td>-</td>
-        </tr>
-        <tr class="ability ranger fighter rogue">
-            <td>Fighter, Ranger, Rogue</td>
-            <td>Volley</td>
-            <td>(Ranged)<br/>Level 2<br/>Primary Action<br/>1 Mana</td>
-            <td>The character takes two rapid shots with their bow with a penalty to hit.
-            </td>
-            <td><span id="volley"></span></td>
         </tr>
         <tr class="ability barbarian">
             <td>Barbarian</td>
@@ -746,41 +758,14 @@
             </td>
             <td><span id="cleave"></span></td>
         </tr>
-        <tr class="ability fighter barbarian">
-            <td>Fighter, Barbarian</td>
-            <td>Inspire</td>
-            <td>Level 3<br/>Bonus Action<br/>1 Mana</td>
-            <td>Allied units within 10 feet of the character have their resolve strengthened
-                and gain a bonus to hit and resist being frightened until leaving range.
-            </td>
-            <td><span id="inspire"></span></td>
-        </tr>
-        <tr class="ability fighter">
-            <td>Fighter</td>
-            <td>Second Wind</td>
-            <td>Level 3<br/>Bonus Action<br/>1 Mana</td>
-            <td>The character refortifies themself and gains a small amount of health
-                back.
-            </td>
-            <td><span id="secondWind"></span></td>
-        </tr>
-		<tr class="ability fighter">
-            <td>Fighter</td>
-            <td>Stalwart Defense</td>
-            <td>Level 3<br/>Secondary Action<br/>1 Mana</td>
-            <td>User takes the damage for targeted attacks that hit a chosen adjacent
-                ally until the user's next action or target leaves range.
+        <tr class="ability rogue">
+            <td>Rogue</td>
+            <td>Surgeon</td>
+            <td>Level 3<br/>Passive</td>
+            <td>The character attacks vital areas, dealing extra damage equal to
+                their hit modifier.
             </td>
             <td>-</td>
-        </tr>
-        <tr class="ability barbarian fighter">
-            <td>Fighter, Barbarian</td>
-            <td>Stunning Blow</td>
-            <td>Level 3<br/>Primary Action<br/>1 Mana</td>
-            <td>The user's hit will stun the target if it hits unless the target
-                passes a Fortitude check.
-            </td>
-            <td><span id="stunningBlow"></span></td>
         </tr>
         <tr class="ability fighter">
             <td>Fighter</td>
@@ -791,26 +776,34 @@
             </td>
             <td><span id="turtleStance"></span></td>
         </tr>
-        <tr class="ability barbarian">
-            <td>Barbarian</td>
-            <td>Bottomless Endurance</td>
-            <td>Level 4<br/>Passive</td>
-            <td>The first hit in an encounter that would otherwise kill the character
-                instead reduces them to 1 health. This effect can only occur once a day.
+        <tr class="ability ranger">
+            <td>Ranger</td>
+            <td>Volley</td>
+            <td>(Bow)<br/>Level 3<br/>Primary Action<br/>1 Mana</td>
+            <td>The character takes two rapid shots with their bow with a penalty to hit.
             </td>
-            <td>-</td>
+            <td><span id="volley"></span></td>
         </tr>
         <tr class="ability rogue">
             <td>Rogue</td>
             <td>Counterattack</td>
             <td>Level 4<br/>Bonus Action<br/>1 Mana</td>
-            <td>For the next turn, if an enemy misses their targeted melee attack and is 
-                in range you may make a free attack back with a penalty to hit.
+            <td>For the next turn if an enemy misses their targeted melee attack and is 
+                in range, you may make a free attack back with a penalty to hit.
             </td>
             <td><span id="counterattack"></span></td>
         </tr>
-        <tr class="ability fighter ranger rogue">
-            <td>Fighter, Ranger, Rogue</td>
+        <tr class="ability fighter barbarian">
+            <td>Fighter, Barbarian</td>
+            <td>Inspire</td>
+            <td>Level 4<br/>Bonus Action<br/>1 Mana</td>
+            <td>Allied units within 15 feet of the character have their resolve strengthened
+                and gain a bonus to hit and resist being frightened until leaving range.
+            </td>
+            <td><span id="inspire"></span></td>
+        </tr>
+        <tr class="ability ranger">
+            <td>Ranger</td>
             <td>Piercing Shot</td>
             <td>(Ranged)<br/>Level 4<br/>Primary Action<br/>1 Mana</td>
             <td>The user's next attack is strengthened, increasing the damage of the attack
@@ -818,19 +811,21 @@
             </td>
             <td><span id="piercingShot"></span></td>
         </tr>
-        <tr class="ability fighter">
-            <td>Fighter</td>
-            <td>True Mastery</td>
-            <td>Level 4<br/>Passive</td>
-            <td>The character critical hits for rolls of 19 and 20.</td>
-            <td>-</td>
+        <tr class="ability barbarian fighter">
+            <td>Fighter, Barbarian</td>
+            <td>Stunning Blow</td>
+            <td>Level 4<br/>Primary Action<br/>1 Mana</td>
+            <td>The user's hit will stun the target if it hits unless the target
+                passes a Fortitude check.
+            </td>
+            <td><span id="stunningBlow"></span></td>
         </tr>
         <tr class="ability barbarian">
             <td>Barbarian</td>
             <td>Brutal Strike</td>
             <td>Level 5<br/>Passive</td>
             <td>Instead of doing max damage on critical hits, roll normally and then
-                double it.
+                double it. If max damage is higher, then use that.
             </td>
             <td>-</td>
         </tr>
@@ -841,61 +836,162 @@
             <td>The character may perform an additional secondary action each turn.</td>
             <td>-</td>
         </tr>
-
-
-        
-        
-        
-        
-        
+        <tr class="ability fighter">
+            <td>Fighter</td>
+            <td>Second Wind</td>
+            <td>Level 5<br/>Bonus Action<br/>1 Mana</td>
+            <td>The character refortifies themself and gains a small amount of health
+                back.
+            </td>
+            <td><span id="secondWind"></span></td>
+        </tr>
+        <tr class="ability ranger">
+            <td>Ranger</td>
+            <td>Strong Mind</td>
+            <td>Level 5<br/>Passive</td>
+            <td>The character has intense concentration during battle that prevents them from
+                being stunned, dazed, charmed, or having their hit bonus reduced by 
+                non-physical means.
+            </td>
+            <td>-</td>
+        </tr>
+        <tr class="ability barbarian">
+            <td>Barbarian</td>
+            <td>Bottomless Endurance</td>
+            <td>Level 6<br/>Passive</td>
+            <td>The first hit in an encounter that would otherwise kill the character
+                instead reduces them to 1 health. This effect can only occur once between
+                long rests.
+            </td>
+            <td>-</td>
+        </tr>
+        <tr class="ability rogue">
+            <td>Rogue</td>
+            <td>Rapid Strike</td>
+            <td>Level 6<br/>Bonus Action<br/>1 Mana</td>
+            <td>The character may perform an additional primary action this turn.</td>
+            <td>-</td>
+        </tr>
+        <tr class="ability fighter">
+            <td>Fighter</td>
+            <td>True Mastery</td>
+            <td>Level 6<br/>Passive</td>
+            <td>The character critical hits for rolls of 19 and 20.</td>
+            <td>-</td>
+        </tr>
+        <tr class="ability ranger">
+            <td>Ranger</td>
+            <td>Unbroken Focus</td>
+            <td>Level 6<br/>Passive</td>
+            <td>The character concentrates on a single enemy, learning about it's
+                movements and actions. Consecutive attacks against the same enemy gain +1
+                hit for each turn in a row it's targeted by an attack. Careful Aim preserves
+                this bonus if used on the same target.
+            </td>
+            <td>-</td>
+        </tr>
 	</table>
-	<hr>
-	<h2>Race Attributes</h2>
+    <hr>
+    
+    <h2>Race Attributes</h2>
+    <form id="races">
+        Level:
+        <input type="text" name="level">
+    </form>
+    <br/>
+    <button type="button" onclick="races()">Submit</button><br/><br/>
 	<table>
 		<tr>
 			<th>Race</th>
 			<th>Description</th>
-			<th>Stats</th>
 		</tr>
 		<tr>
 			<th>Dragonborn</th>
-			<td>Breath weapon and resistance to breath weapon type, Draconic language</td>
-			<td></td>
+			<td class="left">Dragonborn look very similar to their namesake with the
+                exception of the lack of wings or a tail. The first Dragonborn were said
+                to be devout worshippers of Bahamut that were gifted with the characteristics
+                of their deity. In any case, they are now a self sufficient race born
+                from eggs. They have strong clan loyalties and are a proud, dignified race.
+                They know the common tongue and Draconic languages. <br/>
+                <br/>
+                <strong><u>Abilities</u></strong><br/>
+                <strong>Breath Weapon</strong>: The character shoots a 25 foot line of
+                elemental energy from their mouth, the type of which depending on the
+                type of Dragonborn. The character also has damage resistance to their
+                element. Choices include fire, lightning, acid, and frost. This ability
+                is a primary action that can be used once but recharges after a long rest.
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Damage</em>:
+                <span id="breathWeapon"></span>
+            </td>
 		</tr>
 		<tr>
 			<th>Dwarf</th>
-			<td>Resistance to poison, Dwarvish language, lockpicking and trap disarming, darkvision</td>
+			<td class="left">Bold and hardy, dwarves are known as skilled warriors, miners,
+                and workers of stone and metal. Though they stand well under 5 feet tall,
+                dwarves are so broad and compact that they can weigh as much as a human
+                standing nearly two feet taller. Their courage and endurance are also
+                easily a match for any of the larger folk. Like the rock they live so
+                closely with, they are stubborn and resistant to change. They know the 
+                common tongue and Dwarvish languages.<br/>
+                <br/>
+                <strong><u>Abilities</u></strong><br/>
+                <strong>Darkvison</strong>: Having spent much of their lives underground,
+                Dwarves are able to see in little to no light.<br/>
+                <strong>Poison Resistance</strong>: Dwarves are hardy and gain a
+                <span id="poisonResist"></span> bonus to Fortitude rolls against poison
+                and disease.<br/>
+                <strong>Metalworking</strong>: Dwarves are very familiar with the mechanics
+                of locks and simple mechanisms, allowing them to pick locks and set and disarm
+                traps <span id="metalWorking"></span>.
+            </td>
 			<td></td>
 		</tr>
 		<tr>
 			<th>Elf</th>
-			<td>Darkvision, perception bonus, no need to sleep, Elvish + one other language</td>
+			<td class="left">Elves can live well over 700 years, giving them a broad
+                perspective on events that might trouble the shorter-lived races more
+                deeply. They are more often amused than excited, and more likely to be
+                curious than greedy. They tend to remain aloof and unfazed by petty
+                happenstance. When pursuing a goal, however, whether adventuring on a
+                mission or learning a new skill or art, elves can be focused and
+                relentless. They are slow to make friends and enemies, and even slower
+                to forget them. Elves speak the common tongue and Elvish.<br/>
+                <br/>
+                <strong><u>Abilities</u></strong><br/>
+                <strong>Darkvison</strong>: Elves have spent many nights using just the
+                moonlight that gets through the forest canopy to see, and as such can see in
+                very dim lighting.<br/>
+                <strong>Trance</strong>: Elves don’t need to sleep. Instead, they meditate
+                deeply, remaining semiconscious, for 4 hours a day. After resting in this
+                way, they gain the same benefit that a human does from 8 hours of sleep.
+                perception bonus, Elvish + one other language
+            </td>
 			<td></td>
 		</tr>
 		<tr>
 			<th>Gnome</th>
-			<td>Small size, darkvision, gnomish + one other language, +1 mana, +1 sneak</td>
+			<td class="left">Small size, darkvision, gnomish + one other language, +1 mana, +1 sneak</td>
 			<td></td>
 		</tr>
 		<tr>
 			<th>Halfling</th>
-			<td>Reroll 1's, resistant to being frightened, move through larger units, bonus to sneak</td>
+			<td class="left">Reroll 1's, resistant to being frightened, move through larger units, bonus to sneak</td>
 			<td></td>
 		</tr>
 		<tr>
 			<th>Half-Orc</th>
-			<td>Darkvision, bonus to intimidate, orcish language, savage attacks boost critical hit</td>
+			<td class="left">Darkvision, bonus to intimidate, orcish language, savage attacks boost critical hit</td>
 			<td></td>
 		</tr>
 		<tr>
 			<th>Human</th>
-			<td>+2 stats at level one, bonus language of choice</td>
+			<td class="left">+2 stats at level one, bonus language of choice</td>
 			<td></td>
 		</tr>
 	</table>
 	<hr>
 	<h2>Almanac</h2>
-    <p><strong>Check (Rolling a stat check)</strong>:Used interchangeably with rolling a
+    <p><strong>Check (Rolling a stat check)</strong>: Used interchangeably with rolling a
         save, this means to roll the d20 and apply the character's bonus in whatever stat
         is being checked to see if they pass or fail the event.
     </p>
