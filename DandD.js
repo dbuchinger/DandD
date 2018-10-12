@@ -207,7 +207,7 @@ function stats() {
     var throwHit;
 
     if ((curWeapon === "Battleaxe") || (curWeapon === "Hammer")) {
-			hitRoll1 = -5 + Math.floor(intStr/4 + intDex/8);
+			hitRoll1 = -5 + Math.floor(intStr/4);
 			damageRoll = damageRollHeavy(intStr);
 		}
     else if ((curWeapon === "Sword") || (curWeapon === "Mace") || (curWeapon === "Spear")) {
@@ -231,7 +231,7 @@ function stats() {
 		}
 		else if (curWeapon === "Bow") {
 			hitRoll1 = -4 + Math.floor(intStr/8 + intDex/3);
-			damageRoll = damageRollMedium(intStr/2 + intDex/2);
+			damageRoll = damageRollMedium(intStr/4 + intDex*.75);
 		}
 		else if (curWeapon === "Crossbow") {
 			hitRoll1 = -1 + Math.floor(intDex/3);
@@ -340,7 +340,7 @@ function stats() {
       break;
       }
       
-      damageRollBonus = Math.floor((damageRollNum % 7 + 1)/3) + alter;
+      damageRollBonus = Math.floor((damageRollNum % 7)/3) + alter;
       
       if (damageRollBonus >= 0) { 
         returned= damageRollDice + " + " + damageRollBonus;
@@ -1450,7 +1450,7 @@ function abilities() {
 
   function grapple() {
     var damage;
-    var dc = 9 + level;
+    var dc = 10 + level/2;
     switch (level) {
       case 2: damage = "d4";
       break;
@@ -1566,7 +1566,7 @@ function abilities() {
   }
 
   function groupFighter() {
-    var bonus = Math.floor((level+1)/2);
+    var bonus = 1 + Math.floor(level/3);
     document.getElementById("groupFighter").innerHTML = "+" + bonus;
   }
 
@@ -1588,7 +1588,6 @@ function races() {
   var level = Number(x.elements[0].value);
 
   breathWeapon();
-  poisonResist();
   metalWorking();
 
   function breathWeapon() {
@@ -1619,11 +1618,6 @@ function races() {
       break;
     }
     document.getElementById("breathWeapon").innerHTML = damage;
-  }
-
-  function poisonResist() {
-    var bonus = 2 + Math.floor(level/2);
-    document.getElementById("poisonResist").innerHTML = "+" + bonus;
   }
 
   function metalWorking() {

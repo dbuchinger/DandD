@@ -11,6 +11,14 @@
     
 <body>
     <h1>Dungeons and Dragons</h1>
+    <h2>Topics</h2>
+    <ul>
+        <li><a href="#playerStats">Player Stats</a></li>
+        <li><a href="#spellList">Spells</a></li>
+        <li><a href="#abilityList">Class Abilities</a></li>
+        <li><a href="#raceList">Races</a></li>
+        <li><a href="#almanac">Almanac</a></li>
+    </ul>
     <h2>Items</h2>
     <p>Items sell at about 1/5 the cost, decreased by wear and tear.</p>
     <h3>Common</h3>
@@ -101,7 +109,7 @@
         </tr>
     </table>
     <hr>
-    <h2>Player Stats</h2>
+    <h2 id="playerStats">Player Stats</h2>
     <form id="stats">
         Race:
         <select name="race" onchange="raceClass()">
@@ -203,7 +211,7 @@
     <hr>
 
 	<!-----------SPELLS------------------ https://www.hexcolortool.com/ -->
-    <h2>Spells</h2>
+    <h2 id="spellList">Spells</h2>
 	<form id="spells">
 		Level:
 		<input type="text" name="level"><br/>
@@ -575,7 +583,7 @@
     <hr>
 
     <!--------------------------ABILITIES----------------------->
-    <h2>Class Traits and Abilities</h2>
+    <h2 id="abilityList">Class Traits and Abilities</h2>
     <form id="abilities">
         Level:
         <input type="text" name="level">
@@ -893,7 +901,7 @@
 	</table>
     <hr>
     
-    <h2>Race Attributes</h2>
+    <h2 id="raceList">Race Attributes</h2>
     <form id="races">
         Level:
         <input type="text" name="level">
@@ -912,7 +920,7 @@
                 to be devout worshippers of Bahamut that were gifted with the characteristics
                 of their deity. In any case, they are now a self sufficient race born
                 from eggs. They have strong clan loyalties and are a proud, dignified race.
-                They know the common tongue and Draconic languages. <br/>
+                They know the Common Tongue and Draconic languages. <br/>
                 <br/>
                 <strong><u>Abilities</u></strong><br/>
                 <strong>Breath Weapon</strong>: The character shoots a 25 foot line of
@@ -932,19 +940,17 @@
                 standing nearly two feet taller. Their courage and endurance are also
                 easily a match for any of the larger folk. Like the rock they live so
                 closely with, they are stubborn and resistant to change. They know the 
-                common tongue and Dwarvish languages.<br/>
+                Common Tongue and Dwarvish languages.<br/>
                 <br/>
                 <strong><u>Abilities</u></strong><br/>
                 <strong>Darkvison</strong>: Having spent much of their lives underground,
                 Dwarves are able to see in little to no light.<br/>
-                <strong>Poison Resistance</strong>: Dwarves are hardy and gain a
-                <span id="poisonResist"></span> bonus to Fortitude rolls against poison
-                and disease.<br/>
+                <strong>Poison Resistance</strong>: Dwarves are hardy and gain a +2 bonus
+                to Fortitude rolls against poison and disease.<br/>
                 <strong>Metalworking</strong>: Dwarves are very familiar with the mechanics
                 of locks and simple mechanisms, allowing them to pick locks and set and disarm
                 traps <span id="metalWorking"></span>.
             </td>
-			<td></td>
 		</tr>
 		<tr>
 			<th>Elf</th>
@@ -955,7 +961,7 @@
                 happenstance. When pursuing a goal, however, whether adventuring on a
                 mission or learning a new skill or art, elves can be focused and
                 relentless. They are slow to make friends and enemies, and even slower
-                to forget them. Elves speak the common tongue and Elvish.<br/>
+                to forget them. Elves speak the Common Tongue and Elvish.<br/>
                 <br/>
                 <strong><u>Abilities</u></strong><br/>
                 <strong>Darkvison</strong>: Elves have spent many nights using just the
@@ -963,34 +969,99 @@
                 very dim lighting.<br/>
                 <strong>Trance</strong>: Elves don’t need to sleep. Instead, they meditate
                 deeply, remaining semiconscious, for 4 hours a day. After resting in this
-                way, they gain the same benefit that a human does from 8 hours of sleep.
-                perception bonus, Elvish + one other language
+                way, they gain the same benefit that a human does from 8 hours of sleep.<br/>
+                <strong>Insightful</strong>: Elves gain a +1 bonus to perception.
             </td>
-			<td></td>
 		</tr>
 		<tr>
-			<th>Gnome</th>
-			<td class="left">Small size, darkvision, gnomish + one other language, +1 mana, +1 sneak</td>
-			<td></td>
+            <th>Gnome</th>
+            <td class="left">A gnome’s energy and enthusiasm for living shines through
+                every inch of his or her tiny body. Gnomes average slightly over 3 feet
+                tall and weigh 40 to 45 pounds. Their tan or brown faces are usually
+                adorned with broad smiles (beneath their prodigious noses), and their
+                bright eyes shine with excitement. They are a very curious and impulsive
+                race, though meticulous about things they deem important. Quick to laugh
+                at jokes and at their own expense, gnomes are generally a kind-hearted
+                people. Gnomes speak the Common Tongue plus one other language.<br/>
+                <br/>
+                <strong><u>Abilities</u></strong><br/>
+                <strong>Small Stature</strong>: Gnomes are considered a Small unit, giving
+                them a +1 bonus to Sneak.<br/>
+                <strong>Boundless Energy</strong>: Gnomes have +1 max mana.
+            </td>
 		</tr>
 		<tr>
 			<th>Halfling</th>
-			<td class="left">Reroll 1's, resistant to being frightened, move through larger units, bonus to sneak</td>
-			<td></td>
+			<td class="left">Halflings are an affable and cheerful people. The comforts
+                of home are the goals of most halflings’ lives: a place to settle in
+                peace and quiet, far from marauding monsters and clashing armies.
+                Adventurers among them usually venture into the world for reasons of
+                community, friendship, wanderlust, or curiosity rather than the desire
+                for power and wealth that drives many other adventurers. They’re
+                concerned with basic needs and simple pleasures and have little use
+                for ostentation. They have a knack for finding the most straightforward
+                solution to a problem, and have little patience for dithering. Though
+                they are characterized as mild, they can display remarkable ferocity
+                when their friends, families, or communities are threatened. Halflings
+                know the Common Tongue.<br/>
+                <br/>
+                <strong><u>Abilities</u></strong><br/>
+                <strong>Small Stature</strong>: Halflings are considered a Small unit,
+                giving them a +1 bonus to Sneak.<br/>
+                <strong>Lucky</strong>: If you roll a 1 using the d20, reroll it and take
+                the new roll.<br/>
+                <strong>Wily</strong>: Halflings can move through squares occupied by
+                Large size or larger units.
+            </td>
 		</tr>
 		<tr>
 			<th>Half-Orc</th>
-			<td class="left">Darkvision, bonus to intimidate, orcish language, savage attacks boost critical hit</td>
-			<td></td>
+			<td class="left">Whether united under the leadership of a mighty warlock or
+                having fought to a standstill after years of conflict, orc and human
+                tribes sometimes form alliances, joining forces into a larger horde to
+                the terror of civilized lands nearby. As could be expected to happen
+                during long periods of intermingling, half-orcs are born. Some half-orcs
+                rise to become proud chiefs of orc tribes, their human blood giving
+                them an edge over their full-blooded orc rivals. Some venture into the
+                world to prove their worth among humans and other more civilized races.
+                Half-orcs’ grayish pigmentation, sloping foreheads, jutting jaws,
+                prominent teeth, and towering builds make their orcish heritage plain
+                for all to see. Half-orcs stand between 5 and 7 feet tall and usually
+                weigh between 180 and 250 pounds. Half-orcs are not evil by nature, but
+                they feel the savagery of their orc heritage within them. They speak the
+                Common Tongue and Orcish languages.<br/>
+                <br/>
+                <strong><u>Abilities</u></strong><br/>
+                <strong>Fearless</strong>: Half-orcs gain a +3 bonus to Will saves
+                against being Frightened.<br/>
+                <strong>Aggressive</strong>: Half-orcs gain a +3 bonus to Charisma checks
+                being used to intimidate.
+            </td>
 		</tr>
 		<tr>
 			<th>Human</th>
-			<td class="left">+2 stats at level one, bonus language of choice</td>
-			<td></td>
+			<td class="left">Humans are the youngest of the common races, late to arrive
+                on the world scene and short-lived in comparison to the other races.
+                Perhaps it is because of their shorter lives that they strive to achieve
+                as much as they can in the years they are given. Whatever drives them,
+                humans are the innovators, the achievers, and the pioneers of the worlds.
+                With their penchant for migration and conquest, humans are more physically
+                diverse than other common races. There is no typical human. Humans are
+                the most adaptable and ambitious people among the common races. They have
+                widely varying tastes, morals, and customs in the many different lands
+                where they have settled. As a very diverse people, humans are generally
+                more accepting of other races, and are more accepted themselves because
+                of that. Humans speak the Common Tongue plus one more language.<br/>
+                <br/>
+                <strong><u>Abilities</u></strong><br/>
+                <strong>Chosen Specialty</strong>: Humans are a diverse people who choose
+                their own path. Human characters have two more stat points to spend at
+                Level 1.
+            </td>
 		</tr>
 	</table>
 	<hr>
-	<h2>Almanac</h2>
+	<h2 id="almanac">Almanac</h2>
     <p><strong>Check (Rolling a stat check)</strong>: Used interchangeably with rolling a
         save, this means to roll the d20 and apply the character's bonus in whatever stat
         is being checked to see if they pass or fail the event.
