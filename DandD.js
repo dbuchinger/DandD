@@ -79,20 +79,20 @@ function raceClass() {
   }
   else if (charClass === "Cleric") {
     document.getElementById("classDex").innerHTML = 0;
-    document.getElementById("classCon").innerHTML = 1;
-    document.getElementById("classInt").innerHTML = 3;
+    document.getElementById("classCon").innerHTML = 0;
+    document.getElementById("classInt").innerHTML = 4;
     document.getElementById("classStr").innerHTML = 0;
   }
   else if (charClass === "Conjurer") {
     document.getElementById("classDex").innerHTML = 0;
-    document.getElementById("classCon").innerHTML = 1;
-    document.getElementById("classInt").innerHTML = 3;
+    document.getElementById("classCon").innerHTML = 0;
+    document.getElementById("classInt").innerHTML = 4;
     document.getElementById("classStr").innerHTML = 0;
   }
   else if (charClass === "Sorceror") {
     document.getElementById("classDex").innerHTML = 0;
-    document.getElementById("classCon").innerHTML = 1;
-    document.getElementById("classInt").innerHTML = 3;
+    document.getElementById("classCon").innerHTML = 0;
+    document.getElementById("classInt").innerHTML = 4;
     document.getElementById("classStr").innerHTML = 0;
   }
   else if (charClass === "Rogue") {
