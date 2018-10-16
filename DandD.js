@@ -66,9 +66,9 @@ function raceClass() {
 
   // classes
   if (charClass === "Fighter") {
-    document.getElementById("classDex").innerHTML = 1;
+    document.getElementById("classDex").innerHTML = 0;
     document.getElementById("classCon").innerHTML = 1;
-    document.getElementById("classInt").innerHTML = 0;
+    document.getElementById("classInt").innerHTML = 1;
     document.getElementById("classStr").innerHTML = 2;
   }
   else if (charClass === "Barbarian") {
@@ -142,14 +142,14 @@ function stats() {
   var weapon2 = x.elements[7].value;
 
   var health = 10 + Math.floor(1.5 * constitution);
-  var armorClass = 10 + Math.floor(dexterity/5 + constitution/4);
-  var speed = 4 + Math.floor(dexterity/12);
-  var sneak = -4 + Math.floor(dexterity/3);
-  var athletics = -3 + Math.floor(dexterity/8 + strength/4);
-  var finesse = -3 + Math.floor(dexterity/4 + intelligence/7);
-  var charisma = -3 + Math.floor(intelligence/4);
-  var perception = -3 + Math.floor(intelligence/4 + dexterity/10);
-  var mana = -1 + Math.floor((intelligence-1)/2);
+  var armorClass = 10 + Math.floor(dexterity/5 + constitution/3);
+  var speed = 4 + Math.floor(dexterity/10);
+  var sneak = -3 + Math.floor(dexterity/3);
+  var athletics = -3 + Math.floor(dexterity/8 + strength/3);
+  var finesse = -3 + Math.floor(dexterity/3 + intelligence/7);
+  var charisma = -2 + Math.floor(intelligence/4);
+  var perception = -3 + Math.floor(intelligence/3 + dexterity/10);
+  var mana = (intelligence-1)/2;
   var manaPool;
   if (mana < 1){
     manaPool = 0;
@@ -160,31 +160,31 @@ function stats() {
   else if (mana < 3){
     manaPool = 2;
   }
-  else if (mana < 4){
+  else if (mana < 4.5){
     manaPool = 3;
   }
-  else if (mana < 5){
+  else if (mana < 6){
     manaPool = 4;
   }
-  else if (mana < 6){
+  else if (mana < 7.5){
     manaPool = 5;
   }
-  else if (mana < 8){
+  else if (mana < 9){
     manaPool = 6;
   }
-  else if (mana < 10){
+  else if (mana < 11){
     manaPool = 7;
   }
-  else if (mana < 12){
+  else if (mana < 13){
     manaPool = 8;
   }
-  else if (mana < 15){
+  else if (mana < 16){
     manaPool = 9;
   }
   else {
     manaPool = 10;
   }
-  var will = -3 + Math.floor(intelligence/4 + constitution/9);
+  var will = -3 + Math.floor(intelligence/4 + constitution/8);
   var fortitude = -3 + Math.floor(constitution/4 + strength/8);
   var endDamage = combatNumbers(weapon, strength, dexterity);
   var endDamage2 = combatNumbers(weapon2, strength, dexterity);
@@ -207,11 +207,11 @@ function stats() {
     var throwHit;
 
     if ((curWeapon === "Battleaxe") || (curWeapon === "Hammer")) {
-			hitRoll1 = -5 + Math.floor(intStr/4);
+			hitRoll1 = -5 + Math.floor(intStr/4 + intDex/5);
 			damageRoll = damageRollHeavy(intStr);
 		}
     else if ((curWeapon === "Sword") || (curWeapon === "Mace") || (curWeapon === "Spear")) {
-			hitRoll1 = -4 + Math.floor(intStr/4 + intDex/4);
+			hitRoll1 = -4 + Math.floor(intStr/4 + (intDex/3.5));
 			damageRoll = damageRollBig(intStr);
     }
 		else if ((curWeapon === "Dagger") || (curWeapon === "Knife")) {
@@ -224,18 +224,18 @@ function stats() {
     }
     else if ((curWeapon === "Javelin") || (curWeapon === "Hand Axe")) {
       throwable = 1;
-			hitRoll1 = -3 + Math.floor(intStr/4 + intDex/4);
+			hitRoll1 = -3 + Math.floor(intStr/4 + intDex/3.5);
       damageRoll = damageRollMedium(intStr);
       throwHit = -5 + Math.floor(intStr/5 + intDex/3);
       throwDam = damageRollMedium(intStr);
 		}
 		else if (curWeapon === "Bow") {
-			hitRoll1 = -4 + Math.floor(intStr/8 + intDex/3);
-			damageRoll = damageRollMedium(intStr/4 + intDex*.75);
+			hitRoll1 = -4 + Math.floor(intDex/3);
+			damageRoll = damageRollMedium(intStr/5 + intDex*.8);
 		}
 		else if (curWeapon === "Crossbow") {
 			hitRoll1 = -1 + Math.floor(intDex/3);
-			damageRoll = damageRollBig(intStr);
+			damageRoll = damageRollBig(intDex*.9);
 		}
 		else if (curWeapon === "Dual Daggers") {
 			hitRoll1 = -7 + Math.floor(intStr/5 + intDex/3);
@@ -383,7 +383,7 @@ function stats() {
       break;
       }
       
-      damageRollBonus = Math.floor((damageRollNum % 9 + 2)/4) + alter;
+      damageRollBonus = Math.floor((damageRollNum % 9 + 1)/4) + alter;
       
       if (damageRollBonus >= 0) { 
         returned= damageRollDice + " + " + damageRollBonus;
@@ -750,12 +750,12 @@ function spells() {
   }
   
   function grease() {
-    var dc = 7 + Math.floor(level/5 + intelligence/6);
+    var dc = 6 + Math.floor(level/5 + intelligence/6);
     document.getElementById("grease").innerHTML = "DC: " + dc;
   }
   
   function ensnare() {
-    var dc = 6 + Math.floor(level/5 + intelligence/6);
+    var dc = 7 + Math.floor(level/5 + intelligence/5);
     document.getElementById("ensnare").innerHTML = "DC: " + dc;
   }
   
@@ -1276,7 +1276,6 @@ function spells() {
   function meteorStrike() {
     var dice;
     var bonus;
-    var alter = 0;
     var diceNum = Math.floor((level + intelligence)/6);
     switch (diceNum) {
       case 0: dice = "d8";
@@ -1450,7 +1449,7 @@ function abilities() {
 
   function grapple() {
     var damage;
-    var dc = 10 + level/2;
+    var dc = 10 + Math.floor(level/2);
     switch (level) {
       case 2: damage = "d4";
       break;
@@ -1571,7 +1570,7 @@ function abilities() {
   }
 
   function wary() {
-    var bonus = 2 + Math.floor(level/2);
+    var bonus = 1 + Math.floor((level-1)/2);
     document.getElementById("wary").innerHTML = "+" + bonus;
   }
 

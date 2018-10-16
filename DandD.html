@@ -119,7 +119,10 @@
             <option value="Knife">Knife</option>         
         <!--<option value="Dual Daggers">Dual Daggers</option>-->
         </select>
-    </form><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>-</span><a href="#weaponTypes">Weapon Descriptions</a>
+    </form>
+    <br/>
     <button type="button" onclick="stats()">Submit</button>
     <p id="statSheet"></p>
     <hr>
@@ -242,7 +245,7 @@
         <tr bgcolor="#fcf18d">
             <td>Cleric</td>
             <td>Resurrect</td>
-            <td>35 Int</td>
+            <td>30 Int</td>
             <td>You touch a dead creature that has been dead for no more than a century,
                 that didn't die of old age, and that isn't undead. If its soul is free
                 and willing, the target returns to life with all its hit points. This spell
@@ -369,7 +372,7 @@
         <tr bgcolor="#abf1a2">
             <td>Conjuror</td>
             <td>Alter Memory</td>
-            <td>35 Int</td>
+            <td>30 Int</td>
             <td>The user can alter the memories of a target while touching them. The spell
                 takes concentration and time to cast and must occur in a non-combat scenario.
                 Targets may resist with a Will save.
@@ -480,7 +483,7 @@
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
             <td>Earthquake</td>
-            <td>30 Int</td>
+            <td>25 Int</td>
             <td>Cause a tremor at target location, unsteadying targets and affecting
                 terrain.      
             </td>
@@ -489,7 +492,7 @@
         <tr bgcolor="#ff8585">
             <td>Sorceror</td>
             <td>Meteor Strike</td>
-            <td>35 Int</td>
+            <td>30 Int</td>
             <td>Call down a hail of meteors at a 16 square target location.</td>
 			<td><span id="meteorStrike"></span></td>
         </tr>       
@@ -562,8 +565,7 @@
                 pickpocket.<br/>
                 <strong><em>Wary</em></strong>: The character has dealt extensively with
                 thieves and other untrustworthy acquaintances. They gain a
-                <span id="wary"></span> bonus to perception rolls used to detect
-                the motives and truthfulness of other characters.
+                <span id="wary"></span> bonus to perception rolls.
             </td>
             <td>-</td>
         </tr>
@@ -616,8 +618,8 @@
         <tr class="ability ranger">
             <td>Ranger</td>
             <td>Careful Aim</td>
-            <td>(Ranged)<br/>Level 2<br/>Primary Action<br/>1 Mana</td>
-            <td>The character's next attack is a guaranteed critical hit. This ability
+            <td>(Ranged)<br/>Level 2<br/>Primary Action</td>
+            <td>The character's next attack is a guaranteed hit. This ability
                 does not work if the target cannot be sensed or line of sight to the
                 target is obstructed.
             </td>
@@ -674,7 +676,7 @@
         <tr class="ability barbarian">
             <td>Barbarian</td>
             <td>Cleave</td>
-            <td>Level 3<br/>Primary Action<br/>1 Mana</td>
+            <td>Level 3<br/>Primary Action</td>
             <td>User makes a wild swing around them, rolling with a penalty to hit all
                 adjacent units.
             </td>
@@ -685,7 +687,7 @@
             <td>Surgeon</td>
             <td>Level 3<br/>Passive</td>
             <td>The character attacks vital areas, dealing extra damage equal to
-                their hit modifier.
+                half (rounded) of their hit modifier.
             </td>
             <td>-</td>
         </tr>
@@ -974,11 +976,17 @@
             </td>
 		</tr>
 	</table>
-	<hr>
+    <hr>
+    
 	<h2 id="map" style="text-align:center">Map</h2>
-	<img src="Map.jpg" alt="World Map" class="center">
+    <img src="Map.jpg" alt="World Map" class="center">
+    <!--http://www.htmldrive.net/items/show/528/CSS-Image-Maps-With-Pop-Up-Tool-Tips-->
+    
 	<hr>
-	<h2 id="almanac">Almanac</h2>
+    <h2 id="almanac">Almanac</h2>
+    <p><strong>Bonus Action</strong>: An action that takes almost no time and does not
+        limit how many other actions of any type the player can do on their turn.
+    </p>
     <p><strong>Check (Rolling a stat check)</strong>: Used interchangeably with rolling a
         save, this means to roll the d20 and apply the character's bonus in whatever stat
         is being checked to see if they pass or fail the event.
@@ -987,17 +995,29 @@
         grants a player 1 point in each of the 4 main skills along with 2 points the
         player may allocate as they please.
     </p>
-    <p><strong>Primary Action (P)</strong>: A class of action that takes up a player's
+    <p><strong>Primary Action</strong>: A class of action that takes up a player's
         entire turn except for movement.
     </p>
 	<p><strong>Save (Rolling a save)</strong>: See <strong>Check</strong></p>
-    <p><strong>Secondary Action (S)</strong>: A class of action that a player can do
+    <p><strong>Secondary Action</strong>: A class of action that a player can do
         up to two of in a turn. A secondary action cannot be done in the same turn as
         a primary action.
     </p>
     <p><strong>Turn</strong>: A player's action phase. It can either consist of up to
         2 secondary actions or a single primary action, along with movement which is
         considered a "free" action.
+    </p>
+    <p id="weaponTypes"><strong>Weapon Types</strong>: <u>Heavy</u> weapons gain stat increases
+        solely through increasing Strength. The hammer and battleaxe go to this class.
+        <u>Big</u> weapons still benefit more from strength, but can have their chance of
+        hitting increased by dexterity as well. The sword, mace, and spear make up this class.
+        <u>Medium</u> sized weapons, like the javelin or hand axe, increase more with strength
+        if used as a melee weapon and more with dexterity if thrown. <u>Small</u> sized
+        weapons, like daggers, knives, or staffs, will increase with either strength or
+        dexterity, though dexterity has a larger influence on increasing the hit bonus.
+        <u>Ranged</u> weapons such as the bow and crossbow improve much more with a higher
+        dexterity score. The crossbow does more damage, but a secondary action must be used
+        to reload it after each shot.
     </p>
     <script src="DandD.js"></script>
 </body>
