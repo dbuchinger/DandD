@@ -207,15 +207,15 @@ function stats() {
     var throwHit;
 
     if ((curWeapon === "Battleaxe") || (curWeapon === "Hammer")) {
-			hitRoll1 = -5 + Math.floor(intStr/4 + intDex/5);
+			hitRoll1 = -5 + Math.floor(intStr/3.5);
 			damageRoll = damageRollHeavy(intStr);
 		}
     else if ((curWeapon === "Sword") || (curWeapon === "Mace") || (curWeapon === "Spear")) {
-			hitRoll1 = -4 + Math.floor(intStr/4 + (intDex/3.5));
+			hitRoll1 = -4 + Math.floor(intStr/4 + intDex/3.5);
 			damageRoll = damageRollBig(intStr);
     }
 		else if ((curWeapon === "Dagger") || (curWeapon === "Knife")) {
-			hitRoll1 = -2 + Math.floor(intStr/5 + intDex/3);
+			hitRoll1 = -2 + Math.floor(intStr/4.5 + intDex/3);
 			damageRoll = damageRollSmall(intStr + intDex/3);
 		}
 		else if (curWeapon === "Staff") {
@@ -238,8 +238,8 @@ function stats() {
 			damageRoll = damageRollBig(intDex*.9);
 		}
 		else if (curWeapon === "Dual Daggers") {
-			hitRoll1 = -7 + Math.floor(intStr/5 + intDex/3);
-			hitRoll2 = -7 + Math.floor(intStr/5 + intDex/4);
+			hitRoll1 = -7 + Math.floor(intStr/4.5 + intDex/3);
+			hitRoll2 = -7 + Math.floor(intStr/4.5 + intDex/3.5);
 			damageRoll = damageRollSmall(intStr + intDex/3);
 		}
 		else {
@@ -285,15 +285,15 @@ function stats() {
       break;
       
       case 3:  damageRollDice = "2d6";
-      alter = 3;
-      break;
-      
-      case 4: damageRollDice = "3d6";
       alter = 2;
       break;
       
-      default: damageRollDice = "4d6";
+      case 4: damageRollDice = "3d6";
       alter = 1;
+      break;
+      
+      default: damageRollDice = "4d6";
+      alter = 0;
       break;
       }
       
@@ -340,7 +340,7 @@ function stats() {
       break;
       }
       
-      damageRollBonus = Math.floor((damageRollNum % 7)/3) + alter;
+      damageRollBonus = Math.floor((damageRollNum % 7 + 1)/3) + alter;
       
       if (damageRollBonus >= 0) { 
         returned= damageRollDice + " + " + damageRollBonus;
@@ -1426,9 +1426,9 @@ function abilities() {
   }
 
   function rage() {
-    var penalty = -4 + Math.floor(level/3);
+    var penalty = -4;// + Math.floor(level/3);
     var d20 = 1 + Math.floor(level/2);
-    var damage = Math.floor(level*1.25);
+    var damage = Math.floor(level);
     document.getElementById("rage").innerHTML = "Penalty: " + penalty +
     "<br/>d20 Bonus: +" + d20 + "<br/>Damage: +" + damage;
   }
