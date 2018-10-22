@@ -1393,6 +1393,7 @@ function abilities() {
   groupFighter();
   wary();
   nimble();
+  battleTrained();
 
   function focus() {
     var hit = 1 + Math.floor((level+1)/2);
@@ -1577,6 +1578,11 @@ function abilities() {
   function nimble() {
     var bonus = 2 + Math.floor(level/2);
     document.getElementById("nimble").innerHTML = "(+" + bonus + ")";
+  }
+
+  function battleTrained() {
+    var bonus = 1 + Math.floor(level/2);
+    document.getElementById("battleTrained").innerHTML = "(+" + bonus + ")";
   }
 
 }
