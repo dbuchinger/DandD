@@ -26,7 +26,7 @@
     <h2 id="playerStats">Player Stats</h2>
     <form id="stats">
         Race:
-        <select name="race" onchange="raceClass()">
+        <select name="race" onchange="defaultStats()">
             <option value="select">- Select -</option>
             <option value="Human">Human</option>
             <option value="Elf">Elf</option>
@@ -37,7 +37,7 @@
             <option value="Gnome">Gnome</option>
         </select><br/><br/>
         Class:
-        <select name="class" onchange="raceClass()">
+        <select name="class" onchange="defaultStats()">
             <option value="select">- Select -</option>
             <option value="Fighter">Fighter</option>
             <option value="Barbarian">Barbarian</option>
@@ -46,13 +46,18 @@
             <option value="Sorceror">Sorceror</option>
             <option value="Rogue">Rogue</option>
             <option value="Ranger">Ranger</option>
-        </select>
+        </select><br/><br/>
+        Level:
+        <input type="text" name="level" onchange="defaultStats()">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Points remaining: <span id="pointsRemaining"></span>
         <br/><br/>
         <table>
             <tr>
                 <th>Stat</th>
                 <th>Racial Bonuses</th>
                 <th>Class Bonuses</th>
+                <th>Level Bonus</th>
                 <th>Player Allocated</th>
                 <th>Total</th>
             </tr>
@@ -60,28 +65,32 @@
                 <th>Dexterity</th>
                 <td><span id="raceDex">0</span></td>
                 <td><span id="classDex">0</span></td>
-                <td><input type="text" name="dexterity" onchange="raceClass()"></td>
+                <td><span id="levelDex">0</span></td>
+                <td><input type="text" name="dexterity" onchange="defaultStats()"></td>
                 <td><span id="finalDex">0</span></td>
             </tr>
             <tr>
                 <th>Constitution</th>
                 <td><span id="raceCon">0</span></td>
                 <td><span id="classCon">0</span></td>
-                <td><input type="text" name="constitution" onchange="raceClass()"></td>
+                <td><span id="levelCon">0</span></td>
+                <td><input type="text" name="constitution" onchange="defaultStats()"></td>
                 <td><span id="finalCon">0</span></td>
             </tr>
             <tr>
                 <th>Intelligence</th>
                 <td><span id="raceInt">0</span></td>
                 <td><span id="classInt">0</span></td>
-                <td><input type="text" name="intelligence" onchange="raceClass()"></td>
+                <td><span id="levelInt">0</span></td>
+                <td><input type="text" name="intelligence" onchange="defaultStats()"></td>
                 <td><span id="finalInt">0</span></td>
             </tr>
             <tr>
                 <th>Strength</th>
                 <td><span id="raceStr">0</span></td>
                 <td><span id="classStr">0</span></td>
-                <td><input type="text" name="strength" onchange="raceClass()"></td>
+                <td><span id="levelStr">0</span></td>
+                <td><input type="text" name="strength" onchange="defaultStats()"></td>
                 <td><span id="finalStr">0</span></td>
             </tr>
         </table><br/>
@@ -1016,7 +1025,7 @@
         weapons, like daggers, knives, or staffs, will increase with either strength or
         dexterity, though dexterity has a larger influence on increasing the hit bonus.
         <u>Ranged</u> weapons such as the bow and crossbow improve much more with a higher
-        dexterity score. The crossbow does more damage, but a secondary action must be used
+        dexterity score. The crossbow is stronger, but a secondary action must be used
         to reload it after each shot.
     </p>
     <script src="DandD.js"></script>

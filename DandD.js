@@ -4,15 +4,18 @@ var finalCon = 0;
 var finalInt = 0;
 var finalStr = 0;
 
-// Race and Class stat displays
-function raceClass() {
+// Race, Class, and Level stat displays
+function defaultStats() {
   var x = document.getElementById("stats");
   var race = x.elements[0].value;
   var charClass = x.elements[1].value;
-  var dexterity = x.elements[2].value;
-  var constitution = x.elements[3].value;
-  var intelligence = x.elements[4].value;
-  var strength = x.elements[5].value;
+  var level = x.elements[2].value;
+  var dexterity = x.elements[3].value;
+  var constitution = x.elements[4].value;
+  var intelligence = x.elements[5].value;
+  var strength = x.elements[6].value;
+  var pointsRemaining = 3 + (level-1)*2 - (Number(dexterity) + Number(constitution) + Number(intelligence) + Number(strength));
+  
 
   // races
   if (race === "Human") {
@@ -20,6 +23,7 @@ function raceClass() {
     document.getElementById("raceCon").innerHTML = 2;
     document.getElementById("raceInt").innerHTML = 2;
     document.getElementById("raceStr").innerHTML = 2;
+    pointsRemaining = pointsRemaining + 2;
   }
   else if (race === "Elf") {
     document.getElementById("raceDex").innerHTML = 3;
@@ -114,14 +118,38 @@ function raceClass() {
     document.getElementById("classStr").innerHTML = 0;
   }
 
+  // level bonus
+  if (level <= 1) {
+    document.getElementById("levelDex").innerHTML = 0;
+    document.getElementById("levelCon").innerHTML = 0;
+    document.getElementById("levelInt").innerHTML = 0;
+    document.getElementById("levelStr").innerHTML = 0;
+  }
+  else {
+    document.getElementById("levelDex").innerHTML = (level-1);
+    document.getElementById("levelCon").innerHTML = (level-1);
+    document.getElementById("levelInt").innerHTML = (level-1);
+    document.getElementById("levelStr").innerHTML = (level-1);
+  }
+  if (pointsRemaining < 0) {
+    document.getElementById("pointsRemaining").innerHTML = "Too many points spent.";
+  }
+  else {
+    document.getElementById("pointsRemaining").innerHTML = pointsRemaining;
+  }
+
   finalDex = Number(document.getElementById("raceDex").innerHTML) +
-    Number(document.getElementById("classDex").innerHTML) + Number(dexterity);
+    Number(document.getElementById("classDex").innerHTML) +
+    Number(document.getElementById("levelDex").innerHTML) + Number(dexterity);
   finalCon = Number(document.getElementById("raceCon").innerHTML) +
-    Number(document.getElementById("classCon").innerHTML) + Number(constitution);
+    Number(document.getElementById("classCon").innerHTML) + 
+    Number(document.getElementById("levelCon").innerHTML) + Number(constitution);
   finalInt = Number(document.getElementById("raceInt").innerHTML) +
-    Number(document.getElementById("classInt").innerHTML) + Number(intelligence);
+    Number(document.getElementById("classInt").innerHTML) + 
+    Number(document.getElementById("levelInt").innerHTML) + Number(intelligence);
   finalStr = Number(document.getElementById("raceStr").innerHTML) +
-    Number(document.getElementById("classStr").innerHTML) + Number(strength);
+    Number(document.getElementById("classStr").innerHTML) + 
+    Number(document.getElementById("levelStr").innerHTML) + Number(strength);
 
     document.getElementById("finalDex").innerHTML = finalDex;
     document.getElementById("finalCon").innerHTML = finalCon;
@@ -138,8 +166,8 @@ function stats() {
   var constitution = finalCon;
   var intelligence = finalInt;
   var strength = finalStr;
-  var weapon = x.elements[6].value;
-  var weapon2 = x.elements[7].value;
+  var weapon = x.elements[7].value;
+  var weapon2 = x.elements[8].value;
 
   var health = 10 + Math.floor(1.5 * constitution);
   var armorClass = 10 + Math.floor(dexterity/5 + constitution/3);
@@ -235,7 +263,7 @@ function stats() {
 		}
 		else if (curWeapon === "Crossbow") {
 			hitRoll1 = -1 + Math.floor(intDex/3);
-			damageRoll = damageRollBig(intDex*.9);
+			damageRoll = damageRollBig(intDex);
 		}
 		else if (curWeapon === "Dual Daggers") {
 			hitRoll1 = -7 + Math.floor(intStr/4.5 + intDex/3);
