@@ -74,48 +74,56 @@ function defaultStats() {
     document.getElementById("classCon").innerHTML = 1;
     document.getElementById("classInt").innerHTML = 1;
     document.getElementById("classStr").innerHTML = 2;
+    document.getElementById("weapon2").style.display = "inline";
   }
   else if (charClass === "Barbarian") {
     document.getElementById("classDex").innerHTML = 0;
     document.getElementById("classCon").innerHTML = 1;
     document.getElementById("classInt").innerHTML = 0;
     document.getElementById("classStr").innerHTML = 3;
+    document.getElementById("weapon2").style.display = "inline";
   }
   else if (charClass === "Cleric") {
     document.getElementById("classDex").innerHTML = 0;
     document.getElementById("classCon").innerHTML = 0;
     document.getElementById("classInt").innerHTML = 4;
     document.getElementById("classStr").innerHTML = 0;
+    document.getElementById("weapon2").style.display = "none";
   }
   else if (charClass === "Conjurer") {
     document.getElementById("classDex").innerHTML = 0;
     document.getElementById("classCon").innerHTML = 0;
     document.getElementById("classInt").innerHTML = 4;
     document.getElementById("classStr").innerHTML = 0;
+    document.getElementById("weapon2").style.display = "none";
   }
   else if (charClass === "Sorceror") {
     document.getElementById("classDex").innerHTML = 0;
     document.getElementById("classCon").innerHTML = 0;
     document.getElementById("classInt").innerHTML = 4;
     document.getElementById("classStr").innerHTML = 0;
+    document.getElementById("weapon2").style.display = "none";
   }
   else if (charClass === "Rogue") {
     document.getElementById("classDex").innerHTML = 3;
     document.getElementById("classCon").innerHTML = 0;
     document.getElementById("classInt").innerHTML = 0;
     document.getElementById("classStr").innerHTML = 1;
+    document.getElementById("weapon2").style.display = "inline";
   }
   else if (charClass === "Ranger") {
     document.getElementById("classDex").innerHTML = 2;
     document.getElementById("classCon").innerHTML = 0;
     document.getElementById("classInt").innerHTML = 1;
     document.getElementById("classStr").innerHTML = 1;
+    document.getElementById("weapon2").style.display = "inline";
   }
   else {
     document.getElementById("classDex").innerHTML = 0;
     document.getElementById("classCon").innerHTML = 0;
     document.getElementById("classInt").innerHTML = 0;
     document.getElementById("classStr").innerHTML = 0;
+    document.getElementById("weapon2").style.display = "inline";
   }
 
   // level bonus
@@ -166,6 +174,7 @@ function stats() {
   var constitution = finalCon;
   var intelligence = finalInt;
   var strength = finalStr;
+  var charClass = x.elements[1].value;
   var weapon = x.elements[7].value;
   var weapon2 = x.elements[8].value;
 
@@ -468,7 +477,8 @@ function stats() {
   }
 
   // final display
-  if (!(weapon2 === "select")) {
+  if (!(weapon2 === "select") && !(charClass === "Cleric") 
+      && !(charClass === "Conjurer") && !(charClass === "Sorceror")) {
     document.getElementById("statSheet").innerHTML =
     "Weapons: " + weapon + ", " + weapon2 + "<br/>" +
     "Dexterity: " + dexterity + "<br/>" + 
