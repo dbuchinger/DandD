@@ -61,6 +61,12 @@ function defaultStats() {
     document.getElementById("raceInt").innerHTML = 4;
     document.getElementById("raceStr").innerHTML = 0;
   }
+  else if (race === "Dwargon") {
+    document.getElementById("raceDex").innerHTML = 0;
+    document.getElementById("raceCon").innerHTML = 3;
+    document.getElementById("raceInt").innerHTML = 2;
+    document.getElementById("raceStr").innerHTML = 3;
+  }
   else {
     document.getElementById("raceDex").innerHTML = 0;
     document.getElementById("raceCon").innerHTML = 0;
@@ -1661,6 +1667,7 @@ function races() {
       break;
     }
     document.getElementById("breathWeapon").innerHTML = damage;
+    document.getElementById("dwargonBreathWeapon").innerHTML = damage;
   }
 
   function metalWorking() {
