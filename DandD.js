@@ -103,7 +103,7 @@ function defaultStats() {
     document.getElementById("classStr").innerHTML = 0;
     document.getElementById("weapon2").style.display = "none";
   }
-  else if (charClass === "Sorceror") {
+  else if (charClass === "Sorcerer") {
     document.getElementById("classDex").innerHTML = 0;
     document.getElementById("classCon").innerHTML = 0;
     document.getElementById("classInt").innerHTML = 4;
@@ -262,7 +262,7 @@ function stats() {
 			damageRoll = damageRollSmall(intStr + intDex/3);
 		}
 		else if (curWeapon === "Staff") {
-			hitRoll1 = -1 + Math.floor(intStr/5 + intDex/3);
+			hitRoll1 = -1 + Math.floor(intStr/4.5 + intDex/3);
 			damageRoll = damageRollSmall(intStr);
     }
     else if ((curWeapon === "Javelin") || (curWeapon === "Hand Axe")) {
@@ -484,7 +484,7 @@ function stats() {
 
   // final display
   if (!(weapon2 === "select") && !(charClass === "Cleric") 
-      && !(charClass === "Conjurer") && !(charClass === "Sorceror")) {
+      && !(charClass === "Conjurer") && !(charClass === "Sorcerer")) {
     document.getElementById("statSheet").innerHTML =
     "Weapons: " + weapon + ", " + weapon2 + "<br/>" +
     "Dexterity: " + dexterity + "<br/>" + 

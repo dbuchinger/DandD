@@ -44,7 +44,7 @@
             <option value="Barbarian">Barbarian</option>
             <option value="Cleric">Cleric</option>
             <option value="Conjurer">Conjurer</option>
-            <option value="Sorceror">Sorceror</option>
+            <option value="Sorcerer">Sorcerer</option>
             <option value="Rogue">Rogue</option>
             <option value="Ranger">Ranger</option>
         </select><br/><br/>
@@ -391,7 +391,7 @@
 			<td><span id="alterMemory"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
-            <td>Sorceror</td>
+            <td>Sorcerer</td>
             <td>Magic Missile</td>
             <td>5 Int  (No Spell Slot)</td>
             <td>Shoot undodgeable magical projectiles to deal damage to target in caster's line of
@@ -399,7 +399,7 @@
 			<td><span id="magicMissile"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
-            <td>Sorceror</td>
+            <td>Sorcerer</td>
             <td>Fireball</td>
             <td>10 Int</td>
             <td>Shoot a fireball that explodes at a target location in the caster's line
@@ -408,7 +408,7 @@
 			<td><span id="fireball"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
-            <td>Sorceror</td>
+            <td>Sorcerer</td>
             <td>Gust</td>
             <td>10 Int</td>
             <td>Create a gust of wind in a 5 space line from the caster, unsteadying
@@ -418,7 +418,7 @@
 			<td><span id="gust"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
-            <td>Sorceror</td>
+            <td>Sorcerer</td>
             <td>Wall of Flames</td>
             <td>10 Int</td>
             <td>Create a wall of flames that deals fire damage to units already in the
@@ -427,7 +427,7 @@
 			<td><span id="wallOfFlames"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
-            <td>Sorceror</td>
+            <td>Sorcerer</td>
             <td>Blight</td>
             <td>15 Int</td>
             <td>Drain the vitality of a target, which must make a Fortitude save to lessen
@@ -436,7 +436,7 @@
 			<td><span id="blight"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
-            <td>Sorceror</td>
+            <td>Sorcerer</td>
             <td>Cone of Cold</td>
             <td>15 Int</td>
             <td>Create a blast of icy winds, dealing ice damage to enemies in a cone of
@@ -447,7 +447,7 @@
 			<td><span id="coneOfCold"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
-            <td>Sorceror</td>
+            <td>Sorcerer</td>
             <td>Dragon's Breath</td>
             <td>15 Int</td>
             <td>Shoot a pillar of flames, dealing fire damage to targets in 5 space line
@@ -456,7 +456,7 @@
 			<td><span id="dragonsBreath"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
-            <td>Sorceror</td>
+            <td>Sorcerer</td>
             <td>Chain Lightning</td>
             <td>20 Int</td>
             <td>Deal electrical damage to target in line of sight. Chain Lightning may hit
@@ -466,7 +466,7 @@
 			<td><span id="chainLightning"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
-            <td>Sorceror</td>
+            <td>Sorcerer</td>
             <td>Noxious Cloud</td>
             <td>20 Int</td>
             <td>Create a cloud of poisonous fumes in a nine space square within caster's
@@ -476,14 +476,14 @@
 			<td><span id="noxiousCloud"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
-            <td>Sorceror</td>
+            <td>Sorcerer</td>
             <td>Telekinesis</td>
             <td>20 Int</td>
             <td>Manipulate a small object from a distance.</td>
 			<td><span id="telekinesis"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
-            <td>Sorceror</td>
+            <td>Sorcerer</td>
             <td>Mind Shatter</td>
             <td>25 Int</td>
             <td>Caster assaults the target's mind, forcing a Will save for the target to
@@ -492,7 +492,7 @@
 			<td><span id="mindShatter"></span></td>
         </tr>
         <tr bgcolor="#ff8585">
-            <td>Sorceror</td>
+            <td>Sorcerer</td>
             <td>Earthquake</td>
             <td>25 Int</td>
             <td>Cause a tremor at target location, unsteadying targets and affecting
@@ -501,7 +501,7 @@
 			<td><span id="earthquake"></span></td>
         </tr>       
         <tr bgcolor="#ff8585">
-            <td>Sorceror</td>
+            <td>Sorcerer</td>
             <td>Meteor Strike</td>
             <td>30 Int</td>
             <td>Call down a hail of meteors at a 16 square target location.</td>
@@ -569,7 +569,7 @@
             <td class="left"><strong><em>Dual Weapon Proficiency</em></strong>: This
                 character has mastery of two weapon types (cannot be Hammer or Battleaxe).<br/>
                 <strong><em>Blindsense</em></strong>: Used to dealing in shadows and secrecy,
-                rogues can sense creatures they can't see within 10 feet of them.<br/>
+                rogues can sense creatures they can't see within 5 feet of them.<br/>
                 <strong><em>Thief Traits</em></strong>: The character can attempt to
                 pick locks and set and disarm traps <span id="thiefTraits"></span>, and also
                 gains a <span id="pickpocket"></span> bonus to Finesse rolls used to
@@ -878,6 +878,31 @@
                 of locks and simple mechanisms, allowing them to pick locks and set and disarm
                 traps <span id="metalWorking"></span>.
             </td>
+        </tr>
+        <tr>
+			<th>Dwargon</th>
+			<td class="left">A rare pairing between a Dragonborn and a Dwarf. While the two
+                races are usually a proud people that rarely stray from their own group,
+                occassional pairings do happen resulting in a stout, scaly offspring. The
+                products of these love affairs are often abandoned due to the stigma of
+                the relationship from both sides, leading to a rough life for the kobold-like
+                child. This is compounded by people's lack of familiarity and often
+                revulsion with the niche race's awkward appearance. They know the Common
+                Tongue and may also know the Dwarven or Draconic languages, depending on
+                where and how they were raised. <br/>
+                <br/>
+                <strong><u>Abilities</u></strong><br/>
+                <strong>Darkvison</strong>: Due to the adaptation of their Dwarven lineage,
+                Dwargons are able to see in little to no light.<br/>
+                <strong>Abomination</strong>: Many see Dwargons as one of nature's mistakes
+                or as subhuman, resulting in a -1 penalty to Charisma checks.<br/>
+                <strong>Breath Weapon</strong>: The character shoots a 25 foot line of
+                fire from their mouth. The character also has damage resistance to fire.
+                This ability is a primary action that can be used once but recharges
+                after a long rest.
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Damage</em>:
+                <span id="dwargonBreathWeapon"></span>
+            </td>
 		</tr>
 		<tr>
 			<th>Elf</th>
@@ -986,31 +1011,6 @@
                 Level 1.
             </td>
         </tr>
-        <tr>
-			<th>Dwargon</th>
-			<td class="left">A rare pairing between a Dragonborn and a Dwarf. While the two
-                races are usually a proud people that rarely stray from their own group,
-                occassional pairings do happen resulting in a stout, scaly offspring. The
-                products of these love affairs are often abandoned due to the stigma of
-                the relationship from both sides, leading to a rough life for the kobold-like
-                child. This is compounded by people's lack of familiarity and often
-                revulsion with the niche race's awkward appearance. They know the Common
-                Tongue and may also know the Dwarven or Draconic languages, depending on
-                where and how they were raised. <br/>
-                <br/>
-                <strong><u>Abilities</u></strong><br/>
-                <strong>Darkvison</strong>: Due to the adaptation of their Dwarven lineage,
-                Dwargons are able to see in little to no light.<br/>
-                <strong>Abomination</strong>: Many see Dwargons as one of nature's mistakes
-                or as subhuman, resulting in a -1 penalty to Charisma checks.<br/>
-                <strong>Breath Weapon</strong>: The character shoots a 25 foot line of
-                fire from their mouth. The character also has damage resistance to fire.
-                This ability is a primary action that can be used once but recharges
-                after a long rest.
-                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Damage</em>:
-                <span id="dwargonBreathWeapon"></span>
-            </td>
-		</tr>
 	</table>
     <hr>
     
@@ -1026,6 +1026,9 @@
     <p><strong>Check (Rolling a stat check)</strong>: Used interchangeably with rolling a
         save, this means to roll the d20 and apply the character's bonus in whatever stat
         is being checked to see if they pass or fail the event.
+    </p>
+    <p><strong>Instant Action</strong>: An action that can happen immediately, even when
+        it is not the user's turn.
     </p>
     <p><strong>Level</strong>: An indicator of a character's power. Each successive level
         grants a player 1 point in each of the 4 main skills along with 2 points the
