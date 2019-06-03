@@ -24,7 +24,7 @@
     
     <hr>
     <h2 id="playerStats">Player Stats</h2>
-    <form id="stats">
+    <form id="stats" autocomplete="off">
         Race:
         <select name="race" onchange="defaultStats()">
             <option value="select">- Select -</option>
@@ -135,12 +135,21 @@
     </form>
     <br/>
     <button type="button" onclick="stats()">Submit</button>
-    <p id="statSheet"></p>
+    <br/><br/>
+    <table class="statSheet">
+        <col width="185">
+        <col width="220">
+        <tr>
+            <td id="statSheetStats" class="statSheet"></td>
+            <td id="statSheetRace" class="statSheet"></td>
+            <td id="statSheetClass" class="statSheet"></td>
+        </tr>
+    </table>
     <hr>
 
 	<!-----------SPELLS------------------ https://www.hexcolortool.com/ -->
     <h2 id="spellList">Spells</h2>
-	<form id="spells">
+	<form id="spells" autocomplete="off">
 		Level:
 		<input type="text" name="level"><br/>
 		Intelligence:
@@ -512,7 +521,7 @@
 
     <!--------------------------ABILITIES----------------------->
     <h2 id="abilityList">Class Traits and Abilities</h2>
-    <form id="abilities">
+    <form id="abilities" autocomplete="off">
         Level:
         <input type="text" name="level">
         <select name="classAbs" onchange="abilitySort()">
@@ -557,8 +566,8 @@
                 from years of coordinated fighting experience and is resistant to being
                 stunned or frightened in combat <span id="battleTrained"></span>.<br/>
                 <strong><em>Group Fighter</em></strong>: Fighters are used to attacking as
-                a team. The Fighter and other characters attacking the same target gain
-                a <span id="groupFighter"></span> bonus to hit. 
+                a team. When attacking the same target with another character the Fighter
+                gains a <span id="groupFighter"></span> bonus to hit. 
             </td>
             <td>-</td>
         </tr>
@@ -618,10 +627,10 @@
             <td>Barbarian</td>
             <td>Rage</td>
             <td>Level 1<br/>Bonus Action</td>
-            <td>User enters a Rage, giving a bonus to Athletics and Fortitude checks
-                and damage rolls. While in Rage, the user has penalties to Will checks 
-                and cannot use other abilities. The user's Rage only ends with the end
-                of an encounter.
+            <td>User enters a Barbarian Rage, giving a bonus to Athletics, Fortitude,
+                Will checks against beng frightened, and damage rolls. While in Rage,
+                the user has penalties to all other Will checks and cannot use other
+                abilities. The user's Rage only ends with the end of an encounter.
             </td>
             <td><span id="rage"></span></td>
         </tr>
@@ -630,9 +639,9 @@
             <td>Ranger</td>
             <td>Careful Aim</td>
             <td>(Ranged)<br/>Level 2<br/>Primary Action</td>
-            <td>The character's next attack is a guaranteed hit. This ability
-                does not work if the target cannot be sensed or line of sight to the
-                target is obstructed.
+            <td>The character's next attack on the selected target is a guaranteed hit.
+                This ability does not work if the target cannot be sensed or line of
+                sight to the target is obstructed.
             </td>
             <td>-</td>
         </tr>
@@ -640,11 +649,11 @@
             <td>Fighter, Barbarian</td>
             <td>Grapple</td>
             <td>Level 2<br/>Primary Action<br/></td>
-            <td>User grapples an enemy, dealing damage and preventing the enemy's next
-                action until the grapple is released or they pass an Athletics check.
-                Attacks made against the grappling and grappled character gain a +5 
-                bonus to hit. If the grappling character takes damage, the grapple is
-                broken.
+            <td>User grapples an enemy up to one size larger than the character,
+                dealing damage and preventing the enemy's next action until the
+                grapple is released or they pass an Athletics check. Attacks made
+                against the grappling and grappled characters gain a +5 bonus to hit.
+                If the grappling character takes damage, the grapple is broken.
             </td>
             <td><span id="grapple"></span></td>
         </tr>
@@ -707,7 +716,7 @@
             <td>Turtle Stance</td>
             <td>Level 3<br/>Bonus Action<br/>1 Mana</td>
             <td>User has increased Armor Class and a bonus to Fortitude checks until
-                their next movement.
+                their next movement (not turn).
             </td>
             <td><span id="turtleStance"></span></td>
         </tr>
@@ -749,9 +758,9 @@
         <tr class="ability barbarian fighter">
             <td>Fighter, Barbarian</td>
             <td>Stunning Blow</td>
-            <td>Level 4<br/>Primary Action<br/>1 Mana</td>
-            <td>The user's hit will stun the target if it hits unless the target
-                passes a Fortitude check.
+            <td>Level 4<br/>Bonus Action<br/>1 Mana</td>
+            <td>The user's next hit this turn will stun the target if it hits unless
+                the target passes a Fortitude check.
             </td>
             <td><span id="stunningBlow"></span></td>
         </tr>
@@ -785,8 +794,8 @@
             <td>Strong Mind</td>
             <td>Level 5<br/>Passive</td>
             <td>The character has intense concentration during battle that prevents them from
-                being stunned, dazed, charmed, or having their hit bonus reduced by 
-                non-physical means.
+                being stunned or having their hit bonus reduced by non-physical means and
+                causes them to pass all Will saves.
             </td>
             <td>-</td>
         </tr>
@@ -829,7 +838,7 @@
     <hr>
     
     <h2 id="raceList">Race Attributes</h2>
-    <form id="races">
+    <form id="races" autocomplete="off">
         Level:
         <input type="text" name="level">
     </form>
@@ -1026,6 +1035,29 @@
     <p><strong>Check (Rolling a stat check)</strong>: Used interchangeably with rolling a
         save, this means to roll the d20 and apply the character's bonus in whatever stat
         is being checked to see if they pass or fail the event.
+    </p>
+    <p><strong>Death</strong>: When a player's hit points are reduced to 0, they will be
+        unable to take action as they struggle to stay alive. Each time it would be their
+        turn, they instead roll the d20 for their death saving throws. A result of 11 or
+        greater counts as a success, and a roll of 10 or less counts as a failure. Reaching
+        3 successes puts the player in a stable condition of 1 hit point, but they remain
+        unconscious. Reaching 3 failures results in the players death. Other important
+        factors include:
+        <br/><em>Critical Hits and Misses</em>: If the player rolls a 20, they instantly
+        become stable at 1 hit point. If they roll a 1, it counts as 2 failures towards
+        their death saving throws.
+        <br/><em>Instant Death</em>: If a player takes enough damage that the remaining
+        damage they would have taken is equal to or exceeds their total health, the player
+        instantly dies. Example: A player with 10 total health and 4 health remaining takes
+        14 damage. There is 10 damage remaining after they are reduced to 0 hit points.
+        Because this is equal to or greater than their hit point maximum, they die outright. 
+        <br/><em>Healing and Continued Damage</em>: If a player fighting death has hit
+        points restored to them through healing, they immediately become conscious. If the
+        healing received was not enough to bring them out of negative hit points, it does not
+        wake them but counts as a success towards their death saving throws. Similarly for
+        continued damage, if the cumulative damage taken is equal to or greater than the
+        player's max health then they die. If not, the damage taken just adds a failure to
+        the player's death saving throws.
     </p>
     <p><strong>Instant Action</strong>: An action that can happen immediately, even when
         it is not the user's turn.
