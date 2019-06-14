@@ -258,7 +258,7 @@ function stats() {
 			damageRoll = damageRollHeavy(intStr);
 		}
     else if ((curWeapon === "Sword") || (curWeapon === "Mace") || (curWeapon === "Spear")) {
-			hitRoll1 = -4 + Math.floor(intStr/4 + intDex/3.5);
+			hitRoll1 = -4 + Math.floor(intStr/3.5 + intDex/3.5);
 			damageRoll = damageRollBig(intStr);
     }
 		else if ((curWeapon === "Dagger") || (curWeapon === "Knife")) {
@@ -278,7 +278,7 @@ function stats() {
 		}
 		else if (curWeapon === "Bow") {
 			hitRoll1 = -4 + Math.floor(intDex/3);
-			damageRoll = damageRollMedium(intStr/5 + intDex*.8);
+			damageRoll = damageRollMedium(intStr/5 + intDex*.9);
 		}
 		else if (curWeapon === "Crossbow") {
 			hitRoll1 = -1 + Math.floor(intDex/3);
@@ -487,6 +487,7 @@ function stats() {
   }
 
   // final stats display
+
   statsHeader = "Stats";
   statsHeaderBold = statsHeader.bold();
   if (!(weapon2 === "select") && !(charClass === "Cleric") 
@@ -730,7 +731,7 @@ function stats() {
     bullyBold + "Gain a bonus to charisma checks being used to intimidate. Bonus: +" +
     bully + "<br/>" + abilitiesItal + "<br/>" + chargeBold + "Bonus action, 1 mana. " +
     "The character's movement is doubled this turn.<br/>" + rageBold + "Bonus Action. "
-    + "Gain a bonus to Athletics, Fortitude, Will checks against beng frightened, and " +
+    + "Gain a bonus to Athletics, Fortitude, Will checks against being frightened, and " +
     "damage rolls but a penalty to Will. User cannot use other abilities or exit Rage " +
     "until encounter ends. Check Bonus: +" + rage[0] + ",  Damage: +" + rage[1] +
     ",  Will Penalty: " + rage[2] + "<br/>";
