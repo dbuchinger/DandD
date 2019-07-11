@@ -190,7 +190,7 @@ function stats() {
 
   var health = 10 + Math.floor(1.5 * constitution);
   var armorClass = 10 + Math.floor(dexterity/5 + constitution/3);
-  var speed = 4 + Math.floor(dexterity/10);
+  var speed = 4 + Math.floor(dexterity/8);
   var sneak = -3 + Math.floor(dexterity/3);
   var athletics = -3 + Math.floor(dexterity/8 + strength/3);
   var finesse = -3 + Math.floor(dexterity/3 + intelligence/7);
