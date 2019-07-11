@@ -1952,7 +1952,7 @@ function recklessAttackFunc(level) {
 }
 
 function battleCryFunc(level) {
-  var dc = 6 + Math.floor(level/3);
+  var dc = 4 + Math.floor(level/3);
   return dc;
 }
 
