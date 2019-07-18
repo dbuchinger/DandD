@@ -193,7 +193,7 @@ function stats() {
   var speed = 4 + Math.floor(dexterity/8);
   var sneak = -2 + Math.floor(dexterity/3);
   var athletics = -2 + Math.floor(dexterity/8 + strength/3);
-  var finesse = -2 + Math.floor(dexterity/3 + intelligence/7);
+  var finesse = -2 + Math.floor(dexterity/3 + intelligence/8);
   var charisma = -2 + Math.floor(intelligence/3);
   var perception = -2 + Math.floor(intelligence/3 + dexterity/10);
   var mana = (intelligence-1)/2;
@@ -231,7 +231,7 @@ function stats() {
   else {
     manaPool = 10;
   }
-  var will = -2 + Math.floor(intelligence/3 + constitution/8);
+  var will = -2 + Math.floor(intelligence/3 + constitution/10);
   var fortitude = -2 + Math.floor(constitution/3 + strength/8);
   var endDamage = combatNumbers(weapon, strength, dexterity);
   var endDamage2 = combatNumbers(weapon2, strength, dexterity);
