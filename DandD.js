@@ -1866,7 +1866,7 @@ function groupFighterFunc(level) {
 
 function focusFunc(level) {
   var hit = 1 + Math.floor((level+1)/2);
-  var damage = 1 + Math.floor(level);
+  var damage = 1 + Math.floor(level/2);
   return [hit, damage];
 }
 
