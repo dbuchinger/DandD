@@ -191,11 +191,11 @@ function stats() {
   var health = 10 + Math.floor(1.5 * constitution);
   var armorClass = 10 + Math.floor(dexterity/5 + constitution/3);
   var speed = 4 + Math.floor(dexterity/8);
-  var sneak = -2 + Math.floor(dexterity/3);
-  var athletics = -2 + Math.floor(dexterity/8 + strength/3);
-  var finesse = -2 + Math.floor(dexterity/3 + intelligence/8);
-  var charisma = -2 + Math.floor(intelligence/3);
-  var perception = -2 + Math.floor(intelligence/3 + dexterity/10);
+  var sneak = -4 + Math.floor(dexterity/2);
+  var athletics = -4 + Math.floor(dexterity/8 + strength/2);
+  var finesse = -4 + Math.floor(dexterity/2 + intelligence/8);
+  var charisma = -4 + Math.floor(intelligence/2);
+  var perception = -4 + Math.floor(intelligence/2 + dexterity/10);
   var mana = (intelligence-1)/2;
   var manaPool;
   if (mana < 1){
@@ -231,8 +231,8 @@ function stats() {
   else {
     manaPool = 10;
   }
-  var will = -2 + Math.floor(intelligence/3 + constitution/10);
-  var fortitude = -2 + Math.floor(constitution/3 + strength/8);
+  var will = -4 + Math.floor(intelligence/2 + constitution/8);
+  var fortitude = -4 + Math.floor(constitution/2 + strength/8);
   var endDamage = combatNumbers(weapon, strength, dexterity);
   var endDamage2 = combatNumbers(weapon2, strength, dexterity);
 
