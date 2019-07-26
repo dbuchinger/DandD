@@ -254,7 +254,7 @@ function stats() {
     var throwHit;
 
     if ((curWeapon === "Battleaxe") || (curWeapon === "Hammer")) {
-			hitRoll1 = -5 + Math.floor(intStr/3.5);
+			hitRoll1 = -5 + Math.floor(intStr/3);
 			damageRoll = damageRollHeavy(intStr);
 		}
     else if ((curWeapon === "Sword") || (curWeapon === "Mace") || (curWeapon === "Spear")) {
