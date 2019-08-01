@@ -936,7 +936,7 @@ function spells() {
   meteorStrike();
 	
 	function detectMagic() {
-		var bonus = -3 + Math.floor(level/5 + intelligence/5);
+		var bonus = -3 + Math.floor(level/3 + intelligence/5);
 		if (bonus < 0) {
 			document.getElementById("detectMagic").innerHTML = "d20 - " + (-bonus);
 		}
@@ -1168,7 +1168,7 @@ function spells() {
   }
   
   function bendNature() {
-    var bonus = -5 + Math.floor(level/5 + intelligence/5);
+    var bonus = -5 + Math.floor(level/4 + intelligence/4);
     if (bonus < 0) {
       document.getElementById("bendNature").innerHTML = "d20 - " + (-bonus);
     }
@@ -1358,7 +1358,7 @@ function spells() {
       default: dice = "4d6";
       break;
     }
-    bonus = Math.floor(((level + intelligence)%6 + 1)/4) + alter;
+    bonus = Math.floor(((level + intelligence)%6)/4) + alter;
   
     if (bonus < 0) {
       document.getElementById("fireball").innerHTML = dice + " - " + -bonus;
